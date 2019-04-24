@@ -1,0 +1,53 @@
+{
+  "name": "mr-yum",
+  "version": "2.0.0",
+  "private": true,
+  "dependencies": {
+    "airtable": "^0.5.10",
+    "bootstrap": "^4.2.1",
+    "classnames": "^2.2.6",
+    "connected-react-router": "^6.3.2",
+    "emailjs-com": "^2.3.2",
+    "lodash": "^4.17.11",
+    "node-sass": "^4.11.0",
+    "react": "^16.7.0",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
+    "react-dom": "^16.7.0",
+    "react-dragscroll": "^2.0.1",
+    "react-easy-swipe": "0.0.17",
+    "react-image": "^2.1.1",
+    "react-jsx-parser": "^1.16.1",
+    "react-lines-ellipsis": "^0.14.1",
+    "react-redux": "^6.0.1",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-router5": "^6.5.3",
+    "react-saga": "^0.2.6",
+    "react-scripts": "2.0.5",
+    "react-scroll-horizontal": "^1.6.2",
+    "reactstrap": "^7.1.0",
+    "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
+    "redux-router5": "^6.0.5",
+    "redux-saga": "^0.16.2",
+    "router5": "^6.6.1",
+    "router5-helpers": "^5.2.1",
+    "terser": "^3.14.1",
+    "webfontloader": "^1.6.28"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
