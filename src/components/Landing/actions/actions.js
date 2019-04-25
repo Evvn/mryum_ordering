@@ -1,8 +1,8 @@
 import * as actionTypes from './actionTypes/actionTypes.js';
 
-export function setLandingRoute(route) {
+export function setClientType(clientType) {
   return {
-    type: actionTypes.CHANGE_LANDING_SUBROUTE,
-    route,
+    type: actionTypes.SET_CLIENT_TYPE,
+    clientType,
   };
 }

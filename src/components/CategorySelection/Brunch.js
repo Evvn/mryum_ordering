@@ -48,7 +48,7 @@ class Brunch extends React.Component{
     })
 
     return (
-      <div>
+      <div className="venuesContainer">
         <h2>Verified by Mr Yum <span role="img" aria-label="medal">🏅</span></h2>
           {verified}
         <h2>Not Yet Verified <span role="img" aria-label="dice">🎲</span></h2>

@@ -22,9 +22,12 @@ class Filter extends React.Component {
   }
 
   closeLangMenu() {
-    // on filter menu click, close language menu if it's currently open
-    document.querySelector('.languageList').classList.remove('langOpen')
-    document.querySelector('.langArrow').classList.remove('rotate')
+    const path = window.location.pathname.split('/')
+    if (!path[2]) {
+      // on filter menu click, close language menu if it's currently open
+      document.querySelector('.languageList').classList.remove('langOpen')
+      document.querySelector('.langArrow').classList.remove('rotate')
+    }
   }
 
   toggleFilterMenu = (e) => {

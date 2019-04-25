@@ -1,36 +1,48 @@
-// not being used, ref. for boiler
-
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import * as actions from './actions/actions.js'
-import Home from './Home.js';
-import Contact from './Contact.js';
-import FAQ from './FAQ.js';
 
-class App extends React.Component {
+import * as actions from './actions/actions.js'
+import { clientTypes, routes } from '../Common/enums/commonEnums.js';
+
+class Landing extends React.Component {
+
+  componentWillMount(){
+    const { clientType, venueUrl, routeTo } = this.props;
+    if (clientType) {
+      window.location = `/${venueUrl}/${routes.MENU}`;
+    }
+  }
+
+  componentWillUpdate(){
+    const { clientType, venueUrl, routeTo } = this.props;
+    if (clientType) {
+      window.location = `/${venueUrl}/${routes.MENU}`;
+    }
+  }
 
   render() {
-    const { route, setLandingRoute } = this.props;
-
-    switch (route) {
-      case 'home':
-        return <Home setLandingRoute={setLandingRoute} />
-      case 'contact':
-        return <Contact setLandingRoute={setLandingRoute} />
-      case 'faq':
-        return <FAQ setLandingRoute={setLandingRoute} />
-      default:
-        return <Home setLandingRoute={setLandingRoute} />
-    }
+    const { setClientType, clientType } = this.props;
+    return (
+      <div>
+        <h1>Landing</h1>
+        <div>
+          <button style={{cursor:'pointer'}} onClick={() => setClientType(clientTypes.SEATED)}>
+            {clientTypes.SEATED}
+          </button>
+          <button style={{cursor:'pointer'}} onClick={() => setClientType(clientTypes.STANDING)}>
+            {clientTypes.STANDING}
+          </button>
+        </div>
+      </div>
+    );
   }
 }
 
-// redux component boiler 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 
 const mapStateToProps = state => ({
-  route: state.route,
+  clientType: state.persistentCommon.clientType,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Landing);

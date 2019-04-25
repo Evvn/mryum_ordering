@@ -49,3 +49,9 @@ export function clearSectionPositions(){
     type: actionTypes.CLEAR_SECTION_POSITIONS,
   }
 }
+
+export function toggleShowWater() {
+  return {
+    type: actionTypes.TOGGLE_SHOW_WATER,
+  }
+}

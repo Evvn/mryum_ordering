@@ -1,8 +1,10 @@
 import * as actionTypes from '../actions/actionTypes/actionTypes.js';
+import * as landingActionTypes from '../../Landing/actions/actionTypes/actionTypes.js';
 
 const initialState = {
   venueNames: false,
   categoryRes: false,
+  clientType: false,
 }
 
 function persistentCommonReducer(state = initialState, action) {
@@ -17,9 +19,10 @@ function persistentCommonReducer(state = initialState, action) {
         ...state,
         categoryRes: action.res,
       }
-    case action.type === 'CLEAR_STATE':
+    case landingActionTypes.SET_CLIENT_TYPE:
       return {
-        ...initialState,
+        ...state,
+        clientType: action.clientType,
       };
     default:
       return state

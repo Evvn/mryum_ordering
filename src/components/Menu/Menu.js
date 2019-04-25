@@ -2,8 +2,17 @@ import React, {Component} from 'react';
 import NotFound from '../NotFound/NotFound.js'
 import Section from './Section.js'
 import ItemDetail from './ItemDetail.js'
+import ClassNames from 'classnames'
 
 class Menu extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      showWater: false,
+    }
+  }
+
   getTags(){
     const { filter } = this.props;
     const tagsInUse = [];
@@ -16,13 +25,17 @@ class Menu extends Component {
     return tagsInUse;
   }
 
+  componentDidUpdate() {
+
+  }
+
   getSections(){
     const { menuItems, menuItemKeys } = this.props;
     const menuSections = {};
     menuItemKeys.forEach(item => {
       const placedSections = Object.keys(menuSections);
       const menuItem = menuItems[item];
-      const section = menuItem.fields.Sections;
+      const section = menuItem.fields.sections;
       if (!placedSections.includes(section)){
         menuSections[section] = [menuItem];
       }
@@ -38,7 +51,7 @@ class Menu extends Component {
     const {
       setSectionPosition,
       lang,
-      routeToItemDetail,
+      routeToItemDetail
     } = this.props
     const menuSections = this.getSections();
     const tagsInUse = this.getTags();
@@ -72,17 +85,32 @@ class Menu extends Component {
       menuItems,
       itemId,
     } = this.props
+    const desktopView = window.innerWidth > 768 ? true : false;
 
-    return (
-      <div>
-        {this.getMenu()}
-        {
-          itemId
-            ? <ItemDetail details={menuItems[itemId].fields} lang={lang} />
-            : ''
-        }
+    return desktopView ?
+      (
+        <div>
+          <div className={ClassNames(itemId ? 'menuCont lockScroll' : 'menuCont')}>
+            { this.getMenu() }
+          </div>
+
+        { itemId ?
+          <ItemDetail details={menuItems[itemId].fields} lang={lang} />
+           : '' }
       </div>
-    );
+    )
+      :
+    (
+      <div>
+        { itemId ?
+          <ItemDetail details={menuItems[itemId].fields} lang={lang} />
+           :
+           <div>
+             { this.getMenu() }
+           </div>
+          }
+      </div>
+    )
   }
 }
 

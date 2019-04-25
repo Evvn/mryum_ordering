@@ -7,10 +7,11 @@ import LanguageSelect from './LanguageSelect.js';
 import Menu from './Menu';
 // import { persistStore } from 'redux-persist'
 import Footer from './Footer';
-import Water from './Water';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import * as actions from './actions/actions.js';
 import classNames from 'classnames'
+import ReactGA from 'react-ga'
+import { venues } from '../Common/enums/commonEnums.js';
 
 class MenuContainer extends React.Component {
   constructor(props) {
@@ -19,15 +20,15 @@ class MenuContainer extends React.Component {
     const paramArray = window.location.href.split('/');
     this.params = {
        requestedVenue: paramArray[3],
-       item: paramArray.length === 5 ? paramArray[4] : false,
+       item: paramArray.length === 5 ? paramArray[4] === 'qr' || paramArray[4] === 'test' || paramArray[4] === 'menu' ? false : paramArray[4] : false,
     }
 
     this.routeToItemDetail = this.routeToItemDetail.bind(this)
   }
 
  componentWillMount() {
-   const { getMenuData, bffRes, venue, itemId, setItemId, clearSectionPositions } = this.props;
-   if (!bffRes || this.params.requestedVenue !== venue) {
+   const { getMenuData, bffRes, venue, itemId, setItemId, clearSectionPositions, venueUrl } = this.props;
+   /*if (!bffRes || venueUrl !== venue) {
     document.title = "Mr Yum";
      getMenuData(this.params.requestedVenue, this.params.item);
      clearSectionPositions();
@@ -35,7 +36,7 @@ class MenuContainer extends React.Component {
    else{
     const venueName = Object.values(bffRes)[0].fields.Venue;
     document.title = venueName + " Menu";
-   }
+   }*/
    if(this.params.item !== itemId){
      setItemId(this.params.item)
    }
@@ -43,36 +44,14 @@ class MenuContainer extends React.Component {
 
  componentWillUpdate() {
    const { getMenuData, bffRes, venue, itemId, setItemId, clearSectionPositions } = this.props;
-   if (!bffRes || this.params.requestedVenue !== venue) {
+   /*if (!bffRes || this.params.requestedVenue !== venue) {
      getMenuData(this.params.requestedVenue, this.params.item);
      clearSectionPositions();
-   }
+   }*/
+   
    if(this.params.item !== itemId){
      setItemId(this.params.item)
    }
- }
-
- componentDidUpdate() {
-   let index = 0
-   document.querySelectorAll('.menuItem').forEach(item => {
-     if (item.classList.contains('water')) {
-       return
-     }
-     if (index % 2 === 0) {
-       if (!item.querySelector('.leftBox').classList.contains('itemPhoto')) {
-         console.log('item photo on right, swap sides');
-         item.querySelector('.leftBox').className = 'rightBox'
-         item.querySelector('.rightBox').className = 'leftBox'
-       }
-     } else {
-       if (!item.querySelector('.rightBox').classList.contains('itemPhoto')) {
-         console.log('item photo on left, swap sides');
-         item.querySelector('.leftBox').className = 'rightBox'
-         item.querySelector('.rightBox').className = 'leftBox'
-       }
-     }
-     index++
-   })
  }
 
  componentWillUnmount() {
@@ -99,6 +78,7 @@ class MenuContainer extends React.Component {
       lang,
       bffRes,
       itemId,
+      venueUrl,
     } = this.props;
     const venueName = bffRes ? Object.values(bffRes)[0].fields.Venue : false;
     const itemView = itemId ? true : false;
@@ -109,7 +89,7 @@ class MenuContainer extends React.Component {
         <header className={ classNames('header', itemView ? 'previewHeader' : '') }>
           {/* back arrow for routing, control this and venuename via props */}
           { itemView ? <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-grey.svg" className="headerBackArrow" alt="back arrow"/> : null }
-          { !!venueName && !itemView? <h1 className="venue">{venueName}</h1> : null }
+          { !!venueUrl && !itemView? <h1 className="venue">{venues[venueUrl]}</h1> : null }
           { !itemView && <Filter filter={filter} updateFilter={updateFilter} lang={lang} /> }
           { !itemView && !filtersInUse ? <HorizontalScrollNav sectionPositions={sectionPositions}/> : ''}
           { !itemView && <LanguageSelect lang={lang} updateLang={updateLang} /> }
@@ -122,9 +102,7 @@ class MenuContainer extends React.Component {
   }
 
   render() {
-    // eslint-disable-next-line
     const {
-      venueName,
       filter,
       lang,
       bffRes,
@@ -149,7 +127,6 @@ class MenuContainer extends React.Component {
               routeToItemDetail={this.routeToItemDetail}
               setSectionPosition={setSectionPosition}
             />
-            <Water/>
             <Footer/>
           </div>
         </div>

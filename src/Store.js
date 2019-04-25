@@ -18,7 +18,7 @@ export default (initialState = {}) => {
   const persistConfig = {
     key: 'root',
     storage,
-    version: 2,
+    version: 5,
     stateReconciler: autoMergeLevel2,
     migrate: createMigrate(migrations, {debug: false}),
     blacklist: ['router', 'menu', 'common']
@@ -32,7 +32,7 @@ export default (initialState = {}) => {
   let store = '';
 
   // for dev
-  if (process.env.REACT_APP_REDUX_DEV_TOOLS === 'false') {
+  if (process.env.REACT_APP_REDUX_DEV_TOOLS === 'true') {
     store = createStore(
       persistReducer(persistConfig, makeRootReducer(history)),
       initialState,

@@ -83,7 +83,7 @@ class ItemDetail extends React.Component {
     let translatedName = 'name-' + lang
     let translatedDesc = 'description-' + lang
     let creditUrl
-    let img = details['Image'] ? details['Image'][0].url : '/mryum_assets/missing_photo.jpg'
+    let img = details.image ? details.image[0].url : '/mryum_assets/missing_photo.jpg'
 
     if (lang !== 'en') {
       name = details[translatedName]
