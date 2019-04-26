@@ -14,7 +14,7 @@ class MenuSearch extends React.Component {
         if (input) {
             let expression = new RegExp(`${input}`, 'gi');
             
-            
+            // initial pruning of results
             let sectionsPromise = new Promise(resolve => {
                 let bucket = [];
                 for (const key of _dataKeys) {
@@ -75,14 +75,14 @@ class MenuSearch extends React.Component {
                 resolve(bucket);
             });
             
-            
-
+            // parallel execution
             let [sections, price, itemName, itemDesc] = await Promise.all([sectionsPromise, pricePromise, itemNamePromise, itemDescriptionPromise]);
 
-            
+            // concat to one array and sort by match score (highest - lowest)
             big_bucket = big_bucket.concat(sections, price, itemName, itemDesc);
             big_bucket.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
             
+            // prune away scores property from output
             let actionables = [];
             big_bucket.map(x => actionables.push(x.result));
             return actionables;
@@ -117,9 +117,12 @@ class MenuSearch extends React.Component {
 
     render() {
         const {data} = this.props;
-        this.search('4').then(oops => {
-            console.log(oops)
-        })
+
+        // usage example
+        this.search('4').then(result => {
+            console.log(result)
+        });
+
         return ( 
             <div> 
                 { 'hello' } 
