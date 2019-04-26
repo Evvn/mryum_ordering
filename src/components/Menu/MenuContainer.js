@@ -7,6 +7,8 @@ import LanguageSelect from './LanguageSelect.js';
 import Menu from './Menu';
 // import { persistStore } from 'redux-persist'
 import Footer from './Footer';
+import Water from './Water';
+import MenuSearch from '../Common/MenuSearch';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import * as actions from './actions/actions.js';
 import classNames from 'classnames'
@@ -88,6 +90,7 @@ class MenuContainer extends React.Component {
       <div>
         <header className={ classNames('header', itemView ? 'previewHeader' : '') }>
           {/* back arrow for routing, control this and venuename via props */}
+          {<MenuSearch data={this.props.bffRes} hide={false}/>}
           { itemView ? <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-grey.svg" className="headerBackArrow" alt="back arrow"/> : null }
           { !!venueUrl && !itemView? <h1 className="venue">{venues[venueUrl]}</h1> : null }
           { !itemView && <Filter filter={filter} updateFilter={updateFilter} lang={lang} /> }
