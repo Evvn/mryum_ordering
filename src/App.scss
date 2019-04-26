@@ -1,3 +1,5 @@
+@import './palette.scss';
+
 @font-face {
   font-family: 'SF-UI-Text-Regular';
   src: url("/fonts/SF-UI-Text-Regular.woff2") format('woff2'), url("/fonts/SF-UI-Text-Regular.woff") format('woff');
@@ -17,52 +19,39 @@
   font-style: normal;
 }
 
-// sass variables
-$red: #fc4250;
-$black: #000;
-$blue: #6189ea;
-$sectionColor: #373737;
-$titleColor: #494949;
-$bodyColor: #6f6f6f;
-$cardColor: #f8f8f8;
-$maxWidth: 500px;
-$grey: #f7f7f7;
-$hopscotch: #70d3c7;
-$hsdark: #282828;
-
 %displayFont {
   font-family: 'SF-UI-Text-Semibold', 'Helvetica Bold', sans-serif;
   font-weight: normal;
   // font-size: 22px;
   font-size: 22px;
   // color: $black;
-  color: white;
+  color: $white;
 }
 
 %sectionFont {
   font-family: 'SF-UI-Text-Semibold', 'Helvetica Bold', sans-serif;
   // font-size: 20px;
   font-size: 30px;
-  color: $sectionColor;
+  color: $sectionFontColor;
 }
 
 %titleFont {
-  font-family: 'SF-UI-Text-Semibold', 'Helvetica Bold', sans-serif;
+  font-family: 'SF-UI-Text-Semibold', 'Helvetica Semibold', sans-serif;
   font-size: 16px;
-  color: $titleColor;
+  color: $titleFontColor;
   letter-spacing: 0.5px;
 }
 
 %bodyFont {
   font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
   font-size: 13px;
-  color: $bodyColor;
+  color: $bodyFontColor;
 }
 
 %priceFont {
   font-family: 'SF-UI-Text-Bold', 'Helvetica Bold', sans-serif;
   font-size: 13px;
-  color: $titleColor;
+  color: $titleFontColor;
 }
 
 %tags {
@@ -95,14 +84,14 @@ body {
 }
 
 .App {
-  background-color: white;
+  background-color: $white;
   min-width: 320px;
 }
 
 .menu {
   min-height: 100vh;
   position: relative;
-  background-color: white;
+  background-color: $white;
 }
 
 .pdfLinkSpace {
@@ -186,16 +175,16 @@ body {
   }
 
   .feedbackHeader {
-    color: $sectionColor;
+    color: $sectionFontColor;
     text-align: center;
     font-size: 20px;
     margin-bottom: 10px;
   }
 
   .feedbackBtn {
-    background-color: $red;
+    background-color: $mryumRed;
     border-radius: 25px;
-    color: white;
+    color: $white;
     padding: 10px 20px;
     text-align: center;
     // width: 170px;
@@ -234,9 +223,9 @@ body {
 
     p {
       font-size: 90%;
-      background-color: white;
+      background-color: $white;
       border: 1px solid #cdcdcd;
-      color: $titleColor;
+      color: $titleFontColor;
       width: 40%;
       border-radius: 10px;
       text-align: center;
@@ -271,7 +260,7 @@ body {
     .feedbackText {
       width: 70vw;
       margin: 25px;
-      background-color: white;
+      background-color: $white;
       border: 1px solid #cdcdcd;
       border-radius: 3px;
       resize: none;
@@ -285,8 +274,8 @@ body {
     }
 
     button {
-      background-color: $red;
-      color: white;
+      background-color: $mryumRed;
+      color: $white;
       font-size: 100%;
       padding: 7px 25px;
       border-radius: 25px;
@@ -328,8 +317,8 @@ body {
     }
 
     .fbThankyouBtn {
-      background-color: $red;
-      color: white;
+      background-color: $mryumRed;
+      color: $white;
       font-size: 100%;
       padding: 7px 25px;
       border-radius: 25px;
@@ -367,7 +356,7 @@ body {
 
   p:first-of-type {
     font-weight: 600;
-    color: $titleColor;
+    color: $titleFontColor;
     // padding-bottom: 0;
   }
 
@@ -377,9 +366,9 @@ body {
   a:hover,
   a:link,
   a:visited {
-    // color: $red;
-    color: white;
-    background-color: $red;
+    // color: $mryumRed;
+    color: $white;
+    background-color: $mryumRed;
     text-decoration: none;
     padding: 10px;
     border-radius: 25px;
@@ -415,7 +404,7 @@ body {
 
   p:first-of-type {
     font-weight: 600;
-    color: $titleColor;
+    color: $titleFontColor;
     // padding-bottom: 0;
   }
 
@@ -425,8 +414,8 @@ body {
   a:hover,
   a:link,
   a:visited {
-    color: $red;
-    border-bottom: 2px solid $red;
+    color: $mryumRed;
+    border-bottom: 2px solid $mryumRed;
     text-decoration: none;
     width: 200px;
     text-align: center;
@@ -442,7 +431,7 @@ body {
 
 .venue {
   @extend %displayFont;
-  color: $hsdark;
+  color: $secondary;
   background-color: #fff;
   font-weight: bold;
   font-size: 20px;
@@ -453,7 +442,7 @@ body {
   height: 100vh;
   width: 100vw;
   max-width: $maxWidth;
-  background-color: $red;
+  background-color: $mryumRed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -467,14 +456,14 @@ body {
 
   .tooltip {
     padding-top: 50px;
-    color: white;
+    color: $white;
     font-size: 16px;
   }
 }
 
 .broadsheetLoading {
   background-color: black;
-  color: white;
+  color: $white;
   justify-content: flex-end;
 
   img:first-of-type {
@@ -504,7 +493,7 @@ body {
 .spinner > div {
   width: 18px;
   height: 18px;
-  background-color: white;
+  background-color: $white;
   border-radius: 150%;
   display: inline-block;
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
@@ -555,8 +544,8 @@ body {
   align-items: center;
   position: fixed;
   top: 61px;
-  background-color: white;
-  color: $sectionColor;
+  background-color: $white;
+  color: $sectionFontColor;
   // background-color: #000;
   z-index: 4;
   padding-top: 5px;
@@ -588,8 +577,8 @@ body {
   }
 
   .red {
-    color: white;
-    background-color: $red;
+    color: $white;
+    background-color: $mryumRed;
     border-radius: 50px;
     margin-left: 10px;
   }
@@ -657,8 +646,8 @@ header {
       }
 
       p {
-        background-color: $red;
-        color: white;
+        background-color: $mryumRed;
+        color: $white;
         width: 70%;
         border-radius: 15px;
         text-align: center;
@@ -689,7 +678,7 @@ header {
     .filterIcon {
       width: 8px;
       height: 8px;
-      background-color: $red;
+      background-color: $mryumRed;
       border-radius: 10px;
       position: fixed;
       z-index: 5;
@@ -698,7 +687,7 @@ header {
     }
 
     .filterList {
-      background-color: white;
+      background-color: $white;
       border: 1px solid #aaa;
       position: absolute;
       top: 50px;
@@ -723,7 +712,7 @@ header {
           display: none;
           width: 10px;
           height: 10px;
-          border: 1px solid $sectionColor;
+          border: 1px solid $sectionFontColor;
           border-radius: 2px;
           position: relative;
           top: 3px;
@@ -736,8 +725,8 @@ header {
 
         .checkedBox {
           border-radius: 2px;
-          border-color: $red;
-          background-color: $red;
+          border-color: $mryumRed;
+          background-color: $mryumRed;
         }
       }
 
@@ -766,31 +755,31 @@ header {
     .hamburger-inner {
       width: 30%;
       top: 26px;
-      background-color: $hsdark;
+      background-color: $secondary;
     }
 
     .hamburger-inner::before {
       top: -6px;
       right: -4px;
-      background-color: $hsdark;
+      background-color: $secondary;
     }
 
     .hamburger-inner::after {
       top: 6px;
       right: 3px;
       width: 50%;
-      background-color: $hsdark;
+      background-color: $secondary;
     }
 
     .hamburger.is-active .hamburger-inner {
       width: 20px;
       left: -5px;
-      background-color: $hsdark;
+      background-color: $secondary;
     }
 
     .hamburger.is-active .hamburger-inner::after,
     .hamburger.is-active .hamburger-inner::before {
-      background-color: $hsdark; // MENU OPEN COLOR HERE
+      background-color: $secondary; // MENU OPEN COLOR HERE
       width: 20px;
       top: 0;
       right: 0;
@@ -809,7 +798,7 @@ header {
     height: 8px;
     width: 8px;
     border-radius: 8px;
-    background-color: $red;
+    background-color: $mryumRed;
     position: absolute;
     top: 18px;
     right: 10px;
@@ -818,7 +807,7 @@ header {
 
 .selectLanguage {
   position: absolute;
-  color: $hsdark;
+  color: $secondary;
   font-size: 15px;
   right: 85px;
   top: 20px;
@@ -831,8 +820,8 @@ header {
 
   .langArrow {
     display: inline-block;
-    border-top: 2px solid $hsdark;
-    border-left: 2px solid $hsdark;
+    border-top: 2px solid $secondary;
+    border-left: 2px solid $secondary;
     border-radius: 0;
     width: 10px;
     height: 10px;
@@ -856,7 +845,7 @@ header {
   right: -10px;
   border: 1px solid #aaa;
   border-radius: 3px;
-  background-color: white;
+  background-color: $white;
   width: 150px;
   height: 0;
   opacity: 0;
@@ -881,7 +870,7 @@ header {
     display: inline-block;
     height: 7px;
     width: 7px;
-    border: 1px solid $sectionColor;
+    border: 1px solid $sectionFontColor;
     border-radius: 7px;
     position: relative;
     top: 2px;
@@ -893,8 +882,8 @@ header {
   }
 
   .radioSelected {
-    background-color: $red;
-    border-color: $red;
+    background-color: $mryumRed;
+    border-color: $mryumRed;
   }
 }
 
@@ -907,7 +896,7 @@ header {
   right: -10px;
 
   p {
-    color: $sectionColor;
+    color: $sectionFontColor;
     display: block;
     width: 90%;
   }
@@ -923,8 +912,8 @@ header {
   align-items: center;
   position: fixed;
   top: 62px;
-  background-color: white;
-  color: $sectionColor;
+  background-color: $white;
+  color: $sectionFontColor;
   // background-color: #000;
   z-index: 4;
   padding: 20px 5px 5px;
@@ -953,8 +942,8 @@ header {
   }
 
   .red {
-    color: white;
-    background-color: $red;
+    color: $white;
+    background-color: $mryumRed;
     border-radius: 15px;
     margin-left: 10px;
   }
@@ -985,8 +974,8 @@ h1 {
 .menuOpen {
   margin-top: 0;
   transform-origin: top;
-  // color: white;
-  color: $titleColor;
+  // color: $white;
+  color: $titleFontColor;
   background-color: $black;
   height: 100vh;
   z-index: 5;
@@ -1003,8 +992,8 @@ h1 {
 
 .links {
   @extend %sectionFont;
-  // color: white;
-  color: $titleColor;
+  // color: $white;
+  color: $titleFontColor;
   list-style: none;
   position: fixed;
   z-index: 5;
@@ -1072,7 +1061,7 @@ h1 {
   @extend %sectionFont;
   padding: 85px 15px 15px;
   margin-bottom: -7px;
-  background-color: white;
+  background-color: $white;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -1162,7 +1151,7 @@ h1 {
   border-radius: 5px;
 
   .forDummies {
-    color: white;
+    color: $white;
     font-weight: bold;
     position: absolute;
     height: 50vw;
@@ -1257,7 +1246,7 @@ h1 {
 }
 
 .menuListItem {
-  background-color: white;
+  background-color: $white;
   grid-template-columns: 1fr;
   min-height: 80px;
   height: 100%;
@@ -1340,7 +1329,7 @@ h1 {
   width: 85vw;
   max-width: 400px;
   padding: 27px;
-  background-color: white;
+  background-color: $white;
   border: 1px solid #e5e5e5;
   border-radius: 5px;
   text-align: center;
@@ -1378,8 +1367,8 @@ h1 {
 
   .closeInstructions {
     @extend %bodyFont;
-    color: white;
-    background-color: $sectionColor;
+    color: $white;
+    background-color: $sectionFontColor;
     font-size: 16px;
     border-radius: 25px;
     padding: 10px;
@@ -1403,7 +1392,7 @@ h1 {
 }
 
 .previewModal {
-  background-color: white;
+  background-color: $white;
   height: 100vh;
   overflow: auto;
   max-width: $maxWidth;
@@ -1462,7 +1451,7 @@ h1 {
       width: 85vw;
       max-width: 400px;
       padding: 27px;
-      background-color: white;
+      background-color: $white;
       border: 1px solid #e5e5e5;
       border-radius: 55x;
       box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
@@ -1521,7 +1510,7 @@ h1 {
     font-stretch: normal;
     line-height: normal;
     letter-spacing: 0.5px;
-    color: $titleColor;
+    color: $titleFontColor;
     padding: 20px 20px 15px;
     text-transform: capitalize;
   }
@@ -1541,14 +1530,14 @@ h1 {
     white-space: pre-wrap;
 
     .define {
-      color: $bodyColor;
+      color: $bodyFontColor;
       border-bottom: 1px solid transparent;
       cursor: pointer;
       -webkit-animation: fadeInUnderline 0.2s ease-in-out forwards;
     }
     @-webkit-keyframes fadeInUnderline {
       100% {
-        border-bottom: 1px solid $bodyColor;
+        border-bottom: 1px solid $bodyFontColor;
       }
     }
   }
@@ -1573,9 +1562,9 @@ h1 {
 
     a,
     a:focus {
-      color: $bodyColor;
+      color: $bodyFontColor;
       text-decoration: none;
-      border-bottom: 1px solid $bodyColor;
+      border-bottom: 1px solid $bodyFontColor;
     }
   }
 
@@ -1597,7 +1586,7 @@ h1 {
     font-stretch: normal;
     line-height: normal;
     letter-spacing: 0.5px;
-    color: $titleColor;
+    color: $titleFontColor;
   }
 
   .previewTags {
@@ -1610,7 +1599,7 @@ h1 {
     line-height: normal;
     letter-spacing: 0.5px;
     text-align: right;
-    color: $titleColor;
+    color: $titleFontColor;
   }
 }
 
@@ -1621,7 +1610,7 @@ h1 {
   padding: 50px 25px 0;
   margin-bottom: 50px;
   text-align: center;
-  background-color: white;
+  background-color: $white;
 
   .mryum {
     margin: 0 auto;
@@ -1630,14 +1619,14 @@ h1 {
   }
 
   h3 {
-    color: $sectionColor;
+    color: $sectionFontColor;
     margin: 10px;
     font-size: 20px;
     letter-spacing: 0.5px;
   }
 
   p {
-    color: $bodyColor;
+    color: $bodyFontColor;
     font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
     font-size: 14px;
     line-height: 20px;
@@ -1647,7 +1636,7 @@ h1 {
   .preRegister {
     font-family: 'SF-UI-Text-Semibold', 'Helvetica', sans-serif;
     font-weight: bold;
-    color: $titleColor;
+    color: $titleFontColor;
     font-size: 14px;
     margin-bottom: 25px;
   }
@@ -1666,8 +1655,8 @@ footer {
   line-height: normal;
   letter-spacing: 0.5px;
   text-align: center;
-  color: white;
-  background-color: $hsdark;
+  color: $white;
+  background-color: $secondary;
   width: 100%;
 
   a,
@@ -1687,8 +1676,8 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $red;
-  color: white;
+  background: $mryumRed;
+  color: $white;
   font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
   border-radius: 25px;
   line-height: 48px;
@@ -1748,7 +1737,7 @@ footer {
       height: 40px;
       background: $black;
       border-radius: 25px;
-      color: white;
+      color: $white;
       border: 0;
       margin: 5px 3px 5px 5px;
       cursor: pointer;
@@ -1756,7 +1745,7 @@ footer {
 
       .ctaBtn &:disabled {
         opacity: 0.7;
-        color: white;
+        color: $white;
       }
     }
   }
@@ -1800,7 +1789,7 @@ footer {
 .pnf {
   font-size: 200%;
   padding: 30px;
-  color: white;
+  color: $white;
   text-align: center;
   margin-bottom: 20vh;
 }
@@ -1822,13 +1811,13 @@ footer {
     line-height: normal;
     letter-spacing: 0.5px;
     text-align: center;
-    color: $bodyColor;
+    color: $bodyFontColor;
     margin: -15px 0 55px;
 
     a {
-      color: $bodyColor;
+      color: $bodyFontColor;
       text-decoration: none;
-      border-bottom: 2px solid $bodyColor;
+      border-bottom: 2px solid $bodyFontColor;
     }
   }
 }
@@ -2015,8 +2004,8 @@ footer {
   }
 
   .modalCta {
-    background-color: $red;
-    color: white;
+    background-color: $mryumRed;
+    color: $white;
     padding: 5px 25px;
     border-radius: 25px;
   }
@@ -2026,7 +2015,7 @@ footer {
 @media screen and (min-width: 768px) {
   .App,
   body {
-    background-color: white;
+    background-color: $white;
     // background-color: #f9dbf8;
     max-width: none;
   }
@@ -2088,14 +2077,14 @@ footer {
     }
 
     .define {
-      color: $bodyColor;
+      color: $bodyFontColor;
       border-bottom: 1px solid transparent;
       cursor: pointer;
       -webkit-animation: fadeInUnderline 0.2s ease-in-out forwards;
     }
     @-webkit-keyframes fadeInUnderline {
       100% {
-        border-bottom: 1px solid $bodyColor;
+        border-bottom: 1px solid $bodyFontColor;
       }
     }
 
@@ -2104,7 +2093,7 @@ footer {
       max-width: 400px;
       height: auto;
       padding: 27px;
-      background-color: white;
+      background-color: $white;
       border: 1px solid #e5e5e5;
       border-radius: 5px;
       box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
@@ -2168,7 +2157,7 @@ footer {
       margin: auto;
       padding: 1px;
       border: 1px solid #ececec;
-      background-color: white;
+      background-color: $white;
     }
 
     .previewImage {
@@ -2192,7 +2181,7 @@ footer {
 
     .imageCredit,
     .previewWrapper {
-      background-color: white;
+      background-color: $white;
       width: auto;
       padding-top: 5px;
     }
@@ -2280,7 +2269,7 @@ footer {
   font-family: "Avenir", "Helvetica", sans-serif;
   // grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
-  background-color: white;
+  background-color: $white;
   width: 100%;
   max-width: none;
   min-width: 768px;
@@ -2290,10 +2279,10 @@ footer {
     background-image: url("/landing_page/Oval.svg");
     background-position: right 25vh;
     background-repeat: no-repeat;
-    background-color: $red;
+    background-color: $mryumRed;
     height: 648px;
     grid-area: 1/1/2/11;
-    color: white;
+    color: $white;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 0.5fr;
@@ -2338,8 +2327,8 @@ footer {
   }
 
   .venueRegistrationCTA {
-    color: $red;
-    background-color: white;
+    color: $mryumRed;
+    background-color: $white;
     border-radius: 25px;
     height: 35px;
     width: 215px;
@@ -2375,8 +2364,8 @@ footer {
   .heroCTA {
     font-weight: 500;
     margin-top: 50px;
-    color: $red;
-    background-color: white;
+    color: $mryumRed;
+    background-color: $white;
     border-radius: 25px;
     height: 42px;
     width: 340px;
@@ -2397,7 +2386,7 @@ footer {
 
   .emailCollect {
     font-size: 100%;
-    color: $red;
+    color: $mryumRed;
     width: 290px;
     margin-left: 15px;
     position: relative;
@@ -2417,7 +2406,7 @@ footer {
   }
 
   .emailCollect:focus::-webkit-input-placeholder {
-    color: white;
+    color: $white;
   }
 
   .heroGif {
@@ -2496,7 +2485,7 @@ footer {
     }
 
     .changeWords {
-      color: $blue;
+      color: $mryumBlue;
     }
 
     .cardOdd {
@@ -2546,7 +2535,7 @@ footer {
     }
 
     .cardNumber {
-      color: $blue;
+      color: $mryumBlue;
       font-family: "Roboto Condensed";
       font-size: 36px;
       margin-bottom: 35px;
@@ -2626,7 +2615,7 @@ footer {
     background-image: url("/landing_page/Oval2.svg");
     background-position: -450px 0;
     background-repeat: no-repeat;
-    background-color: $red;
+    background-color: $mryumRed;
     height: 440px;
     padding-top: 110px;
     text-align: center;
@@ -2639,7 +2628,7 @@ footer {
       font-size: 30px;
       line-height: 1.4;
       text-align: center;
-      color: white;
+      color: $white;
     }
 
     .footerCTAs {
@@ -2654,8 +2643,8 @@ footer {
       font-family: "Avenir", "Helvetica", sans-serif;
       font-weight: 500;
       margin: 65px 15px;
-      color: $red;
-      background-color: white;
+      color: $mryumRed;
+      background-color: $white;
       border-radius: 25px;
       height: 42px;
       width: 360px;
@@ -2883,7 +2872,7 @@ footer {
       flex-direction: column;
       @-webkit-keyframes autofill {
         to {
-          color: $red;
+          color: $mryumRed;
           background: transparent;
         }
       }
@@ -2894,19 +2883,19 @@ footer {
       }
 
       h2 {
-        color: $red;
+        color: $mryumRed;
         margin: 55px;
       }
 
       .error {
         display: block;
-        color: $red;
+        color: $mryumRed;
         padding: 0 15px;
       }
 
       input,
       textarea {
-        color: $red;
+        color: $mryumRed;
         border: 1px solid rgba(214,214,214,.73);
         font-family: "Avenir-Roman", "Avenir", "Helvetica", sans-serif;
         font-size: 16px;
@@ -2918,8 +2907,8 @@ footer {
       }
 
       button {
-        background-color: $red;
-        color: white;
+        background-color: $mryumRed;
+        color: $white;
         width: 175px;
         height: 38px;
         border-radius: 18px;
@@ -2940,7 +2929,7 @@ footer {
 .categorySelection {
   padding-top: 52px;
   min-height: 100vh;
-  background-color: white;
+  background-color: $white;
 
   .venuesContainer {
     display: flex;
@@ -2949,8 +2938,8 @@ footer {
   }
 
   header, h1 {
-    background-color: $hsdark;
-    color: white;
+    background-color: $secondary;
+    color: $white;
 
     img {
       position: absolute;
@@ -2981,7 +2970,7 @@ footer {
 
     a, a:hover, a:visited, a:focus {
       text-decoration: none;
-      color: white;
+      color: $white;
     }
   }
 
@@ -2995,7 +2984,7 @@ footer {
     width: 100%;
     height: 175px;
     background-color: rgba(#000, 0.3);
-    color: white;
+    color: $white;
     font-size: 52px;
     text-align: center;
     font-weight: 600;
@@ -3236,7 +3225,7 @@ footer {
       form {
         input,
         textarea {
-          color: $red;
+          color: $mryumRed;
           border: 1px solid rgba(214,214,214,.73);
           font-family: "Avenir-Roman", "Avenir", "Helvetica", sans-serif;
           font-size: 16px;
