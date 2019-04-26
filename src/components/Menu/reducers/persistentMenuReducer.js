@@ -5,6 +5,7 @@ import stub from '../../../data/airtableDatabaseStub.json';
 const initialState = {
   venue: '',
   bffRes: stub,
+  category: false,
   lang: 'en',
   item: false,
   filter

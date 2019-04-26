@@ -10,7 +10,6 @@ import MenuContainer from './components/Menu/MenuContainer.js';
 import NotFound from './components/NotFound/NotFound.js';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen.js';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class App extends React.Component {
