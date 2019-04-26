@@ -22,7 +22,7 @@ class MenuSearch extends React.Component {
                     if (expression.test(fields['category'])) {
                         let fields = data.menuByItem[key].fields;
                         let searchScore = this.score(fields['category'].toString(), expression);
-                        bucket.push({result: fields['category'], score: searchScore});
+                        bucket.push({result: fields['category'], score: searchScore, id: fields.id});
                     }
                 }
                 
@@ -38,7 +38,7 @@ class MenuSearch extends React.Component {
                     if (expression.test(fields['price'])) {
                         let fields = data.menuByItem[key].fields;
                         let searchScore = this.score(fields['price'].toString(), expression, 'price');
-                        bucket.push({result: fields['price'], score: searchScore});
+                        bucket.push({result: fields['price'], score: searchScore, id: fields.id});
                     }
                 }
 
@@ -53,7 +53,7 @@ class MenuSearch extends React.Component {
                     if (expression.test(fields['name'])) {
                         let fields = data.menuByItem[key].fields;
                         let searchScore = this.score(fields['name'].toString(), expression);
-                        bucket.push({result: fields['name'], score: searchScore});
+                        bucket.push({result: fields['name'], score: searchScore, id: fields.id});
                     }
                 }
 
@@ -68,7 +68,7 @@ class MenuSearch extends React.Component {
                     if (expression.test(fields['description'])) {
                         let fields = data.menuByItem[key].fields;
                         let searchScore = this.score(fields['description'].toString(), expression);
-                        bucket.push({result: fields['description'], score: searchScore});
+                        bucket.push({result: fields['description'], score: searchScore, id: fields.id});
                     }
                 }
 
@@ -84,7 +84,7 @@ class MenuSearch extends React.Component {
             
             // prune away scores property from output
             let actionables = [];
-            big_bucket.map(x => actionables.push(x.result));
+            big_bucket.map(x => actionables.push(x));
             return actionables;
         }
     }
@@ -115,17 +115,18 @@ class MenuSearch extends React.Component {
         }
     }
 
+
     render() {
         const {data} = this.props;
 
         // usage example
-        this.search('4').then(result => {
+        this.search('Fu').then(result => {
             console.log(result)
         });
 
         return ( 
             <div> 
-                { 'hello' } 
+                { 'Search' } 
             </div>
         );
     }

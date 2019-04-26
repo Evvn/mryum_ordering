@@ -77,9 +77,9 @@ class ItemDetail extends React.Component {
   }
 
   render() {
-    const { details, lang } = this.props
-    let name = details['Item Name']
-    let desc = details['Item Description']
+    const { details, lang } = this.props;
+    let name = details.name
+    let desc = '';
     let translatedName = 'name-' + lang
     let translatedDesc = 'description-' + lang
     let creditUrl
@@ -95,7 +95,7 @@ class ItemDetail extends React.Component {
     }
 
     let backgroundImage
-    if (details.Tags !== 'LIST' && !!details.Image) {
+    if (details.tags !== 'LIST' && !!details.image) {
       backgroundImage = {
         backgroundImage: 'url(' + img + ')',
         backgroundSize: 'cover',
@@ -113,7 +113,7 @@ class ItemDetail extends React.Component {
 
           <div className="previewItem">
 
-            { !!details.Tags && details.Tags[0] === 'LIST' ? null :
+            { !!details.tags && details.tags[0] === 'LIST' ? null :
               <div className="previewImage" style={ backgroundImage }></div>
             }
 
@@ -150,11 +150,11 @@ class ItemDetail extends React.Component {
               </div>
 
               <div className="previewDetails">
-                <div className="previewPrice">{details['Price']}</div>
+                <div className="previewPrice">{details['price']}</div>
 
                 {/* Tags are LIST? Don't show */}
-                { !!details.Tags && details.Tags[0] === 'LIST' ? null :
-                  <div className="previewTags">{ !!details.Tags ? details.Tags.join(', ') : null }</div>
+                { !!details.tags && details.tags[0] === 'LIST' ? null :
+                  <div className="previewTags">{ !!details.tags ? details.tags.join(', ') : null }</div>
                 }
               </div>
 
