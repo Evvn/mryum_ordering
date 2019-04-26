@@ -80,7 +80,7 @@ class MenuContainer extends React.Component {
       itemId,
       venueUrl,
     } = this.props;
-    const venueName = bffRes ? Object.values(bffRes)[0].fields.Venue : false;
+    const venueName = bffRes ? Object.values(bffRes.menuByItem)[0].fields.Venue : false;
     const itemView = itemId ? true : false;
     const filtersInUse = Object.values(filter).includes(true)
 
@@ -119,7 +119,7 @@ class MenuContainer extends React.Component {
           {this.getHeader()}
           <div className="menu">
             <Menu
-              menuItemKeys={Object.keys(bffRes)}
+              menuItemKeys={Object.keys(bffRes.menuByItem)}
               menuItems={bffRes.menuByItem}
               filter={filter}
               lang={lang}
