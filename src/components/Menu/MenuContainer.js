@@ -97,7 +97,7 @@ class MenuContainer extends React.Component {
           { !itemView && <Filter filter={filter} updateFilter={updateFilter} lang={lang} /> }
           { !itemView && !filtersInUse ? <HorizontalScrollNav sectionPositions={sectionPositions}/> : ''}
           { !itemView && <LanguageSelect lang={lang} updateLang={updateLang} /> }
-          {<MenuSearch data={this.props.bffRes} hide={false}/>}
+          { !itemView && <MenuSearch data={bffRes} hide={false}/>}
           {/* <img className="cartIcon" src="/icons/cart_icon.svg" alt="cart"/> */}
           {/* need check to see when to display cart badge */}
           {/* { hasCartItems && <div className="cartBadge"/> } */}
@@ -157,7 +157,6 @@ const mapStateToProps = state => ({
   category: state.persistentMenu.category,
   isLoading: state.common.isLoading,
   venue: state.persistentMenu.venue,
-  itemId: state.persistentMenu.item,
   sectionPositions: state.menu.sectionPositions,
   filter: state.persistentMenu.filter,
   lang: state.persistentMenu.lang,

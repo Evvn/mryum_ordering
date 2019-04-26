@@ -49,10 +49,22 @@ class App extends React.Component {
               )}
           />
         <Route
+              exact
               path="/:venueurl/menu"
               component={({ match }) => (
                 <MenuContainer
                   venueUrl={match.params.venueurl}
+                  itemId={false}
+                />
+              )}
+          />
+        <Route
+              exact
+              path="/:venueurl/menu/:itemId"
+              component={({ match }) => (
+                <MenuContainer
+                  venueUrl={match.params.venueurl}
+                  itemId={match.params.itemId}
                 />
               )}
           />
