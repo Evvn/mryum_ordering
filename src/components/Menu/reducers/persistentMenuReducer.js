@@ -5,6 +5,7 @@ import stub from '../../../data/airtableDatabaseStub.json';
 const initialState = {
   venue: '',
   bffRes: stub,
+  category: false,
   lang: 'en',
   item: false,
   filter
@@ -33,6 +34,11 @@ function menuReducer(state = initialState, action) {
       return {
         ...state,
         item: action.id,
+      }
+    case actionTypes.SET_CATEGORY:
+      return {
+        ...state,
+        category: action.category,
       }
     default:
       return state

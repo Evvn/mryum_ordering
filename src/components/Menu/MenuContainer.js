@@ -7,11 +7,15 @@ import LanguageSelect from './LanguageSelect.js';
 import Menu from './Menu';
 // import { persistStore } from 'redux-persist'
 import Footer from './Footer';
+import Water from './Water';
+import MenuSearch from '../Common/MenuSearch';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import * as actions from './actions/actions.js';
 import classNames from 'classnames'
 import ReactGA from 'react-ga'
 import { venues } from '../Common/enums/commonEnums.js';
+
+import CategorySelect from '../CategorySelect/CategorySelect.js';
 
 class MenuContainer extends React.Component {
   constructor(props) {
@@ -80,7 +84,7 @@ class MenuContainer extends React.Component {
       itemId,
       venueUrl,
     } = this.props;
-    const venueName = bffRes ? Object.values(bffRes)[0].fields.Venue : false;
+    const venueName = bffRes ? Object.values(bffRes.menuByItem)[0].fields.Venue : false;
     const itemView = itemId ? true : false;
     const filtersInUse = Object.values(filter).includes(true)
 
@@ -93,6 +97,7 @@ class MenuContainer extends React.Component {
           { !itemView && <Filter filter={filter} updateFilter={updateFilter} lang={lang} /> }
           { !itemView && !filtersInUse ? <HorizontalScrollNav sectionPositions={sectionPositions}/> : ''}
           { !itemView && <LanguageSelect lang={lang} updateLang={updateLang} /> }
+          {<MenuSearch data={this.props.bffRes} hide={false}/>}
           {/* <img className="cartIcon" src="/icons/cart_icon.svg" alt="cart"/> */}
           {/* need check to see when to display cart badge */}
           {/* { hasCartItems && <div className="cartBadge"/> } */}
@@ -109,6 +114,8 @@ class MenuContainer extends React.Component {
       isLoading,
       setSectionPosition,
       itemId,
+      category,
+      setCategory,
     } = this.props;
 
 
@@ -117,18 +124,25 @@ class MenuContainer extends React.Component {
       (
         <div className="Menu">
           {this.getHeader()}
-          <div className="menu">
-            <Menu
-              menuItemKeys={Object.keys(bffRes)}
-              menuItems={bffRes}
-              filter={filter}
-              lang={lang}
-              itemId={itemId}
-              routeToItemDetail={this.routeToItemDetail}
-              setSectionPosition={setSectionPosition}
+          {category ? (
+            <div className="menu">
+              <Menu
+                menuItemKeys={Object.keys(bffRes.menuByItem)}
+                menuItems={bffRes.menuByItem}
+                filter={filter}
+                lang={lang}
+                itemId={itemId}
+                routeToItemDetail={this.routeToItemDetail}
+                setSectionPosition={setSectionPosition}
+              />
+              <Footer/>
+            </div>
+          ) : (
+            <CategorySelect
+              categories={Object.keys(bffRes.menuByCategory)}
+              setCategory={setCategory}
             />
-            <Footer/>
-          </div>
+          )}
         </div>
       )
     );
@@ -140,6 +154,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 
 const mapStateToProps = state => ({
   bffRes: state.persistentMenu.bffRes,
+  category: state.persistentMenu.category,
   isLoading: state.common.isLoading,
   venue: state.persistentMenu.venue,
   itemId: state.persistentMenu.item,

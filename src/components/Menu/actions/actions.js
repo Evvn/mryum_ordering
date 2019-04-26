@@ -55,3 +55,10 @@ export function toggleShowWater() {
     type: actionTypes.TOGGLE_SHOW_WATER,
   }
 }
+
+export function setCategory(category) {
+  return {
+    type: actionTypes.SET_CATEGORY,
+    category,
+  }
+}
