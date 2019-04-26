@@ -90,7 +90,7 @@ class MenuContainer extends React.Component {
       <div>
         <header className={ classNames('header', itemView ? 'previewHeader' : '') }>
           {/* back arrow for routing, control this and venuename via props */}
-          {<MenuSearch data={this.props.bffRes}/>}
+          {<MenuSearch data={this.props.bffRes} hide={false}/>}
           { itemView ? <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-grey.svg" className="headerBackArrow" alt="back arrow"/> : null }
           { !!venueUrl && !itemView? <h1 className="venue">{venues[venueUrl]}</h1> : null }
           { !itemView && <Filter filter={filter} updateFilter={updateFilter} lang={lang} /> }
