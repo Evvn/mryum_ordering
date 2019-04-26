@@ -35,6 +35,11 @@ function menuReducer(state = initialState, action) {
         ...state,
         item: action.id,
       }
+    case actionTypes.SET_CATEGORY:
+      return {
+        ...state,
+        category: action.category,
+      }
     default:
       return state
   }

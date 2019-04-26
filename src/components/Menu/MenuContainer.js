@@ -115,6 +115,7 @@ class MenuContainer extends React.Component {
       setSectionPosition,
       itemId,
       category,
+      setCategory,
     } = this.props;
 
 
@@ -139,7 +140,7 @@ class MenuContainer extends React.Component {
           ) : (
             <CategorySelect
               categories={Object.keys(bffRes.menuByCategory)}
-              onSelect={(category) => alert(category)}
+              setCategory={setCategory}
             />
           )}
         </div>
