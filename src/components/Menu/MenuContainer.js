@@ -120,7 +120,7 @@ class MenuContainer extends React.Component {
           <div className="menu">
             <Menu
               menuItemKeys={Object.keys(bffRes)}
-              menuItems={bffRes}
+              menuItems={bffRes.menuByItem}
               filter={filter}
               lang={lang}
               itemId={itemId}
