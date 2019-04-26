@@ -21,32 +21,37 @@ class Section extends React.Component {
       lang,
     } = this.props;
     let tags = item.fields['Tags Filtering']
-    tags.forEach((tag, index) => {
-      if (tag === 'vegetarian') {
-        tags[index] = 'V'
-      }
-      if (tag === 'vegan') {
-        tags[index] = 'VE'
-      }
-      if (tag === 'gluten-free') {
-        tags[index] = 'GF'
-      }
-    })
+    if (tags) {
+      tags.forEach((tag, index) => {
+        if (tag === 'vegetarian') {
+          tags[index] = 'V'
+        }
+        if (tag === 'vegan') {
+          tags[index] = 'VE'
+        }
+        if (tag === 'gluten-free') {
+          tags[index] = 'GF'
+        }
+      })
+    }
 
     // If menu item tags match any tags in filter -> should match ALL filter tags -> done
     // changed .some method to .every
-    if ((tagsInUse.length > 0 && tagsInUse.every(tag => tags.includes(tag)))
-      || tagsInUse.length === 0) {
-        return (
-          <MenuItem
-            key={item.id}
-            item={item.fields}
-            itemIndex={index}
-            lang={lang}
-            onClick={(e) => {routeToItemDetail(e, item.id, lang)}}
-          />
-        );
-      }
+    if (tags) {
+      if ((tagsInUse.length > 0 && tagsInUse.every(tag => tags.includes(tag)))
+        || tagsInUse.length === 0) {
+          console.log(item)
+          return (
+            <MenuItem
+              key={item.id}
+              item={item.fields}
+              itemIndex={index}
+              lang={lang}
+              onClick={(e) => {routeToItemDetail(e, item.id, lang)}}
+            />
+          );
+        }
+    }
 
     return '';
   }
@@ -73,7 +78,7 @@ class Section extends React.Component {
     } = this.props;
 
     let infoList = [];
-    let updatedIndex = -1;
+    // let updatedIndex = -1;
 
     let section = menuSection.map((item, index) => {
       const hasTag = item.fields.Tags ? true : false;
@@ -105,23 +110,24 @@ class Section extends React.Component {
       section.push(<MenuInfo key={uuid()} infoList={infoList} />)
     }
 
-    section = section.map(item => {
-      if (item && item !== '' && item.type.name === 'MenuItem') {
-        // console.log(updatedIndex);
-        updatedIndex++
-        return (
-          <MenuItem
-            key={item.key}
-            item={item.props.item}
-            itemIndex={updatedIndex}
-            lang={lang}
-            onClick={(e) => {routeToItemDetail(e, item.key, lang)}}
-          />
-        )
-      } else {
-        return item
-      }
-    })
+    // old alternating code - delete when fixed
+    // section = section.map(item => {
+    //   if (item && item !== '' && item.type.name === 'MenuItem') {
+    //     // console.log(updatedIndex);
+    //     updatedIndex++
+    //     return (
+    //       <MenuItem
+    //         key={item.key}
+    //         item={item.props.item}
+    //         itemIndex={updatedIndex}
+    //         lang={lang}
+    //         onClick={(e) => {routeToItemDetail(e, item.key, lang)}}
+    //       />
+    //     )
+    //   } else {
+    //     return item
+    //   }
+    // })
 
     return section
   }
@@ -138,26 +144,23 @@ class Section extends React.Component {
     if (tagsInUse.length > 0) {
       tagsInUse = tagsInUse.join(', ')
       name = tagsInUse
-      .replace(new RegExp("\\bV\\b"), 'Vegetarian')
-      .replace(new RegExp("\\bVE\\b"), 'Vegan')
-      .replace(new RegExp("\\bGF\\b"), 'Gluten Free')
+              .replace(new RegExp("\\bV\\b"), 'Vegetarian')
+              .replace(new RegExp("\\bVE\\b"), 'Vegan')
+              .replace(new RegExp("\\bGF\\b"), 'Gluten Free')
+      subSection = ''
     };
 
     let section = this.getSection()
+    section = section.filter(elem => elem)
 
-    if ((section.slice(-1)[0] === undefined && index > 0) || !section || !tagsInUse) {
-      return <div></div>
-    } else {
-      return (
-        <div>
-          {tagsInUse.length > 0 && index > 1 ? '' :
-            <h2 className={`section ${ index === 0 && tagsInUse.length === 0 ? 'sectionTaller' : '' }` } >{ name }<span className="subSection">{ subSection }</span></h2>
-          }
-          { section }
-        </div>
-
-      )
-    }
+    return (
+      <div>
+        {tagsInUse.length > 0 && index > 0 ? '' :
+          <h2 className={`section ${ index === 0 && tagsInUse.length === 0 ? 'sectionTaller' : '' }` } >{ name }<span className="subSection">{ subSection }</span></h2>
+        }
+        { section }
+      </div>
+    )
   }
 }
 

@@ -31,7 +31,7 @@
 
 .previewModal .previewWrapper .prevDefinition .prevDefinedWord, .firstVisit .welcome, .title {
   font-family: "SF-UI-Text-Semibold", "Helvetica Bold", sans-serif;
-  font-size: 17px;
+  font-size: 16px;
   color: #494949;
   letter-spacing: 0.5px;
 }
@@ -56,6 +56,15 @@
   box-sizing: border-box;
   margin: 0;
   -webkit-tap-highlight-color: transparent;
+}
+
+:global .sumome-image-sharer {
+  height: 0;
+  display: none !important;
+}
+
+:global .sumome-share-client-wrapper {
+  height: 10px;
 }
 
 body {
@@ -517,10 +526,11 @@ header {
 }
 header .headerBackArrow,
 header .previewBackArrow {
-  height: 20px;
+  height: 45px;
   position: absolute;
-  left: 20px;
-  top: 20px;
+  left: 10px;
+  top: 10px;
+  padding: 10px;
 }
 header .arrowPadding {
   padding-left: 35px;
@@ -917,10 +927,11 @@ h1 img {
 
 .section {
   padding: 85px 15px 15px;
-  margin-bottom: 0;
+  margin-bottom: -7px;
   background-color: white;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
+  flex-direction: column;
 }
 .section span {
   display: block;
@@ -989,7 +1000,10 @@ h1 img {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: "leftBox rightBox";
-  background-color: #fafafa;
+  background-color: #f8f8f8;
+  box-shadow: 0 5px 10px rgba(198, 198, 198, 0.5);
+  margin: 0px 5px 12px 5px;
+  border-radius: 5px;
 }
 .menuItem .forDummies {
   color: white;
@@ -1122,17 +1136,17 @@ h1 img {
 }
 
 .leftBox {
+  border-radius: 5px 0px 0px 5px;
   grid-area: leftBox;
   position: relative;
-  width: 50vw;
   max-width: 250px;
   max-height: 250px;
 }
 
 .rightBox {
+  border-radius: 0px 5px 5px 0px;
   grid-area: rightBox;
   position: relative;
-  width: 50vw;
   max-width: 250px;
   max-height: 250px;
 }
@@ -1740,7 +1754,7 @@ footer a:focus {
   max-width: 500px;
   height: auto;
   min-height: 150px;
-  background-color: #fafafa;
+  background-color: #f8f8f8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1806,18 +1820,18 @@ body {
     padding-top: 145px;
   }
 
-  .menu > div > div {
+  .menu > div > div > div {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
   }
-  .menu > div > div .footerCont,
-.menu > div > div footer {
+  .menu > div > div > div .footerCont,
+.menu > div > div > div footer {
     max-width: none;
     width: 100%;
   }
-  .menu > div > div .define {
+  .menu > div > div > div .define {
     color: #6f6f6f;
     border-bottom: 1px solid transparent;
     cursor: pointer;
@@ -1828,7 +1842,7 @@ body {
       border-bottom: 1px solid #6f6f6f;
     }
   }
-  .menu > div > div .definition {
+  .menu > div > div > div .definition {
     width: 85vw;
     max-width: 400px;
     height: auto;
@@ -1852,13 +1866,13 @@ body {
       opacity: 1;
     }
   }
-  .menu > div > div .definition .definedWord {
+  .menu > div > div > div .definition .definedWord {
     text-transform: capitalize;
     font-size: 26px;
     letter-spacing: 1px;
     padding-bottom: 15px;
   }
-  .menu > div > div .definition .definitionText {
+  .menu > div > div > div .definition .definitionText {
     font-size: 16px;
     line-height: 1.25;
     letter-spacing: 0.3px;
@@ -1950,26 +1964,8 @@ body {
     border-radius: 0 0 4px 4px;
   }
 
-  .menuItem:nth-of-type(even) {
-    grid-template-areas: "rightBox" "leftBox";
-  }
-  .menuItem:nth-of-type(even) .rightBox {
-    height: 350px;
-    border: none;
-    border-radius: 0;
-    border-radius: 4px 4px 0 0;
-  }
-  .menuItem:nth-of-type(even) .leftBox {
-    height: 250px;
-    border-radius: 0 0 4px 4px;
-  }
-
   .menuListItem {
     height: 200px;
-  }
-
-  .menuListItem:nth-of-type(even) {
-    grid-template-areas: "leftBox" "rightBox";
   }
 
   .tiny {
@@ -2562,6 +2558,11 @@ body {
   min-height: 100vh;
   background-color: white;
 }
+.categorySelection .venuesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
 .categorySelection header, .categorySelection h1 {
   background-color: #282828;
   color: white;
@@ -2574,6 +2575,7 @@ body {
   height: 45px;
 }
 .categorySelection h2 {
+  width: 100vw;
   padding-top: 30px;
   margin: 15px 17px;
 }
@@ -2582,8 +2584,9 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   height: 175px;
-  width: auto;
-  margin: 15px 17px;
+  width: 100%;
+  max-width: 500px;
+  margin: 15px 15px 0 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2601,7 +2604,6 @@ body {
   align-items: center;
   width: 100%;
   height: 175px;
-  max-width: 500px;
   background-color: rgba(0, 0, 0, 0.3);
   color: white;
   font-size: 52px;

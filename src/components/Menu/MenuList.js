@@ -13,7 +13,7 @@ class MenuList extends React.Component {
         trimRight
       />
     )
-    let trimmedName = item['Item Name']
+    let trimmedName = item.name
     if (trimmedName && trimmedName.length > 30) {
       trimmedName = trimmedName.substring(0,31).trim() + '...'
     }
@@ -24,8 +24,8 @@ class MenuList extends React.Component {
           <h3>
             <span>{trimmedName}</span>
             <div className="info">
-              <span className="price">{item['Price']}</span>
-              <span className="tags">{ !!item.Tags ? item.Tags.join(' ') : null }</span>
+              <span className="price">{item.price}</span>
+              <span className="tags">{ !!item.tags ? item.tags.join(' ') : null }</span>
             </div>
           </h3>
         </div>

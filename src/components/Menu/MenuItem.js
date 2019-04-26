@@ -6,7 +6,7 @@ class MenuItem extends React.Component {
 
   itemDetails(item) {
     const { lang } = this.props
-    let name = item['Item Name']
+    let name = item.name
     let desc = item['Item Description Raw']
     let translatedName = 'name-' + lang
     let translatedDesc = 'description-' + lang
@@ -47,16 +47,16 @@ class MenuItem extends React.Component {
         <h3 className="title">{ trimmedName }</h3>
         <div className="bodyText">{ clampedDesc }</div>
         <div className="info">
-          <span className="price">{item['Price']}</span>
-          <span className="tags">{ !!item.Tags ? item.Tags.join(' ') : null }</span>
+          <span className="price">{item.price}</span>
+          <span className="tags">{ !!item.tags ? item.tags.join(' ') : null }</span>
         </div>
       </div>
     )
   }
 
   render() {
-    const { item, itemIndex, onClick } = this.props;
-    let img = item['Image'] ? item['Image'][0].url : '/mryum_assets/missing_photo.jpg'
+    const { item, onClick } = this.props;
+    let img = item.image ? item.image[0].url : '/mryum_assets/missing_photo.jpg'
     const style = {
       backgroundImage: 'url(' + img + ')',
       backgroundSize: 'cover',
@@ -64,26 +64,26 @@ class MenuItem extends React.Component {
       backgroundRepeat: 'no-repeat'
     }
 
-    // if even/odd
-    if (itemIndex % 2 === 0) {
-      return (
-        <div className="menuItem" onClick={(e) => onClick(e)}>
-          <div className="leftBox itemPhoto" style={style}></div>
-          <div className="rightBox">
-            { this.itemDetails(item) }
-          </div>
+    // if even/odd //////////////////// GONE
+    // if (itemIndex % 2 === 0) {
+    return (
+      <div className="menuItem" onClick={(e) => onClick(e)}>
+        <div className="leftBox itemPhoto" style={style}></div>
+        <div className="rightBox">
+          { this.itemDetails(item) }
         </div>
-      )
-    } else {
-      return (
-        <div className="menuItem" onClick={(e) => onClick(e)}>
-          <div className="leftBox">
-            { this.itemDetails(item) }
-          </div>
-          <div className="rightBox itemPhoto" style={style}></div>
-        </div>
-      )
-    }
+      </div>
+    )
+    // } else {
+    //   return (
+    //     <div className="menuItem" onClick={(e) => onClick(e)}>
+    //       <div className="leftBox">
+    //         { this.itemDetails(item) }
+    //       </div>
+    //       <div className="rightBox itemPhoto" style={style}></div>
+    //     </div>
+    //   )
+    // }
   }
 }
 

@@ -1,6 +1,6 @@
 import * as actionTypes from '../../components/Menu/actions/actionTypes/actionTypes.js';
-import * as commonActionTypes from '../../components/Common/actions/actionTypes/actionTypes.js';
-import { takeLatest, put, select } from 'redux-saga/effects';
+// import * as commonActionTypes from '../../components/Common/actions/actionTypes/actionTypes.js';
+import { takeLatest, put } from 'redux-saga/effects';
 import callBff from '../callBff.js'
 import { sortByValue } from '../../utils/objectUtils.js';
 

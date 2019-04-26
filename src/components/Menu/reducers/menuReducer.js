@@ -15,6 +15,7 @@ const initialState = {
   menuUrl: '',
   broadsheetLink: '',
   sectionPositions: false,
+  showWater: false,
 }
 
 function menuReducer(state = initialState, action) {
@@ -33,6 +34,11 @@ function menuReducer(state = initialState, action) {
       return {
         ...state,
         sectionPositions: false,
+      }
+    case actionTypes.TOGGLE_SHOW_WATER:
+      return {
+        ...state,
+        showWater: !state.showWater,
       }
     default:
       return state

@@ -1,9 +1,10 @@
 import * as actionTypes from '../actions/actionTypes/actionTypes.js';
 import { filter } from '../enums/menuEnums.js';
+import stub from '../../../data/airtableDatabaseStub.json';
 
 const initialState = {
   venue: '',
-  bffRes: false,
+  bffRes: stub,
   lang: 'en',
   item: false,
   filter
