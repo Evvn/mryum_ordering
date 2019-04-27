@@ -27,7 +27,7 @@ export function* addToOrder(action) {
       type: actionTypes.ADD_TO_ORDER_SUCCESS,
       currentOrder: {...nextCurrentOrder, ...orderClone},
     });
-    
+
   } catch (error) {
     console.log(error)
     yield put({

@@ -30,7 +30,7 @@ class CartContainer extends React.Component{
             return (<div>
                 Cart
             {itemGroups.map(itemGroup => {
-                console.log(itemGroup)
+                console.log(currentOrder[itemGroup])
                 return (<div style={{display: 'flex'}}>
                     <h1>{`x${currentOrder[itemGroup].length}  `}</h1>
                     <h1>{currentOrder[itemGroup][0].name}</h1>
@@ -46,7 +46,7 @@ class CartContainer extends React.Component{
         this.setState({showPaymentScreen: true})
     }
 
-    closePaymentScreen(){
+    settlePayment(){
         this.setState({showPaymentScreen: false})
     }
 
