@@ -1,9 +1,11 @@
 import React from 'react';
+import debounce from 'lodash/debounce';
+
+
 
 class MenuSearch extends React.Component {
     constructor(props) {
         super(props);
-        this.result = [];
     }
 
     search = async input => {
@@ -13,9 +15,11 @@ class MenuSearch extends React.Component {
         let big_bucket = [];
         let treated_input = '';
 
+        // sanitize input
         for (let i = 0; i < input.length; i++) {
             let character = input.charAt(i);
-            let found = blackList.find((element) => element);
+            let found = blackList.find((element) => element == character);
+
             if (found) {
                 treated_input = `${treated_input}\\${character}`;
             } else {
@@ -23,6 +27,7 @@ class MenuSearch extends React.Component {
             }
         }
 
+        // core
         if (treated_input) {
             let expression = new RegExp(`${treated_input}`, 'gi');
 
@@ -87,13 +92,12 @@ class MenuSearch extends React.Component {
                 resolve(bucket);
             });
 
-            // parallel execution
+            // wait for parallel loops to finish
             let [sections, price, itemName, itemDesc] = await Promise.all([sectionsPromise, pricePromise, itemNamePromise, itemDescriptionPromise]);
 
             // concat to one array
             big_bucket = big_bucket.concat(sections, price, itemName, itemDesc);
 
-            // prune away scores property from output
             let actionables = [];
 
             // filters out and scores duplicate id's
@@ -101,7 +105,7 @@ class MenuSearch extends React.Component {
             for (let i = 0; i < big_bucket.length; i++) {
 
                 if (holder.hasOwnProperty(big_bucket[i].id)) {
-                    holder[big_bucket[i].id] = {...big_bucket[i], score: (parseFloat(big_bucket[i].score) + 0.2).toString()};
+                    holder[big_bucket[i].id] = {...big_bucket[i], score: (parseFloat(big_bucket[i].score) + 0.8).toString()};
                 } else {
                     holder[big_bucket[i].id] = {...big_bucket[i]};
                 }
@@ -155,10 +159,20 @@ class MenuSearch extends React.Component {
         });
     }
 
+    // group events
+    debounce_input = debounce((text) => this.handleInput(text), 250);
+
     render() {
         return (
             <div>
-                <input type="search" placeholder="Search" onChange={(e) => this.handleInput(e.target.value)}/>
+                <input 
+                    type="search" 
+                    placeholder="Search" 
+                    onKeyUp={(e) => {
+                        let text = e.target.value;
+                        this.debounce_input(text);
+                    }}
+                />
             </div>
         );
     }
