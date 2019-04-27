@@ -7,12 +7,24 @@ class MenuSearch extends React.Component {
     }
 
     search = async input => {
+        const blackList = ['.', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-', '='];
         const {data} = this.props;
         const _dataKeys = Object.keys(data.menuByItem);
         let big_bucket = [];
+        let treated_input = '';
 
-        if (input) {
-            let expression = new RegExp(`${input}`, 'gi');
+        for (let i = 0; i < input.length; i++) {
+            let character = input.charAt(i);
+            let found = blackList.find((element) => element);
+            if (found) {
+                treated_input = `${treated_input}\\${character}`;
+            } else {
+                treated_input = `${treated_input}${input.charAt(i)}`;
+            }
+        }
+
+        if (treated_input) {
+            let expression = new RegExp(`${treated_input}`, 'gi');
             
             // initial pruning of results
             let sectionsPromise = new Promise(resolve => {
@@ -31,7 +43,7 @@ class MenuSearch extends React.Component {
 
             let pricePromise = new Promise(resolve => {
                 let bucket = [];
-                let expression = new RegExp(`${input}`, 'gi');
+                let expression = new RegExp(`${treated_input}`, 'gi');
                 for (const key of _dataKeys) {
                     let fields = data.menuByItem[key].fields;
                     
@@ -78,13 +90,28 @@ class MenuSearch extends React.Component {
             // parallel execution
             let [sections, price, itemName, itemDesc] = await Promise.all([sectionsPromise, pricePromise, itemNamePromise, itemDescriptionPromise]);
 
-            // concat to one array and sort by match score (highest - lowest)
+            // concat to one array
             big_bucket = big_bucket.concat(sections, price, itemName, itemDesc);
-            big_bucket.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
             
             // prune away scores property from output
             let actionables = [];
-            big_bucket.map(x => actionables.push(x));
+
+            // filters out and scores duplicate id's
+            let holder = {};
+            for (let i = 0; i < big_bucket.length; i++) {
+
+                if (holder.hasOwnProperty(big_bucket[i].id)) {
+                    holder[big_bucket[i].id] = {...big_bucket[i], score: (parseFloat(big_bucket[i].score) + 0.2).toString()};
+                } else {
+                    holder[big_bucket[i].id] = {...big_bucket[i]};
+                }
+            }
+
+            Object.keys(holder).map(x => actionables.push(holder[x]));
+
+            // sort by match score (highest - lowest)
+            actionables.sort((a,b) => (a.score < b.score) ? 1 : ((b.score < a.score) ? -1 : 0));
+
             return actionables;
         }
     }
@@ -116,17 +143,22 @@ class MenuSearch extends React.Component {
     }
 
 
-    render() {
-        const {data} = this.props;
+    handleInput = (value) => {
+        const {onInput} = this.props;
 
-        // usage example
-        this.search('Fu').then(result => {
-            console.log(result)
+        this.search(value).then(result => {
+            if (result) {
+                onInput(result);
+            } else {
+                onInput([]);
+            }
         });
+    }
 
+    render() {
         return ( 
-            <div> 
-                { 'Search' } 
+            <div>
+                <input type="search" placeholder="Search" onChange={(e) => this.handleInput(e.target.value)}/>
             </div>
         );
     }
