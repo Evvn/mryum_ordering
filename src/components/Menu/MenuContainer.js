@@ -11,6 +11,7 @@ import Water from './Water';
 import MenuSearch from '../Common/MenuSearch';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import * as actions from './actions/actions.js';
+import * as cartActions from '../Cart/actions/actions.js';
 import classNames from 'classnames'
 import ReactGA from 'react-ga'
 import { venues } from '../Common/enums/commonEnums.js';
@@ -72,6 +73,10 @@ class MenuContainer extends React.Component {
    window.location = window.location.href + `${refSuffix}`
  }
 
+ openCart(){
+  window.location = window.location.href + `cart`;
+ }
+
 
   getHeader(){
     const {
@@ -98,7 +103,8 @@ class MenuContainer extends React.Component {
           { !itemView && !filtersInUse ? <HorizontalScrollNav sectionPositions={sectionPositions}/> : ''}
           { !itemView && <LanguageSelect lang={lang} updateLang={updateLang} /> }
           { !itemView && <MenuSearch data={bffRes} hide={false}/>}
-          {/* <img className="cartIcon" src="/icons/cart_icon.svg" alt="cart"/> */}
+          { !itemView && <button onClick={(e)=>{this.openCart()}}>Cart</button>}
+          {/*<img className="cartIcon" src="/icons/cart_icon.svg" alt="cart"/> */}
           {/* need check to see when to display cart badge */}
           {/* { hasCartItems && <div className="cartBadge"/> } */}
         </header>
@@ -116,6 +122,7 @@ class MenuContainer extends React.Component {
       itemId,
       category,
       setCategory,
+      addToCart,
     } = this.props;
 
 
@@ -134,6 +141,7 @@ class MenuContainer extends React.Component {
                 itemId={itemId}
                 routeToItemDetail={this.routeToItemDetail}
                 setSectionPosition={setSectionPosition}
+                addToCart={addToCart}
               />
               <Footer/>
             </div>
@@ -150,7 +158,7 @@ class MenuContainer extends React.Component {
 
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({...actions, ...cartActions}, dispatch)
 
 const mapStateToProps = state => ({
   bffRes: state.persistentMenu.bffRes,

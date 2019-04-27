@@ -5,6 +5,7 @@ import persistentMenuReducer from './components/Menu/reducers/persistentMenuRedu
 import menuReducer from './components/Menu/reducers/menuReducer.js';
 import persistentCommonReducer from './components/Common/reducers/persistentCommonReducer.js';
 import commonReducer from './components/Common/reducers/commonReducer.js';
+import persistentCartReducer from './components/Cart/reducers/persistentCartReducer.js';
 
 export const makeRootReducer = (history) => combineReducers({
   // Add sync reducers here
@@ -13,6 +14,7 @@ export const makeRootReducer = (history) => combineReducers({
   menu: menuReducer,
   persistentCommon: persistentCommonReducer,
   common: commonReducer,
+  persistentCart: persistentCartReducer,
 });
 
 export default makeRootReducer;

@@ -1,37 +1,55 @@
 import * as actionTypes from '../../components/Cart/actions/actionTypes/actionTypes.js';
 // eslint-disable-next-line
-import { takeLatest, put, select } from 'redux-saga/effects';
+import _ from 'lodash';
+import { takeLatest, put, select,} from 'redux-saga/effects';
+import * as orderUtils from '../../utils/orderUtils.js';
 
-const getCurrentOrder = state => state.persistentCart.currentOrder;
 
-export function* addToCart(action) {
+
+export function* addToOrder(action) {
   try {
-    const currentOrder = yield select(getCurrentOrder);
     
-      yield put({
-        type: actionTypes.ADD_TO_CART_SUCCESS,
-        currentOrder,
-      })
+    const getCurrentOrder = state => state.persistentCart.currentOrder;
+    let currentOrder = yield select(getCurrentOrder);
+    const newItem = yield orderUtils.buildItemTemplate(action.item, action.quantity);
+    let orderClone = yield _.cloneDeep(currentOrder);
+
+    const nextCurrentOrder = {};
+    
+    if(orderClone[newItem.id]){
+        nextCurrentOrder[newItem.id] = [newItem].concat(orderClone[newItem.id]);
+    }
+    else{
+      nextCurrentOrder[newItem.id] = [newItem];
+    }
+
+    yield put({
+      type: actionTypes.ADD_TO_ORDER_SUCCESS,
+      currentOrder: {...nextCurrentOrder, ...orderClone},
+    });
+    
   } catch (error) {
     console.log(error)
     yield put({
-      type: actionTypes.ADD_TO_CART_FAILURE,
+      type: actionTypes.ADD_TO_ORDER_FAILURE,
       error,
     })
   }
 }
 
-export function* removeFromCart(action) {
+export function* removeFromOrder(action) {
   try {
-    const currentOrder = yield select(getCurrentOrder);
+    const getCurrentOrder = state => state.persistentCart.currentOrder;
+    let currentOrder = yield select(getCurrentOrder);
+    currentOrder = orderUtils.removeFromOrder(currentOrder, action.item, action.quantity);
       yield put({
-        type: actionTypes.REMOVE_FROM_CART_SUCCESS,
+        type: actionTypes.REMOVE_FROM_ORDER_SUCCESS,
         currentOrder,
       })
   } catch (error) {
     console.log(error)
     yield put({
-      type: actionTypes.REMOVE_FROM_CART_FAILURE,
+      type: actionTypes.REMOVE_FROM_ORDER_FAILURE,
       error,
     })
   }
@@ -39,7 +57,7 @@ export function* removeFromCart(action) {
 
 export function* actionWatcher() {
   yield [
-    takeLatest(actionTypes.ADD_TO_CART_REQUEST, addToCart),
-    takeLatest(actionTypes.REMOVE_FROM_CART_REQUEST, removeFromCart),
+    takeLatest(actionTypes.ADD_TO_ORDER_REQUEST, addToOrder),
+    takeLatest(actionTypes.REMOVE_FROM_ORDER_REQUEST, removeFromOrder),
   ]
 }

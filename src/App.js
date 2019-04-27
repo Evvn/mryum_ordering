@@ -7,6 +7,7 @@ import React from 'react';
 
 import Landing from './components/Landing/Landing.js';
 import MenuContainer from './components/Menu/MenuContainer.js';
+import CartContainer from './components/Cart/CartContainer.js';
 import NotFound from './components/NotFound/NotFound.js';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen.js';
 import './App.css';
@@ -68,7 +69,16 @@ class App extends React.Component {
                 />
               )}
           />
-          <Route component={NotFound} />
+        <Route
+            exact
+            path="/:venueurl/cart"
+            component={({ match }) => (
+              <CartContainer
+                venueUrl={match.params.venueurl}
+              />
+            )}
+        />
+        <Route component={NotFound} />
         </Switch>
       </div>
       </Router>
