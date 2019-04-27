@@ -6,7 +6,7 @@ import { clientTypes, routes } from '../Common/enums/commonEnums.js';
 import classNames from 'classnames'
 
 //css
-import './landing.scss'
+import './styles/landing.scss'
 
 class Landing extends React.Component {
   constructor(props) {

@@ -166,7 +166,7 @@ body {
   margin-bottom: 10px;
 }
 .feedbackCont .feedbackBtn {
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   border-radius: 25px;
   color: #ffffff;
   padding: 10px 20px;
@@ -242,7 +242,7 @@ body {
   text-align: center;
 }
 .feedbackLightbox .feedbackForm button {
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   color: #ffffff;
   font-size: 100%;
   padding: 7px 25px;
@@ -276,7 +276,7 @@ body {
   background-color: inherit;
 }
 .feedbackLightbox .feedbackForm .fbThankyouBtn {
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   color: #ffffff;
   font-size: 100%;
   padding: 7px 25px;
@@ -319,7 +319,7 @@ body {
 .broadsheet a:link,
 .broadsheet a:visited {
   color: #ffffff;
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   text-decoration: none;
   padding: 10px;
   border-radius: 25px;
@@ -359,8 +359,8 @@ body {
 .newbroadsheet a:hover,
 .newbroadsheet a:link,
 .newbroadsheet a:visited {
-  color: #fc4250;
-  border-bottom: 2px solid #fc4250;
+  color: #d1a4b5;
+  border-bottom: 2px solid #d1a4b5;
   text-decoration: none;
   width: 200px;
   text-align: center;
@@ -383,7 +383,7 @@ body {
   height: 100vh;
   width: 100vw;
   max-width: 500px;
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -504,7 +504,7 @@ body {
 }
 .selectSection .red {
   color: #ffffff;
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   border-radius: 50px;
   margin-left: 10px;
 }
@@ -568,7 +568,7 @@ header .filterWarningCont .filterWarning h3 {
   font-size: 150%;
 }
 header .filterWarningCont .filterWarning p {
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   color: #ffffff;
   width: 70%;
   border-radius: 15px;
@@ -595,7 +595,7 @@ header .filter .filterText {
 header .filter .filterIcon {
   width: 8px;
   height: 8px;
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   border-radius: 10px;
   position: fixed;
   z-index: 5;
@@ -640,8 +640,8 @@ header .filter .filterList p .checkBox {
 }
 header .filter .filterList p .checkedBox {
   border-radius: 2px;
-  border-color: #fc4250;
-  background-color: #fc4250;
+  border-color: #d1a4b5;
+  background-color: #d1a4b5;
 }
 header .filter .filterList p:nth-of-type(1) {
   border-top: none;
@@ -774,8 +774,8 @@ header .cartBadge {
   transition: 0.2s ease all;
 }
 .languageList .radioSelected {
-  background-color: #fc4250;
-  border-color: #fc4250;
+  background-color: #d1a4b5;
+  border-color: #d1a4b5;
 }
 
 .langOpen {
@@ -830,7 +830,7 @@ header .cartBadge {
 }
 .selectSectionHS .red {
   color: #ffffff;
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   border-radius: 15px;
   margin-left: 10px;
 }
@@ -1375,7 +1375,7 @@ h1 img {
   display: flex;
   justify-content: space-between;
   width: 100vw;
-  padding: 20px 20px 85px;
+  padding: 20px 20px 45px;
 }
 .previewModal .previewPrice {
   max-width: 500px;
@@ -1468,7 +1468,7 @@ footer a:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fc4250;
+  background: #d1a4b5;
   color: #ffffff;
   font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
   border-radius: 25px;
@@ -1478,6 +1478,7 @@ footer a:focus {
   text-align: center;
   transition: width 0.2s ease-in-out;
   cursor: pointer;
+  text-decoration: none;
 }
 .ctaBtn .ctaBtn .hide {
   display: none;
@@ -1767,7 +1768,7 @@ footer a:focus {
   padding-bottom: 10px;
 }
 .modalCont .modalCta {
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   color: #ffffff;
   padding: 5px 25px;
   border-radius: 25px;

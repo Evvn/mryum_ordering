@@ -1,0 +1,44 @@
+@import '../../../palette.scss';
+
+
+// NOTE
+// Lots of styling for this still lives in the big App.scss file and needs to be moved, this is where I'll be adding new styles relevant to ordering and WV/HS
+
+.quantityCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 150px;
+}
+
+.quantityBtn, .quantityBtn:focus {
+  width: 66px;
+  height: 66px;
+  border-radius: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $white;
+  outline: none;
+  border: 1px solid $primary;
+  font-size: 25px;
+  color: $secondary;
+}
+
+.quantity {
+  padding: 25px;
+  font-size: 19px;
+}
+
+.addToOrderBtn, .addToOrderBtn:focus {
+  height: 62px;
+  outline: none;
+  border: none;
+  background-color: $primary;
+  color: $white;
+  text-transform: uppercase;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}

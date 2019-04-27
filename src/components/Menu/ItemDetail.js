@@ -2,13 +2,16 @@ import React from 'react'
 import JsxParser from 'react-jsx-parser'
 import Swipe from "react-easy-swipe";
 
+//css
+import './styles/itemDetail.scss'
+
 class ItemDetail extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
       swipeRight: false,
-      stagedQuantity: 1,
+      stagedQuantity: 1
     }
 
     this.onSwipeRight = this.onSwipeRight.bind(this);
@@ -25,11 +28,8 @@ class ItemDetail extends React.Component {
           return;
         }
         // on click, show definition in modal - uses data attribute to store definition in word
-        document.querySelector(".prevDefinedWord").textContent =
-          e.target.textContent;
-        document.querySelector(
-          ".prevDefinitionText"
-        ).textContent = e.target.getAttribute("data");
+        document.querySelector(".prevDefinedWord").textContent = e.target.textContent;
+        document.querySelector(".prevDefinitionText").textContent = e.target.getAttribute("data");
         document.querySelector(".prevDefinition").classList.remove("hidden");
         document.querySelector(".prevDefinition").classList.add("open");
         document.querySelector(".prevDefinition").classList.remove("fadeOut");
@@ -44,9 +44,7 @@ class ItemDetail extends React.Component {
       swipeRight = true;
     }
     if (swipeRight) {
-      this.setState({
-        swipeRight: swipeRight
-      });
+      this.setState({swipeRight: swipeRight});
     }
   }
 
@@ -62,8 +60,8 @@ class ItemDetail extends React.Component {
     window.history.back()
   }
 
-  handleAddToCart(details, stagedQuantity){
-    const { addToCart } = this.props;
+  handleAddToCart(details, stagedQuantity) {
+    const {addToCart} = this.props;
     addToCart(details, stagedQuantity);
     window.history.back();
   }
@@ -83,27 +81,33 @@ class ItemDetail extends React.Component {
     }, 300);
   }
 
-  incrementQuantity(){
-    const { stagedQuantity } = this.state;
-    this.setState({stagedQuantity: stagedQuantity + 1});
+  incrementQuantity() {
+    const {stagedQuantity} = this.state;
+    this.setState({
+      stagedQuantity: stagedQuantity + 1
+    });
   }
 
-  decrementQuantity(){
-    const { stagedQuantity } = this.state;
-    if( stagedQuantity > 1){
-      this.setState({stagedQuantity: stagedQuantity - 1});
+  decrementQuantity() {
+    const {stagedQuantity} = this.state;
+    if (stagedQuantity > 1) {
+      this.setState({
+        stagedQuantity: stagedQuantity - 1
+      });
     }
   }
 
   render() {
-    const { details, lang, addToCart } = this.props;
-    const { stagedQuantity } = this.state;
+    const {details, lang, addToCart} = this.props;
+    const {stagedQuantity} = this.state;
     let name = details.name
     let desc = '';
     let translatedName = 'name-' + lang
     let translatedDesc = 'description-' + lang
     let creditUrl
-    let img = details.image ? details.image[0].url : '/mryum_assets/missing_photo.jpg'
+    let img = details.image
+      ? details.image[0].url
+      : '/mryum_assets/missing_photo.jpg'
 
     if (lang !== 'en') {
       name = details[translatedName]
@@ -124,73 +128,92 @@ class ItemDetail extends React.Component {
       }
     }
 
-    return (
-      <Swipe
-        onSwipeMove={this.onSwipeMove}
-        onSwipeEnd={this.onSwipeEnd}
-      >
-        <div className='previewModal' onClick={this.handleClick}>
+    return (<Swipe onSwipeMove={this.onSwipeMove} onSwipeEnd={this.onSwipeEnd}>
+      <div className='previewModal' onClick={this.handleClick}>
 
-          <div className="previewItem">
+        <div className="previewItem">
 
-            { !!details.tags && details.tags[0] === 'LIST' ? null :
-              <div className="previewImage" style={ backgroundImage }></div>
-            }
+          {
+            !!details.tags && details.tags[0] === 'LIST'
+              ? null
+              : <div className="previewImage" style={backgroundImage}></div>
+          }
 
-            <div className="previewWrapper">
+          <div className="previewWrapper">
 
-              {/* hidden definition modal */}
-              <div className="prevDefinition hidden">
-                <div className="prevDefinedWord" />
-                <div className="prevDefinitionText" />
-              </div>
-
-              <div className="prevDefinition hidden">
-                <div className="prevDefinedWord"></div>
-                <div className="prevDefinitionText"></div>
-              </div>
-
-              {/* No image credit? Don't show this section */}
-              { !!details['image credit'] && !!details.Tags && details.Tags[0] !== 'LIST' ?
-                <div className="imageCredit">
-                  <div className="imageCreditLabel">photo by
-                    <a className="imageCreditLink" href={creditUrl}>{details['image credit']}</a>
-                  </div>
-                </div>
-                : null }
-
-              <div className="previewName">{name}</div>
-
-              <div className="previewDescription">
-                <JsxParser
-                  jsx={
-                    `${desc}`
-                  }
-                />
-              </div>
-
-              <div className="previewDetails">
-                <div className="previewPrice">{details['price']}</div>
-
-                {/* Tags are LIST? Don't show */}
-                { !!details.tags && details.tags[0] === 'LIST' ? null :
-                  <div className="previewTags">{ !!details.tags ? details.tags.join(', ') : null }</div>
-                }
-              </div>
-              <div style={{display: 'flex'}}>
-          <button onClick={(e) => {this.decrementQuantity()}}>-</button>
-          <h1>{stagedQuantity}</h1>
-          <button onClick={(e) => {this.incrementQuantity()}}>+</button>
-        </div>
-        <button onClick={(e) => {this.handleAddToCart(details, stagedQuantity)}}>Add to Order</button>
-        </div>
+            {/* hidden definition modal */}
+            <div className="prevDefinition hidden">
+              <div className="prevDefinedWord"/>
+              <div className="prevDefinitionText"/>
             </div>
 
-          </div>
-       
+            <div className="prevDefinition hidden">
+              <div className="prevDefinedWord"></div>
+              <div className="prevDefinitionText"></div>
+            </div>
 
-      </Swipe>
-    )
+            {/* No image credit? Don't show this section */
+            } {
+              !!details['image credit'] && !!details.Tags && details.Tags[0] !== 'LIST'
+                ? <div className="imageCredit">
+                    <div className="imageCreditLabel">photo by
+                      <a className="imageCreditLink" href={creditUrl}>{details['image credit']}</a>
+                    </div>
+                  </div>
+                : null
+            }<div className="previewName">{name}</div>
+
+            <div className="previewDescription">
+              <JsxParser jsx={`${desc}`
+}/>
+            </div>
+
+            <div className="previewDetails">
+              <div className="previewPrice">{details['price']}</div>
+
+              {/* Tags are LIST? Don't show */}
+            {
+              !!details.tags && details.tags[0] === 'LIST'
+                ? null
+                : <div className="previewTags">{
+                      !!details.tags
+                        ? details.tags.join(', ')
+                        : null
+                    }</div>
+            }
+          </div>
+
+          <div className="quantityCont">
+            <button
+              className="quantityBtn"
+              onClick={(e) => {this.decrementQuantity()}}
+            >
+              -
+            </button>
+
+            <span className="quantity">{stagedQuantity}</span>
+
+            <button
+              className="quantityBtn"
+              onClick={(e) => {this.incrementQuantity()}}
+            >
+              +
+            </button>
+          </div>
+          <button
+            className="addToOrderBtn"
+            onClick={(e) => {
+              this.handleAddToCart(details, stagedQuantity)
+            }}
+          >
+            Add {stagedQuantity} to Order
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </Swipe>)
   }
 }
 

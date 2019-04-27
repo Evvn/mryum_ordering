@@ -181,7 +181,7 @@ body {
   }
 
   .feedbackBtn {
-    background-color: $mryumRed;
+    background-color: $primary;
     border-radius: 25px;
     color: $white;
     padding: 10px 20px;
@@ -273,7 +273,7 @@ body {
     }
 
     button {
-      background-color: $mryumRed;
+      background-color: $primary;
       color: $white;
       font-size: 100%;
       padding: 7px 25px;
@@ -316,7 +316,7 @@ body {
     }
 
     .fbThankyouBtn {
-      background-color: $mryumRed;
+      background-color: $primary;
       color: $white;
       font-size: 100%;
       padding: 7px 25px;
@@ -367,7 +367,7 @@ body {
   a:visited {
     // color: $mryumRed;
     color: $white;
-    background-color: $mryumRed;
+    background-color: $primary;
     text-decoration: none;
     padding: 10px;
     border-radius: 25px;
@@ -413,8 +413,8 @@ body {
   a:hover,
   a:link,
   a:visited {
-    color: $mryumRed;
-    border-bottom: 2px solid $mryumRed;
+    color: $primary;
+    border-bottom: 2px solid $primary;
     text-decoration: none;
     width: 200px;
     text-align: center;
@@ -440,7 +440,7 @@ body {
   height: 100vh;
   width: 100vw;
   max-width: $maxWidth;
-  background-color: $mryumRed;
+  background-color: $primary;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -576,7 +576,7 @@ body {
 
   .red {
     color: $white;
-    background-color: $mryumRed;
+    background-color: $primary;
     border-radius: 50px;
     margin-left: 10px;
   }
@@ -645,7 +645,7 @@ header {
       }
 
       p {
-        background-color: $mryumRed;
+        background-color: $primary;
         color: $white;
         width: 70%;
         border-radius: 15px;
@@ -677,7 +677,7 @@ header {
     .filterIcon {
       width: 8px;
       height: 8px;
-      background-color: $mryumRed;
+      background-color: $primary;
       border-radius: 10px;
       position: fixed;
       z-index: 5;
@@ -724,8 +724,8 @@ header {
 
         .checkedBox {
           border-radius: 2px;
-          border-color: $mryumRed;
-          background-color: $mryumRed;
+          border-color: $primary;
+          background-color: $primary;
         }
       }
 
@@ -879,8 +879,8 @@ header {
   }
 
   .radioSelected {
-    background-color: $mryumRed;
-    border-color: $mryumRed;
+    background-color: $primary;
+    border-color: $primary;
   }
 }
 
@@ -940,7 +940,7 @@ header {
 
   .red {
     color: $white;
-    background-color: $mryumRed;
+    background-color: $primary;
     border-radius: 15px;
     margin-left: 10px;
   }
@@ -1571,7 +1571,7 @@ h1 {
     justify-content: space-between;
     // position: fixed;
     width: 100vw;
-    padding: 20px 20px 85px;
+    padding: 20px 20px 45px;
   }
 
   .previewPrice {
@@ -1673,7 +1673,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: $mryumRed;
+  background: $primary;
   color: $white;
   font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
   border-radius: 25px;
@@ -1683,6 +1683,7 @@ footer {
   text-align: center;
   transition: width 0.2s ease-in-out;
   cursor: pointer;
+  text-decoration: none;
 
   .ctaBtn .hide {
     display: none;
@@ -2001,7 +2002,7 @@ footer {
   }
 
   .modalCta {
-    background-color: $mryumRed;
+    background-color: $primary;
     color: $white;
     padding: 5px 25px;
     border-radius: 25px;
