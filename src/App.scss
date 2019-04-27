@@ -76,9 +76,8 @@
 }
 
 body {
-  // font-family: 'Helvetica', sans-serif;
-  // background-color: $black;
-  background-color: #e3e3e3;
+  @extend %bodyFont;
+  background-color: $grey;
   max-width: $maxWidth;
   margin: 0 auto;
 }
@@ -431,11 +430,10 @@ body {
 
 .venue {
   @extend %displayFont;
-  color: $secondary;
-  background-color: #fff;
   font-weight: bold;
   font-size: 20px;
-  padding-top: 4px;
+  position: absolute;
+  top: 18px;
 }
 
 .loading {
@@ -593,11 +591,12 @@ header {
   align-items: center;
   position: fixed;
   top: 0;
-  color: black;
-  background-color: #fff;
+  color: $white;
+  background-color: $secondary;
   z-index: 10;
   padding: 15px;
   transition: 0.4s ease-in-out all;
+  font-size: 18px;
 
   .headerBackArrow,
   .previewBackArrow {
@@ -669,8 +668,8 @@ header {
 
     .filterText {
       position: absolute;
-      top: 19px;
-      right: 23px;
+      top: 20px;
+      right: 48px;
       font-weight: 600;
       font-variant: small-caps;
     }
@@ -798,7 +797,7 @@ header {
     height: 8px;
     width: 8px;
     border-radius: 8px;
-    background-color: $mryumRed;
+    background-color: $primary;
     position: absolute;
     top: 18px;
     right: 10px;
@@ -807,21 +806,19 @@ header {
 
 .selectLanguage {
   position: absolute;
-  color: $secondary;
-  font-size: 15px;
-  right: 85px;
+  color: $white;
+  right: 110px;
   top: 20px;
 
   .langCode {
-    text-transform: uppercase;
+    font-variant: small-caps;
     padding-right: 5px;
-    font-weight: 600;
   }
 
   .langArrow {
     display: inline-block;
-    border-top: 2px solid $secondary;
-    border-left: 2px solid $secondary;
+    border-top: 2px solid $white;
+    border-left: 2px solid $white;
     border-radius: 0;
     width: 10px;
     height: 10px;

@@ -4,10 +4,7 @@
   "private": true,
   "dependencies": {
     "airtable": "^0.5.10",
-<<<<<<< HEAD
     "bootstrap": "^4.3.1",
-=======
->>>>>>> aa0f292ef84e67d41000b1de1c3a8314dd393828
     "classnames": "^2.2.6",
     "connected-react-router": "^6.3.2",
     "emailjs-com": "^2.3.2",

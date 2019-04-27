@@ -1,5 +1,8 @@
 import React from 'react';
 
+//css
+import './categorySelect.scss'
+
 const CategorySelection = (props) => {
   const { setCategory, categories} = props;
 

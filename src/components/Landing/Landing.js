@@ -9,24 +9,17 @@ import classNames from 'classnames'
 import './landing.scss'
 
 class Landing extends React.Component {
+  constructor(props) {
+    super(props)
 
-  componentWillMount(){
-    const { clientType, venueUrl, routeTo } = this.props;
-    if (clientType) {
-      console.log(clientType);
-      // window.location = `/${venueUrl}/${routes.MENU}`;
-    }
-  }
-
-  componentWillUpdate(){
-    const { clientType, venueUrl, routeTo } = this.props;
-    if (clientType) {
-      console.log(clientType);
-      // window.location = `/${venueUrl}/${routes.MENU}`;
-    }
+    this.routeToMenu = this.routeToMenu.bind(this)
   }
 
 
+  routeToMenu() {
+    const { venueUrl} = this.props;
+    window.location = `/${venueUrl}/${routes.MENU}`;
+  }
 
   render() {
     const { setClientType, clientType } = this.props;
@@ -52,15 +45,41 @@ class Landing extends React.Component {
         </div>
 
         <div className="instructions">
-          <p>Nice legs!</p>
-          <p>Enter your mobile number below to receive an sms when your order is ready.</p>
+          <p>
+            {
+              clientType ?
+                (
+                  clientType === clientTypes.SEATED ? clientTypes.SEATED_INTRO :
+                  clientType === clientTypes.STANDING ? clientTypes.STANDING_INTRO : ''
+                )
+              : <span>&nbsp;</span>
+             }
+          </p>
+          <p>
+            {
+              clientType ?
+                (
+                  clientType === clientTypes.SEATED ? clientTypes.SEATED_INSTRUCTIONS :
+                  clientType === clientTypes.STANDING ? clientTypes.STANDING_INSTRUCTIONS : ''
+                )
+              : <span>&nbsp;</span>
+             }
+          </p>
         </div>
 
-        <input className="collectInfo"type="text" placeholder={'Your mobile number'}/>
+        {
+          clientType ?
+            (
+              clientType === clientTypes.SEATED ?
+                <input className="collectInfo"type="text" placeholder={clientTypes.SEATED_INPUT}/> :
+              clientType === clientTypes.STANDING ?
+                <input className="collectInfo"type="text" placeholder={clientTypes.STANDING_INPUT}/> :
+              ''
+            )
+          : ''
+         }
 
-        <div className="viewMenu">
-          View menu
-        </div>
+        { clientType ? <div className="viewMenu" onClick={this.routeToMenu}>View menu</div> : '' }
 
       </div>
     );

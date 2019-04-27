@@ -52,7 +52,7 @@ class MenuContainer extends React.Component {
      getMenuData(this.params.requestedVenue, this.params.item);
      clearSectionPositions();
    }*/
-   
+
    if(this.params.item !== itemId){
      setItemId(this.params.item)
    }
@@ -88,17 +88,20 @@ class MenuContainer extends React.Component {
     const itemView = itemId ? true : false;
     const filtersInUse = Object.values(filter).includes(true)
 
+    // replace Evan's Diner when we have a real bff res
+    // {venues[venueUrl]}
+
     return (
       <div>
         <header className={ classNames('header', itemView ? 'previewHeader' : '') }>
           {/* back arrow for routing, control this and venuename via props */}
           { itemView ? <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-grey.svg" className="headerBackArrow" alt="back arrow"/> : null }
-          { !!venueUrl && !itemView? <h1 className="venue">{venues[venueUrl]}</h1> : null }
+          { !!venueUrl && !itemView? <h1 className="venue">Evan's Diner</h1> : null }
           { !itemView && <Filter filter={filter} updateFilter={updateFilter} lang={lang} /> }
           { !itemView && !filtersInUse ? <HorizontalScrollNav sectionPositions={sectionPositions}/> : ''}
           { !itemView && <LanguageSelect lang={lang} updateLang={updateLang} /> }
           {<MenuSearch data={this.props.bffRes} hide={false}/>}
-          {/* <img className="cartIcon" src="/icons/cart_icon.svg" alt="cart"/> */}
+          <img className="cartIcon" src="/icons/cart_icon.svg" alt="cart"/>
           {/* need check to see when to display cart badge */}
           {/* { hasCartItems && <div className="cartBadge"/> } */}
         </header>
