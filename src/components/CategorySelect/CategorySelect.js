@@ -1,5 +1,8 @@
 import React from 'react';
 
+//css
+import './styles/categorySelect.scss'
+
 const CategorySelection = (props) => {
   const { setCategory, categories} = props;
 
@@ -11,10 +14,10 @@ const CategorySelection = (props) => {
   }
 
   return(
-    <div style={{marginTop: '20px'}} className="categorySelection">
+    <div className="categorySelect">
       {categories.map(category => (
-        <div style={{marginTop: '50px'}} onClick={() => setCategory(category)}>
-          <h1>{category}</h1>
+        <div className="categoryCard" onClick={() => setCategory(category)}>
+          <span className="categoryName">{category}</span>
         </div>
       ))}
     </div>

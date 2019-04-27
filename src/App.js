@@ -4,14 +4,12 @@ import {bindActionCreators} from 'redux'
 import { BrowserRouter as Router} from "react-router-dom";
 import { Route, Switch } from 'react-router' // react-router v4
 import React from 'react';
-
 import Landing from './components/Landing/Landing.js';
 import MenuContainer from './components/Menu/MenuContainer.js';
 import CartContainer from './components/Cart/CartContainer.js';
 import NotFound from './components/NotFound/NotFound.js';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen.js';
 import './App.css';
-
 
 class App extends React.Component {
 

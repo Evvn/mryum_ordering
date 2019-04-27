@@ -53,7 +53,7 @@ class MenuContainer extends React.Component {
      getMenuData(this.params.requestedVenue, this.params.item);
      clearSectionPositions();
    }*/
-   
+
    if(this.params.item !== itemId){
      setItemId(this.params.item)
    }
@@ -74,7 +74,7 @@ class MenuContainer extends React.Component {
  }
 
  openCart(){
-  window.location = window.location.href + `cart`;
+  window.location = `/wv/cart`;
  }
 
 
@@ -88,25 +88,31 @@ class MenuContainer extends React.Component {
       bffRes,
       itemId,
       venueUrl,
+      category,
+      setCategory,
     } = this.props;
     const venueName = bffRes ? Object.values(bffRes.menuByItem)[0].fields.Venue : false;
     const itemView = itemId ? true : false;
     const filtersInUse = Object.values(filter).includes(true)
 
+    // replace venues.wv when we have a real bff res
+    // {venues[venueUrl]}
+
     return (
       <div>
         <header className={ classNames('header', itemView ? 'previewHeader' : '') }>
           {/* back arrow for routing, control this and venuename via props */}
-          { itemView ? <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-grey.svg" className="headerBackArrow" alt="back arrow"/> : null }
-          { !!venueUrl && !itemView? <h1 className="venue">{venues[venueUrl]}</h1> : null }
+          { itemView ? <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/> : null }
+          { category && !!venueUrl && !itemView? <img onClick={() => {setCategory(false)}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/> : null }
+          { !category && !itemView? <h1 className="venue">{venues.wintervillage}</h1> : null }
           { !itemView && <Filter filter={filter} updateFilter={updateFilter} lang={lang} /> }
-          { !itemView && !filtersInUse ? <HorizontalScrollNav sectionPositions={sectionPositions}/> : ''}
+          { category && !itemView && !filtersInUse ? <HorizontalScrollNav sectionPositions={sectionPositions}/> : ''}
           { !itemView && <LanguageSelect lang={lang} updateLang={updateLang} /> }
           { !itemView && <MenuSearch data={bffRes} hide={false} onInput={(result) => console.log(result)}/>}
-          { !itemView && <button onClick={(e)=>{this.openCart()}}>Cart</button>}
-          {/*<img className="cartIcon" src="/icons/cart_icon.svg" alt="cart"/> */}
-          {/* need check to see when to display cart badge */}
-          {/* { hasCartItems && <div className="cartBadge"/> } */}
+          <img onClick={(e)=>{this.openCart()}} className="cartIcon" src="/icons/cart_icon.svg" alt="cart"/>
+
+          {/* TODO: check if cart has items, display badge if so */}
+          {/* { somethingHere && <div className="cartBadge"/> } */}
         </header>
       </div>
     );
@@ -125,7 +131,6 @@ class MenuContainer extends React.Component {
       addToCart,
     } = this.props;
 
-
     return (
       isLoading || !bffRes ? <LoadingScreen/> :
       (
@@ -134,8 +139,8 @@ class MenuContainer extends React.Component {
           {category ? (
             <div className="menu">
               <Menu
-                menuItemKeys={Object.keys(bffRes.menuByItem)}
-                menuItems={bffRes.menuByItem}
+                menuItemKeys={Object.keys(bffRes.menuByCategory[category])}
+                menuItems={bffRes.menuByCategory[category]}
                 filter={filter}
                 lang={lang}
                 itemId={itemId}
@@ -168,6 +173,7 @@ const mapStateToProps = state => ({
   sectionPositions: state.menu.sectionPositions,
   filter: state.persistentMenu.filter,
   lang: state.persistentMenu.lang,
+  setCategory: state.persistentMenu.setCategory,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuContainer)

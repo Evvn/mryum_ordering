@@ -20,7 +20,7 @@
   font-family: "SF-UI-Text-Semibold", "Helvetica Bold", sans-serif;
   font-weight: normal;
   font-size: 22px;
-  color: white;
+  color: #ffffff;
 }
 
 .section, .links {
@@ -30,13 +30,13 @@
 }
 
 .previewModal .previewWrapper .prevDefinition .prevDefinedWord, .firstVisit .welcome, .title {
-  font-family: "SF-UI-Text-Semibold", "Helvetica Bold", sans-serif;
+  font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
   font-size: 16px;
   color: #494949;
   letter-spacing: 0.5px;
 }
 
-.previewModal .previewWrapper .prevDefinition .prevDefinitionText, .firstVisit .closeInstructions, .firstVisit .instructions, .bodyText {
+.previewModal .previewWrapper .prevDefinition .prevDefinitionText, .firstVisit .closeInstructions, .firstVisit .instructions, .bodyText, body {
   font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
   font-size: 13px;
   color: #6f6f6f;
@@ -68,20 +68,20 @@
 }
 
 body {
-  background-color: #e3e3e3;
+  background-color: #f7f7f7;
   max-width: 500px;
   margin: 0 auto;
 }
 
 .App {
-  background-color: white;
+  background-color: #ffffff;
   min-width: 320px;
 }
 
 .menu {
   min-height: 100vh;
   position: relative;
-  background-color: white;
+  background-color: #ffffff;
 }
 
 .pdfLinkSpace {
@@ -166,9 +166,9 @@ body {
   margin-bottom: 10px;
 }
 .feedbackCont .feedbackBtn {
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   border-radius: 25px;
-  color: white;
+  color: #ffffff;
   padding: 10px 20px;
   text-align: center;
   margin: 10px auto;
@@ -204,7 +204,7 @@ body {
 }
 .feedbackLightbox .feedbackForm p {
   font-size: 90%;
-  background-color: white;
+  background-color: #ffffff;
   border: 1px solid #cdcdcd;
   color: #494949;
   width: 40%;
@@ -230,7 +230,7 @@ body {
 .feedbackLightbox .feedbackForm .feedbackText {
   width: 70vw;
   margin: 25px;
-  background-color: white;
+  background-color: #ffffff;
   border: 1px solid #cdcdcd;
   border-radius: 3px;
   resize: none;
@@ -242,8 +242,8 @@ body {
   text-align: center;
 }
 .feedbackLightbox .feedbackForm button {
-  background-color: #fc4250;
-  color: white;
+  background-color: #d1a4b5;
+  color: #ffffff;
   font-size: 100%;
   padding: 7px 25px;
   border-radius: 25px;
@@ -276,8 +276,8 @@ body {
   background-color: inherit;
 }
 .feedbackLightbox .feedbackForm .fbThankyouBtn {
-  background-color: #fc4250;
-  color: white;
+  background-color: #d1a4b5;
+  color: #ffffff;
   font-size: 100%;
   padding: 7px 25px;
   border-radius: 25px;
@@ -318,8 +318,8 @@ body {
 .broadsheet a:hover,
 .broadsheet a:link,
 .broadsheet a:visited {
-  color: white;
-  background-color: #fc4250;
+  color: #ffffff;
+  background-color: #d1a4b5;
   text-decoration: none;
   padding: 10px;
   border-radius: 25px;
@@ -359,8 +359,8 @@ body {
 .newbroadsheet a:hover,
 .newbroadsheet a:link,
 .newbroadsheet a:visited {
-  color: #fc4250;
-  border-bottom: 2px solid #fc4250;
+  color: #d1a4b5;
+  border-bottom: 2px solid #d1a4b5;
   text-decoration: none;
   width: 200px;
   text-align: center;
@@ -373,18 +373,17 @@ body {
 }
 
 .venue {
-  color: #282828;
-  background-color: #fff;
   font-weight: bold;
   font-size: 20px;
-  padding-top: 4px;
+  position: absolute;
+  top: 18px;
 }
 
 .loading {
   height: 100vh;
   width: 100vw;
   max-width: 500px;
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -397,13 +396,13 @@ body {
 }
 .loading .tooltip {
   padding-top: 50px;
-  color: white;
+  color: #ffffff;
   font-size: 16px;
 }
 
 .broadsheetLoading {
   background-color: black;
-  color: white;
+  color: #ffffff;
   justify-content: flex-end;
 }
 .broadsheetLoading img:first-of-type {
@@ -430,7 +429,7 @@ body {
 .spinner > div {
   width: 18px;
   height: 18px;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 150%;
   display: inline-block;
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
@@ -475,7 +474,7 @@ body {
   align-items: center;
   position: fixed;
   top: 61px;
-  background-color: white;
+  background-color: #ffffff;
   color: #373737;
   z-index: 4;
   padding-top: 5px;
@@ -504,8 +503,8 @@ body {
   font-family: "Helvetica";
 }
 .selectSection .red {
-  color: white;
-  background-color: #fc4250;
+  color: #ffffff;
+  background-color: #d1a4b5;
   border-radius: 50px;
   margin-left: 10px;
 }
@@ -518,11 +517,12 @@ header {
   align-items: center;
   position: fixed;
   top: 0;
-  color: black;
-  background-color: #fff;
+  color: #ffffff;
+  background-color: #051331;
   z-index: 10;
   padding: 15px;
   transition: 0.4s ease-in-out all;
+  font-size: 18px;
 }
 header .headerBackArrow,
 header .previewBackArrow {
@@ -568,8 +568,8 @@ header .filterWarningCont .filterWarning h3 {
   font-size: 150%;
 }
 header .filterWarningCont .filterWarning p {
-  background-color: #fc4250;
-  color: white;
+  background-color: #d1a4b5;
+  color: #ffffff;
   width: 70%;
   border-radius: 15px;
   text-align: center;
@@ -587,15 +587,15 @@ header .filter {
 }
 header .filter .filterText {
   position: absolute;
-  top: 19px;
-  right: 23px;
+  top: 20px;
+  right: 48px;
   font-weight: 600;
   font-variant: small-caps;
 }
 header .filter .filterIcon {
   width: 8px;
   height: 8px;
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   border-radius: 10px;
   position: fixed;
   z-index: 5;
@@ -603,7 +603,7 @@ header .filter .filterIcon {
   right: 16px;
 }
 header .filter .filterList {
-  background-color: white;
+  background-color: #ffffff;
   border: 1px solid #aaa;
   position: absolute;
   top: 50px;
@@ -640,8 +640,8 @@ header .filter .filterList p .checkBox {
 }
 header .filter .filterList p .checkedBox {
   border-radius: 2px;
-  border-color: #fc4250;
-  background-color: #fc4250;
+  border-color: #d1a4b5;
+  background-color: #d1a4b5;
 }
 header .filter .filterList p:nth-of-type(1) {
   border-top: none;
@@ -663,27 +663,27 @@ header .filter .open p .checkBox {
 header .filter .hamburger-inner {
   width: 30%;
   top: 26px;
-  background-color: #282828;
+  background-color: #051331;
 }
 header .filter .hamburger-inner::before {
   top: -6px;
   right: -4px;
-  background-color: #282828;
+  background-color: #051331;
 }
 header .filter .hamburger-inner::after {
   top: 6px;
   right: 3px;
   width: 50%;
-  background-color: #282828;
+  background-color: #051331;
 }
 header .filter .hamburger.is-active .hamburger-inner {
   width: 20px;
   left: -5px;
-  background-color: #282828;
+  background-color: #051331;
 }
 header .filter .hamburger.is-active .hamburger-inner::after,
 header .filter .hamburger.is-active .hamburger-inner::before {
-  background-color: #282828;
+  background-color: #051331;
   width: 20px;
   top: 0;
   right: 0;
@@ -699,7 +699,7 @@ header .cartBadge {
   height: 8px;
   width: 8px;
   border-radius: 8px;
-  background-color: #fc4250;
+  background-color: #d1a4b5;
   position: absolute;
   top: 18px;
   right: 10px;
@@ -707,20 +707,18 @@ header .cartBadge {
 
 .selectLanguage {
   position: absolute;
-  color: #282828;
-  font-size: 15px;
-  right: 85px;
+  color: #ffffff;
+  right: 110px;
   top: 20px;
 }
 .selectLanguage .langCode {
-  text-transform: uppercase;
+  font-variant: small-caps;
   padding-right: 5px;
-  font-weight: 600;
 }
 .selectLanguage .langArrow {
   display: inline-block;
-  border-top: 2px solid #282828;
-  border-left: 2px solid #282828;
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
   border-radius: 0;
   width: 10px;
   height: 10px;
@@ -742,7 +740,7 @@ header .cartBadge {
   right: -10px;
   border: 1px solid #aaa;
   border-radius: 3px;
-  background-color: white;
+  background-color: #ffffff;
   width: 150px;
   height: 0;
   opacity: 0;
@@ -776,8 +774,8 @@ header .cartBadge {
   transition: 0.2s ease all;
 }
 .languageList .radioSelected {
-  background-color: #fc4250;
-  border-color: #fc4250;
+  background-color: #d1a4b5;
+  border-color: #d1a4b5;
 }
 
 .langOpen {
@@ -804,7 +802,7 @@ header .cartBadge {
   align-items: center;
   position: fixed;
   top: 62px;
-  background-color: white;
+  background-color: #ffffff;
   color: #373737;
   z-index: 4;
   padding: 20px 5px 5px;
@@ -831,8 +829,8 @@ header .cartBadge {
   font-family: "Helvetica";
 }
 .selectSectionHS .red {
-  color: white;
-  background-color: #fc4250;
+  color: #ffffff;
+  background-color: #d1a4b5;
   border-radius: 15px;
   margin-left: 10px;
 }
@@ -928,7 +926,7 @@ h1 img {
 .section {
   padding: 85px 15px 15px;
   margin-bottom: -7px;
-  background-color: white;
+  background-color: #ffffff;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -1006,7 +1004,7 @@ h1 img {
   border-radius: 5px;
 }
 .menuItem .forDummies {
-  color: white;
+  color: #ffffff;
   font-weight: bold;
   position: absolute;
   height: 50vw;
@@ -1088,7 +1086,7 @@ h1 img {
 }
 
 .menuListItem {
-  background-color: white;
+  background-color: #ffffff;
   grid-template-columns: 1fr;
   min-height: 80px;
   height: 100%;
@@ -1167,7 +1165,7 @@ h1 img {
   width: 85vw;
   max-width: 400px;
   padding: 27px;
-  background-color: white;
+  background-color: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 5px;
   text-align: center;
@@ -1199,7 +1197,7 @@ h1 img {
   padding-bottom: 5px;
 }
 .firstVisit .closeInstructions {
-  color: white;
+  color: #ffffff;
   background-color: #373737;
   font-size: 16px;
   border-radius: 25px;
@@ -1222,7 +1220,7 @@ h1 img {
 }
 
 .previewModal {
-  background-color: white;
+  background-color: #ffffff;
   height: 100vh;
   overflow: auto;
   max-width: 500px;
@@ -1273,7 +1271,7 @@ h1 img {
   width: 85vw;
   max-width: 400px;
   padding: 27px;
-  background-color: white;
+  background-color: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 55x;
   box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
@@ -1377,7 +1375,7 @@ h1 img {
   display: flex;
   justify-content: space-between;
   width: 100vw;
-  padding: 20px 20px 85px;
+  padding: 20px 20px 45px;
 }
 .previewModal .previewPrice {
   max-width: 500px;
@@ -1410,7 +1408,7 @@ h1 img {
   padding: 50px 25px 0;
   margin-bottom: 50px;
   text-align: center;
-  background-color: white;
+  background-color: #ffffff;
 }
 .cta .mryum {
   margin: 0 auto;
@@ -1451,8 +1449,8 @@ footer {
   line-height: normal;
   letter-spacing: 0.5px;
   text-align: center;
-  color: white;
-  background-color: #282828;
+  color: #ffffff;
+  background-color: #051331;
   width: 100%;
 }
 footer a,
@@ -1470,8 +1468,8 @@ footer a:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #fc4250;
-  color: white;
+  background: #d1a4b5;
+  color: #ffffff;
   font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
   border-radius: 25px;
   line-height: 48px;
@@ -1480,6 +1478,7 @@ footer a:focus {
   text-align: center;
   transition: width 0.2s ease-in-out;
   cursor: pointer;
+  text-decoration: none;
 }
 .ctaBtn .ctaBtn .hide {
   display: none;
@@ -1525,7 +1524,7 @@ footer a:focus {
   height: 40px;
   background: #000;
   border-radius: 25px;
-  color: white;
+  color: #ffffff;
   border: 0;
   margin: 5px 3px 5px 5px;
   cursor: pointer;
@@ -1533,7 +1532,7 @@ footer a:focus {
 }
 .ctaBtn .ctaBtn .ctaBtn .button .ctaBtn button:disabled {
   opacity: 0.7;
-  color: white;
+  color: #ffffff;
 }
 .ctaBtn .ctaBtn.sent {
   cursor: default;
@@ -1568,7 +1567,7 @@ footer a:focus {
 .pnf {
   font-size: 200%;
   padding: 30px;
-  color: white;
+  color: #ffffff;
   text-align: center;
   margin-bottom: 20vh;
 }
@@ -1769,8 +1768,8 @@ footer a:focus {
   padding-bottom: 10px;
 }
 .modalCont .modalCta {
-  background-color: #fc4250;
-  color: white;
+  background-color: #d1a4b5;
+  color: #ffffff;
   padding: 5px 25px;
   border-radius: 25px;
 }
@@ -1778,7 +1777,7 @@ footer a:focus {
 @media screen and (min-width: 768px) {
   .App,
 body {
-    background-color: white;
+    background-color: #ffffff;
     max-width: none;
   }
 
@@ -1847,7 +1846,7 @@ body {
     max-width: 400px;
     height: auto;
     padding: 27px;
-    background-color: white;
+    background-color: #ffffff;
     border: 1px solid #e5e5e5;
     border-radius: 5px;
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
@@ -1905,7 +1904,7 @@ body {
     margin: auto;
     padding: 1px;
     border: 1px solid #ececec;
-    background-color: white;
+    background-color: #ffffff;
   }
   .previewModal .previewImage {
     grid-area: previewImage;
@@ -1924,7 +1923,7 @@ body {
   }
   .previewModal .imageCredit,
 .previewModal .previewWrapper {
-    background-color: white;
+    background-color: #ffffff;
     width: auto;
     padding-top: 5px;
   }
@@ -1983,7 +1982,7 @@ body {
 .landingPage {
   font-family: "Avenir", "Helvetica", sans-serif;
   grid-template-rows: 1fr;
-  background-color: white;
+  background-color: #ffffff;
   width: 100%;
   max-width: none;
   min-width: 768px;
@@ -1996,7 +1995,7 @@ body {
   background-color: #fc4250;
   height: 648px;
   grid-area: 1/1/2/11;
-  color: white;
+  color: #ffffff;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 0.5fr;
@@ -2035,7 +2034,7 @@ body {
 }
 .landingPage .venueRegistrationCTA {
   color: #fc4250;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 25px;
   height: 35px;
   width: 215px;
@@ -2069,7 +2068,7 @@ body {
   font-weight: 500;
   margin-top: 50px;
   color: #fc4250;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 25px;
   height: 42px;
   width: 340px;
@@ -2104,7 +2103,7 @@ body {
   color: rgba(252, 66, 80, 0.7);
 }
 .landingPage .emailCollect:focus::-webkit-input-placeholder {
-  color: white;
+  color: #ffffff;
 }
 .landingPage .heroGif {
   grid-area: 1/6/4/10;
@@ -2292,7 +2291,7 @@ body {
   font-size: 30px;
   line-height: 1.4;
   text-align: center;
-  color: white;
+  color: #ffffff;
 }
 .landingPage .footerCTA .footerCTAs {
   display: flex;
@@ -2306,7 +2305,7 @@ body {
   font-weight: 500;
   margin: 65px 15px;
   color: #fc4250;
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 25px;
   height: 42px;
   width: 360px;
@@ -2539,7 +2538,7 @@ body {
 }
 .landingPage .emailForm form button {
   background-color: #fc4250;
-  color: white;
+  color: #ffffff;
   width: 175px;
   height: 38px;
   border-radius: 18px;
@@ -2556,7 +2555,7 @@ body {
 .categorySelection {
   padding-top: 52px;
   min-height: 100vh;
-  background-color: white;
+  background-color: #ffffff;
 }
 .categorySelection .venuesContainer {
   display: flex;
@@ -2564,8 +2563,8 @@ body {
   flex-direction: row;
 }
 .categorySelection header, .categorySelection h1 {
-  background-color: #282828;
-  color: white;
+  background-color: #051331;
+  color: #ffffff;
 }
 .categorySelection header img, .categorySelection h1 img {
   position: absolute;
@@ -2593,7 +2592,7 @@ body {
 }
 .categorySelection .venueCard a, .categorySelection .venueCard a:hover, .categorySelection .venueCard a:visited, .categorySelection .venueCard a:focus {
   text-decoration: none;
-  color: white;
+  color: #ffffff;
 }
 .categorySelection .venueName {
   position: relative;
@@ -2605,7 +2604,7 @@ body {
   width: 100%;
   height: 175px;
   background-color: rgba(0, 0, 0, 0.3);
-  color: white;
+  color: #ffffff;
   font-size: 52px;
   text-align: center;
   font-weight: 600;
