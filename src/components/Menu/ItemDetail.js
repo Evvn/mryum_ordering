@@ -7,7 +7,8 @@ class ItemDetail extends React.Component {
     super(props)
 
     this.state = {
-      swipeRight: false
+      swipeRight: false,
+      stagedQuantity: 1,
     }
 
     this.onSwipeRight = this.onSwipeRight.bind(this);
@@ -61,6 +62,12 @@ class ItemDetail extends React.Component {
     window.history.back()
   }
 
+  handleAddToCart(details, stagedQuantity){
+    const { addToCart } = this.props;
+    addToCart(details, stagedQuantity);
+    window.history.back();
+  }
+
   handleClick(e) {
     if (e.target.className === 'previewModal') {
       window.history.back()
@@ -76,8 +83,21 @@ class ItemDetail extends React.Component {
     }, 300);
   }
 
+  incrementQuantity(){
+    const { stagedQuantity } = this.state;
+    this.setState({stagedQuantity: stagedQuantity + 1});
+  }
+
+  decrementQuantity(){
+    const { stagedQuantity } = this.state;
+    if( stagedQuantity > 1){
+      this.setState({stagedQuantity: stagedQuantity - 1});
+    }
+  }
+
   render() {
-    const { details, lang } = this.props;
+    const { details, lang, addToCart } = this.props;
+    const { stagedQuantity } = this.state;
     let name = details.name
     let desc = '';
     let translatedName = 'name-' + lang
@@ -157,12 +177,18 @@ class ItemDetail extends React.Component {
                   <div className="previewTags">{ !!details.tags ? details.tags.join(', ') : null }</div>
                 }
               </div>
-
+              <div style={{display: 'flex'}}>
+          <button onClick={(e) => {this.decrementQuantity()}}>-</button>
+          <h1>{stagedQuantity}</h1>
+          <button onClick={(e) => {this.incrementQuantity()}}>+</button>
+        </div>
+        <button onClick={(e) => {this.handleAddToCart(details, stagedQuantity)}}>Add to Order</button>
+        </div>
             </div>
 
           </div>
+       
 
-        </div>
       </Swipe>
     )
   }

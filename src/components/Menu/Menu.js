@@ -84,6 +84,7 @@ class Menu extends Component {
       lang,
       menuItems,
       itemId,
+      addToCart,
     } = this.props
     console.log(menuItems[itemId]);
     const desktopView = window.innerWidth > 768 ? true : false;
@@ -96,7 +97,7 @@ class Menu extends Component {
           </div>
 
         { itemId ?
-          <ItemDetail details={menuItems[itemId].fields} lang={lang} />
+          <ItemDetail details={menuItems[itemId].fields} lang={lang} addToCart={addToCart} />
            : '' }
       </div>
     )
@@ -104,7 +105,7 @@ class Menu extends Component {
     (
       <div>
         { itemId ?
-          <ItemDetail details={menuItems[itemId].fields} lang={lang} />
+          <ItemDetail details={menuItems[itemId].fields} lang={lang} addToCart={addToCart}/>
            :
            <div>
              { this.getMenu() }

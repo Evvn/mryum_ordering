@@ -3,6 +3,9 @@ import LinesEllipsis from 'react-lines-ellipsis'
 // import JsxParser from 'react-jsx-parser'
 
 class MenuItem extends React.Component {
+ 
+
+ 
 
   itemDetails(item) {
     const { lang } = this.props
@@ -55,7 +58,7 @@ class MenuItem extends React.Component {
   }
 
   render() {
-    const { item, onClick } = this.props;
+    const { item, onClick, addToOrder } = this.props;
     let img = item.image ? item.image[0].url : '/mryum_assets/missing_photo.jpg'
     const style = {
       backgroundImage: 'url(' + img + ')',

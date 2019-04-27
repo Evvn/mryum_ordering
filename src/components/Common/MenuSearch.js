@@ -79,7 +79,7 @@ class MenuSearch extends React.Component {
                 
                     if (expression.test(fields['description'])) {
                         let fields = data.menuByItem[key].fields;
-                        let searchScore = this.score(fields['description'].toString(), expression);
+                        let searchScore = fields['description'] ? this.score(fields['description'].toString(), expression): '0.000';
                         bucket.push({result: fields['description'], score: searchScore, id: fields.id});
                     }
                 }
