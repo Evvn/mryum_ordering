@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as actions from './actions/actions.js';
 import PaymentForm from './PaymentForm';
 import { StripeProvider, Elements } from 'react-stripe-elements';
 
@@ -35,11 +38,17 @@ class PaymentScreen extends React.Component{
         return(
             <StripeProvider apiKey={'pk_test_gtRdjjtoOFsZqEvtkSD4sVir'}>
                 <Elements>
-                    <PaymentForm data={this.mock_data}/>
+                    <PaymentForm data={this.mock_data} makePayment={this.props.makePayment}/>
                 </Elements>
             </StripeProvider>
         )
     }
 };
 
-export default PaymentScreen;
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
+
+// const mapStateToProps = state => ({
+// });
+
+export default connect(null, mapDispatchToProps)(PaymentScreen)
+

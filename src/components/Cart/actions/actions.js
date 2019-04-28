@@ -15,3 +15,12 @@ export function removeFromCart(item, quantity) {
       quantity,
     };
   }
+
+export function makePayment(token, amount, desc) {
+  return {
+    type: actionTypes.MAKE_STRIPE_CHARGE,
+    token,
+    amount,
+    desc
+  };
+}

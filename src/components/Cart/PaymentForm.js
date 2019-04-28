@@ -5,12 +5,13 @@ class PaymentForm extends React.Component{
     constructor(props) {
         super(props);
 
+        // start of attempted apple/google pay stuff
         const paymentRequest = props.stripe.paymentRequest({
             country: 'AU',
             currency: 'aud',
             total: {
                 label: 'dunno yet',
-                amount: props.data.subtotal * 100,
+                amount: props.data.subtotal * 100, // amount needs to be in subunit of currency
             },
         });
 
@@ -28,7 +29,7 @@ class PaymentForm extends React.Component{
         paymentRequest.canMakePayment().then((result) => {
             this.setState({canMakePayment: !!result});
         });
-
+        // end of it
         this.state = {
             disableButton: false,
             canMakePayment: false,
@@ -41,7 +42,12 @@ class PaymentForm extends React.Component{
         if (this.props.stripe) {
             this.props.stripe
              .createToken({type: 'card', name: 'pitchBlak'})
-             .then((token) => console.log('[token]', token));
+             .then((result) => {
+                 console.log('[token]', result.token)
+                 /* kick off redux action, then call bff in saga
+                    this.props.makePayment(result.token, props.data.subtotal * 100, 'order description???')
+                 */
+                });
         } else {
             console.log("Stripe.js hasn't loaded yet")
         }
@@ -93,7 +99,7 @@ class PaymentForm extends React.Component{
                 </div>
 
 
-                {
+                { // apple/google pay button hides if you cant use it
                     this.state.canMakePayment ? (
                         <PaymentRequestButtonElement
                             paymentRequest={this.state.paymentRequest}
