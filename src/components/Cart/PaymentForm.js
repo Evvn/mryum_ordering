@@ -78,28 +78,30 @@ class PaymentForm extends React.Component{
             <div className="paymentScreenCont">
               <header className="header">
                 <h1 className="venue">Winter Village</h1>
-                <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/>
+                <img onClick={() => {this.props.closePaymentScreen()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/>
               </header>
+
               <form onSubmit={this.handleSubmit}>
                   <div style={{width: '100%', height: '65px'}}>
-                          <h4>Checkout</h4>
+                    <h4>Checkout Page</h4>
                   </div>
-                  <div>
-                      <div style={{width: '100%', height: '65px', backgroundColor: 'lightgrey'}}>
-                          <h4>Table service</h4>
-                      </div>
-                      <label>
-                          Table service
 
-                      </label>
-                      <div style={{width: '100%', height: '65px', backgroundColor: 'lightgrey'}}>
-                          <h4>Payment</h4>
-                      </div>
-                      <label>
-                          <div style={{padding: '22px 18px 22px 17px'}}>
-                              <CardElement {...this.createOptions('18px', '0px')} hideIcon={true}/>
-                          </div>
-                      </label>
+                  <div>
+                    {/* <div style={{width: '100%', height: '65px', backgroundColor: 'lightgrey'}}>
+                        <h4>Table service</h4>
+                    </div>
+                    <label>
+                        Table service
+
+                    </label> */}
+                    <div style={{width: '100%', height: '65px', backgroundColor: 'lightgrey'}}>
+                        <h4>Payment</h4>
+                    </div>
+                    <label>
+                        <div style={{padding: '22px 18px 22px 17px'}}>
+                            <CardElement {...this.createOptions('18px', '0px')} hideIcon={true}/>
+                        </div>
+                    </label>
                   </div>
                   <div style={{marignTop: '103px', height: '65px'}}>
                       <span>Order Total</span>
@@ -118,11 +120,11 @@ class PaymentForm extends React.Component{
                                 }
                             }}
                         >
-                            PAY NOW
+                            ApplePay/GooglePay
                         </PaymentRequestButtonElement>
                     ) : null
                 }
-                <button>PAY NOW</button>
+                <button className="payNowBtn">PAY NOW</button>
             </form>
           </div>
         )

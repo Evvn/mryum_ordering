@@ -25,9 +25,16 @@ class CartContainer extends React.Component{
         return quantity;
     }
 
+    getTotal(order) {
+      let total = 0
+      Object.values(order).forEach((item, index) => {
+        total = total + (item[0].price * item[0].quantity)
+      })
+      return total.toFixed(2)
+    }
+
     printOrder(){
         const { currentOrder } = this.props;
-
         const itemGroups = Object.keys(currentOrder);
         if(itemGroups.length === 0){
             return (
@@ -46,13 +53,21 @@ class CartContainer extends React.Component{
             </header>
             <h2 className="cartHeading">Your Order</h2>
             {itemGroups.map(itemGroup => <CartItem items={currentOrder[itemGroup]}/>)}
-            <button className="payNowBtn" onClick={(e) => {this.openPaymentScreen()}}>Pay Now</button>
+            <div className="orderTotal">
+              <span>Order Total</span>
+              <span>{this.getTotal(currentOrder)}</span>
+            </div>
+            <button className="payNowBtn" onClick={(e) => {this.openPaymentScreen()}}>Checkout</button>
           </div>);
       }
     }
 
     openPaymentScreen(){
         this.setState({showPaymentScreen: true})
+    }
+
+    closePaymentScreen = () => {
+      this.setState({showPaymentScreen: false})
     }
 
     settlePayment(){
@@ -63,7 +78,7 @@ class CartContainer extends React.Component{
         const {showPaymentScreen} = this.state;
         return(
             <div>
-                {showPaymentScreen ? <PaymentScreen/> : this.printOrder()}
+                {showPaymentScreen ? <PaymentScreen closePaymentScreen={this.closePaymentScreen} /> : this.printOrder()}
             </div>
         )
     }

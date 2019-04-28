@@ -4,8 +4,9 @@
 // NOTE
 // Some styling for this still lives in the big App.scss file and needs to be moved, this is where I'll be adding new styles relevant to ordering and WV/HS
 
-.cartCont {
-  padding: 62px 0 124px 0;
+.cartCont, .paymentScreenCont {
+  padding: 62px 0 186px 0;
+  background-color: $white;
 
   h1 {
     padding: 3px 0  0 50px;
@@ -48,6 +49,8 @@
 
 .cartItemPrice {
   display: block;
+  font-size: 17px;
+  font-family: "SF-UI-Text-Normal", 'Helvetica', sans-serif;
 }
 
 .removeItmBtn, .removeItmBtn:focus {
@@ -70,6 +73,22 @@
     background-color: $primary;
     font-size: 18px;
   }
+}
+
+.orderTotal {
+  background-color: $white;
+  width: 100%;
+  height: 62px;
+  position: fixed;
+  bottom: 62px;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  font-size: 17px;
+  font-family: "SF-UI-Text-Normal", 'Helvetica', sans-serif;
+   box-shadow: 0 -1px 17px 0 rgba(0, 0, 0, 0.14);
 }
 
 .payNowBtn, .payNowBtn:focus {
