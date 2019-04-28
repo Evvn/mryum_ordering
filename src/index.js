@@ -21,7 +21,6 @@ const { store, persistor } = configureStore();
 const App = (
   <Provider store={store}>
 
-
       <ConnectedRouter history={history}>
       <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
