@@ -1,6 +1,7 @@
 import React from 'react'
 import JsxParser from 'react-jsx-parser'
 import Swipe from "react-easy-swipe";
+import { toast } from "react-toastify";
 
 //css
 import './styles/itemDetail.scss'
@@ -63,7 +64,7 @@ class ItemDetail extends React.Component {
   handleAddToCart(details, stagedQuantity) {
     const {addToCart} = this.props;
     addToCart(details, stagedQuantity);
-    window.history.back();
+    toast.success(`Added ${stagedQuantity} ${details.name}`);
   }
 
   handleClick(e) {
