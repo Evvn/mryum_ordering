@@ -26,7 +26,7 @@ class CartContainer extends React.Component{
     }
 
     printOrder(){
-        const { currentOrder } = this.props;
+        const { currentOrder, removeFromCart } = this.props;
 
         const itemGroups = Object.keys(currentOrder);
         if(itemGroups.length === 0){
@@ -45,7 +45,7 @@ class CartContainer extends React.Component{
               <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/>
             </header>
             <h2 className="cartHeading">Your Order</h2>
-            {itemGroups.map(itemGroup => <CartItem items={currentOrder[itemGroup]}/>)}
+            {itemGroups.map(itemGroup => <CartItem itemId={itemGroup} items={currentOrder[itemGroup]} removeFromCart={removeFromCart}/>)}
             <button className="payNowBtn" onClick={(e) => {this.openPaymentScreen()}}>Pay Now</button>
           </div>);
       }

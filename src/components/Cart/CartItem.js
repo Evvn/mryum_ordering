@@ -26,7 +26,7 @@ class CartItem extends React.Component {
   };
 
   printItem() {
-    const {items} = this.props;
+    const {itemId, items, removeFromCart} = this.props;
     const {quantity, subtotal} = this.getCostDetails(items);
     return (
       <div className="cartItem">
@@ -35,7 +35,7 @@ class CartItem extends React.Component {
           <span className="cartItemName">{items[0].name}</span>
         </div>
         <span className="cartItemPrice">{subtotal.toFixed(2)}</span>
-        <button className="removeItmBtn">Remove</button>
+        <button className="removeItmBtn" onClick={(e) => {removeFromCart(itemId)}}>Remove</button>
       </div>
     );
   }
