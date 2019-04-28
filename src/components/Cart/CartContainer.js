@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from './actions/actions.js';
 import PaymentScreen from './PaymentScreen.js';
+import CartItem from './CartItem.js';
 
 class CartContainer extends React.Component{
     constructor(props){
@@ -11,6 +12,14 @@ class CartContainer extends React.Component{
         this.state = {
             showPaymentScreen: false,
         }
+    }
+
+    getQuantity(items){
+        let quantity = 0;
+        items.map(item => {
+            quantity = quantity + item.quantity; 
+        });
+        return quantity;
     }
 
     printOrder(){
@@ -27,18 +36,12 @@ class CartContainer extends React.Component{
             );
         }
         else{
-            return (<div>
+            return (
+            <div>
                 Cart
-            {itemGroups.map(itemGroup => {
-                console.log(currentOrder[itemGroup])
-                return (<div style={{display: 'flex'}}>
-                    <h1>{`x${currentOrder[itemGroup].length}  `}</h1>
-                    <h1>{currentOrder[itemGroup][0].name}</h1>
-                    <h1>{currentOrder[itemGroup][0].price}</h1>
-                    <button onClick={(e) => {this.openPaymentScreen()}}>Pay Now</button>
-                </div>
-            )})
-        }</div>);
+                {itemGroups
+                    .map(itemGroup => <CartItem items={currentOrder[itemGroup]}/>)}
+            </div>);
         }
     }
 
