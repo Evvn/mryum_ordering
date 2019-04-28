@@ -34,7 +34,12 @@ class CartContainer extends React.Component{
     }
 
     printOrder(){
+<<<<<<< HEAD
         const { currentOrder } = this.props;
+=======
+        const { currentOrder, removeFromCart } = this.props;
+
+>>>>>>> 1f5ce28d1b8a896db3ea5e234d0b29ebb9549b11
         const itemGroups = Object.keys(currentOrder);
         if(itemGroups.length === 0){
             return (

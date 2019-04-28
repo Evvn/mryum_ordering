@@ -8,11 +8,10 @@ export function addToCart(item, quantity) {
   };
 }
 
-export function removeFromCart(item, quantity) {
+export function removeFromCart(id) {
     return {
       type: actionTypes.REMOVE_FROM_ORDER_REQUEST,
-      item,
-      quantity,
+      id,
     };
   }
 
