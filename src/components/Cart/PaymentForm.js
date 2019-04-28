@@ -107,26 +107,6 @@ class PaymentForm extends React.Component{
                   </div>
 
 
-<<<<<<< HEAD
-                  {
-                      this.state.canMakePayment ? (
-                          <PaymentRequestButtonElement
-                              paymentRequest={this.state.paymentRequest}
-                              style={{
-                                  paymentRequestButton: {
-                                      theme: 'dark',
-                                      height: '64px'
-                                  }
-                              }}
-                          >
-                              PAY NOW
-                          </PaymentRequestButtonElement>
-                      ) : null
-                  }
-                  <button>PAY NOW</button>
-              </form>
-            </div>
-=======
                 { // apple/google pay button hides if you cant use it
                     this.state.canMakePayment ? (
                         <PaymentRequestButtonElement
@@ -144,7 +124,7 @@ class PaymentForm extends React.Component{
                 }
                 <button>PAY NOW</button>
             </form>
->>>>>>> 12156bd98abff3a0ebbc37d5976a6e93191292a9
+          </div>
         )
     }
 };
