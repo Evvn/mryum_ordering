@@ -108,7 +108,7 @@ class MenuContainer extends React.Component {
           { !itemView && <Filter filter={filter} updateFilter={updateFilter} lang={lang} /> }
           { category && !itemView && !filtersInUse ? <HorizontalScrollNav sectionPositions={sectionPositions}/> : ''}
           { !itemView && <LanguageSelect lang={lang} updateLang={updateLang} /> }
-          { !itemView && <MenuSearch data={bffRes} hide={false} onInput={(result) => console.log(result)}/>}
+          {/* { !itemView && <MenuSearch data={bffRes} hide={false} onInput={(result) => console.log(result)}/>} */}
           <img onClick={(e)=>{this.openCart()}} className="cartIcon" src="/icons/cart_icon.svg" alt="cart"/>
 
           {/* TODO: check if cart has items, display badge if so */}

@@ -42,10 +42,12 @@ export function* removeFromOrder(action) {
   try {
     const getCurrentOrder = state => state.persistentCart.currentOrder;
     let currentOrder = yield select(getCurrentOrder);
-    currentOrder = orderUtils.removeFromOrder(currentOrder, action.item, action.quantity);
+    let orderClone = yield _.cloneDeep(currentOrder);
+    yield console.log(orderClone);
+    delete orderClone[action.id];
       yield put({
         type: actionTypes.REMOVE_FROM_ORDER_SUCCESS,
-        currentOrder,
+        currentOrder: orderClone,
       })
   } catch (error) {
     console.log(error)

@@ -10,6 +10,8 @@ import CartContainer from './components/Cart/CartContainer.js';
 import NotFound from './components/NotFound/NotFound.js';
 import LoadingScreen from './components/LoadingScreen/LoadingScreen.js';
 import './App.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class App extends React.Component {
 
@@ -35,6 +37,10 @@ class App extends React.Component {
     return (
       <Router>
       <div>
+        <ToastContainer
+          position={toast.POSITION.TOP_CENTER}
+          autoClose={3500}
+        />
         {isLoading ? <LoadingScreen/> : ''}
         <Switch>
         <Route
