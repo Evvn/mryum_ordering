@@ -526,10 +526,10 @@ header {
 }
 header .headerBackArrow,
 header .previewBackArrow {
-  height: 45px;
+  height: 40px;
   position: absolute;
   left: 10px;
-  top: 10px;
+  top: 12px;
   padding: 10px;
 }
 header .arrowPadding {

@@ -41,4 +41,15 @@
   position: fixed;
   bottom: 0;
   left: 0;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+// toast styles
+.Toastify__toast-container {
+  .Toastify__toast {
+    background-color: $primary;
+    font-size: 18px;
+  }
 }

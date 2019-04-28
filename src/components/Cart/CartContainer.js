@@ -5,6 +5,9 @@ import * as actions from './actions/actions.js';
 import PaymentScreen from './PaymentScreen.js';
 import CartItem from './CartItem.js';
 
+//css
+import './styles/checkout.scss'
+
 class CartContainer extends React.Component{
     constructor(props){
         super(props);
@@ -17,7 +20,7 @@ class CartContainer extends React.Component{
     getQuantity(items){
         let quantity = 0;
         items.map(item => {
-            quantity = quantity + item.quantity; 
+            quantity = quantity + item.quantity;
         });
         return quantity;
     }
@@ -32,17 +35,20 @@ class CartContainer extends React.Component{
                     Cart
                     <h1>Cart is Empty</h1>
                 </div>
-                
+
             );
-        }
-        else{
-            return (
-            <div>
-                Cart
-                {itemGroups
-                    .map(itemGroup => <CartItem items={currentOrder[itemGroup]}/>)}
-            </div>);
-        }
+        } else {
+          return (
+          <div className="cartCont">
+            <header className="header">
+              <h1 className="venue">Winter Village</h1>
+              <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/>
+            </header>
+            <h2 className="cartHeading">Your Order</h2>
+            {itemGroups.map(itemGroup => <CartItem items={currentOrder[itemGroup]}/>)}
+            <button className="payNowBtn" onClick={(e) => {this.openPaymentScreen()}}>Pay Now</button>
+          </div>);
+      }
     }
 
     openPaymentScreen(){
@@ -52,8 +58,6 @@ class CartContainer extends React.Component{
     settlePayment(){
         this.setState({showPaymentScreen: false})
     }
-
-    
 
     render(){
         const {showPaymentScreen} = this.state;

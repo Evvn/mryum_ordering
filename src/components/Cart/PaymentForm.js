@@ -1,6 +1,9 @@
 import React from 'react';
 import {injectStripe, PaymentRequestButtonElement, CardElement } from 'react-stripe-elements';
 
+//css
+import './styles/checkout.scss'
+
 class PaymentForm extends React.Component{
     constructor(props) {
         super(props);
@@ -66,50 +69,56 @@ class PaymentForm extends React.Component{
     render(){
         const {data} = this.props;
         return(
-            <form onSubmit={this.handleSubmit}>
-                <div style={{width: '100%', height: '65px'}}>
-                        <h4>Checkout</h4>
-                </div>
-                <div>
-                    <div style={{width: '100%', height: '65px', backgroundColor: 'lightgrey'}}>
-                        <h4>Table service</h4>
-                    </div>
-                    <label>
-                        Table service
+            <div className="paymentScreenCont">
+              <header className="header">
+                <h1 className="venue">Winter Village</h1>
+                <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/>
+              </header>
+              <form onSubmit={this.handleSubmit}>
+                  <div style={{width: '100%', height: '65px'}}>
+                          <h4>Checkout</h4>
+                  </div>
+                  <div>
+                      <div style={{width: '100%', height: '65px', backgroundColor: 'lightgrey'}}>
+                          <h4>Table service</h4>
+                      </div>
+                      <label>
+                          Table service
 
-                    </label>
-                    <div style={{width: '100%', height: '65px', backgroundColor: 'lightgrey'}}>
-                        <h4>Payment</h4>
-                    </div>
-                    <label>
-                        <div style={{padding: '22px 18px 22px 17px'}}>
-                            <CardElement {...this.createOptions('18px', '0px')} hideIcon={true}/>
-                        </div>
-                    </label>
-                </div>
-                <div style={{marignTop: '103px', height: '65px'}}>
-                    <span>Order Total</span>
-                    <span style={{float: 'right', paddingRight: '18px'}}><b>{data.subtotal.toFixed(2)}</b></span>
-                </div>
+                      </label>
+                      <div style={{width: '100%', height: '65px', backgroundColor: 'lightgrey'}}>
+                          <h4>Payment</h4>
+                      </div>
+                      <label>
+                          <div style={{padding: '22px 18px 22px 17px'}}>
+                              <CardElement {...this.createOptions('18px', '0px')} hideIcon={true}/>
+                          </div>
+                      </label>
+                  </div>
+                  <div style={{marignTop: '103px', height: '65px'}}>
+                      <span>Order Total</span>
+                      <span style={{float: 'right', paddingRight: '18px'}}><b>{data.subtotal.toFixed(2)}</b></span>
+                  </div>
 
 
-                {
-                    this.state.canMakePayment ? (
-                        <PaymentRequestButtonElement
-                            paymentRequest={this.state.paymentRequest}
-                            style={{
-                                paymentRequestButton: {
-                                    theme: 'dark',
-                                    height: '64px'
-                                }
-                            }}
-                        >
-                            PAY NOW
-                        </PaymentRequestButtonElement>
-                    ) : null
-                }
-                <button>PAY NOW</button>
-            </form>
+                  {
+                      this.state.canMakePayment ? (
+                          <PaymentRequestButtonElement
+                              paymentRequest={this.state.paymentRequest}
+                              style={{
+                                  paymentRequestButton: {
+                                      theme: 'dark',
+                                      height: '64px'
+                                  }
+                              }}
+                          >
+                              PAY NOW
+                          </PaymentRequestButtonElement>
+                      ) : null
+                  }
+                  <button>PAY NOW</button>
+              </form>
+            </div>
         )
     }
 };
