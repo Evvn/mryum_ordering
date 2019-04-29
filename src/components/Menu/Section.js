@@ -20,7 +20,7 @@ class Section extends React.Component {
       routeToItemDetail,
       lang,
     } = this.props;
-    let tags = item.fields['Tags Filtering']
+    let tags = item.fields.filters
     if (tags) {
       tags.forEach((tag, index) => {
         if (tag === 'vegetarian') {
@@ -75,12 +75,16 @@ class Section extends React.Component {
       lang,
       routeToItemDetail,
       tagsInUse,
+      name,
     } = this.props;
 
     let infoList = [];
     // let updatedIndex = -1;
 
     let section = menuSection.map((item, index) => {
+      if (name === 'Pizza%GF bases') {
+        console.log(item);
+      }
       const hasTag = item.fields.tags ? true : false;
       const tags = item.fields.tags;
       const menuItemTemplate = (
@@ -102,8 +106,6 @@ class Section extends React.Component {
       if (tagsInUse.length > 0 && !hasTag) {
         return ''
       }
-
-
 
       return hasTag ? tags[0] !== 'LIST' ? this.processItem(item, index) : this.getList(item, index) : menuItemTemplate
     });
@@ -135,17 +137,18 @@ class Section extends React.Component {
   }
 
   render() {
-    let { name, index, tagsInUse } = this.props
+    const { name, index, tagsInUse } = this.props
+    let nameClone = name;
     let subSection = ""
-    if (name.indexOf("%") !== -1) {
-      subSection = name.substring((name.indexOf('%') + 1), name.length)
-      name = name.substring(0, name.indexOf('%'))
+    if (nameClone.indexOf("%") !== -1) {
+      subSection = nameClone.substring((nameClone.indexOf('%') + 1), nameClone.length)
+      nameClone = nameClone.substring(0, nameClone.indexOf('%'))
     }
 
-    // replace name with tags in use
+    // replace nameClone with tags in use
     if (tagsInUse.length > 0) {
       tagsInUse = tagsInUse.join(', ')
-      name = tagsInUse
+      nameClone = tagsInUse
               .replace(new RegExp("\\bV\\b"), 'Vegetarian')
               .replace(new RegExp("\\bVE\\b"), 'Vegan')
               .replace(new RegExp("\\bGF\\b"), 'Gluten Free')
@@ -158,7 +161,7 @@ class Section extends React.Component {
     return (
       <div>
         {tagsInUse.length > 0 && index > 0 ? '' :
-          <h2 className={`section ${ index === 0 && tagsInUse.length === 0 ? 'sectionTaller' : '' }` } >{ name }<span className="subSection">{ subSection }</span></h2>
+          <h2 className={`section ${ index === 0 && tagsInUse.length === 0 ? 'sectionTaller' : '' }` } >{ nameClone }<span className="subSection">{ subSection }</span></h2>
         }
         { section }
       </div>

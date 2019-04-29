@@ -91,7 +91,7 @@ class MenuContainer extends React.Component {
       category,
       setCategory,
     } = this.props;
-    const venueName = bffRes ? Object.values(bffRes.menuByItem)[0].fields.Venue : false;
+    // const venueName = bffRes ? Object.values(bffRes.menuByItem)[0].fields.Venue : false;
     const itemView = itemId ? true : false;
     const filtersInUse = Object.values(filter).includes(true)
 

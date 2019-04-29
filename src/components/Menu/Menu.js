@@ -37,6 +37,7 @@ class Menu extends Component {
       const menuItem = menuItems[item];
       const section = menuItem.fields.sections;
       if (!placedSections.includes(section)){
+        console.log(section, menuItem)
         menuSections[section] = [menuItem];
       }
       else{
