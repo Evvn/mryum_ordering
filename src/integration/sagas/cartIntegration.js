@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { takeLatest, put, select,} from 'redux-saga/effects';
 import * as orderUtils from '../../utils/orderUtils.js';
 import { actions } from 'redux-router5';
+import callBff from '../callBff.js'
 
 
 
@@ -62,25 +63,17 @@ export function* removeFromOrder(action) {
  *  Needs to be moved to backend since stripe secret
  *  is needed
 */
-const stripeAuthHeader = {
-  "Content-Type": "application/x-www-form-urlencoded",
-  Authorization: `Bearer ${process.env.REACT_APP_STRIPE_SK}` // ask for this later
-};
 
 export function* makePayment(action) {
   try {
-    yield fetch("https://api.stripe.com/v1/charges",{
-      method: 'POST',
-      body: {
-        source: action.token.id,
-        amount: actions.amount,
-        description: actions.desc,
-        currency: 'aud'
-      },
-      headers: stripeAuthHeader
-    }).then(res => res.json())
-    .then(response => {
-      console.log('Success:', JSON.stringify(response))
+    const res = yield callBff(`ordering/payment`, 'POST', { 
+      amount: action.amount,
+      currency: 'aud',
+      source: action.token.id,
+      description: action.desc,
+    }).then((response) => response)
+    
+    console.log(res);
       // then call bff stuff for airtable, ask about specifics later
       /*
         const getCurrentOrder = state => state.persistentCart.currentOrder;
@@ -92,8 +85,6 @@ export function* makePayment(action) {
           cartItems: currentOrder.items,
         }) 
       */
-
-      }).catch(error => console.error('Error:', error));
   } catch (error) {
     console.log(error)
   }
