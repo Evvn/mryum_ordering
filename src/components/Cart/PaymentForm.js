@@ -46,10 +46,8 @@ class PaymentForm extends React.Component{
             this.props.stripe
              .createToken({type: 'card', name: 'pitchBlak'})
              .then((result) => {
-                 console.log('[token]', result.token)
-                 /* kick off redux action, then call bff in saga
-                    this.props.makePayment(result.token, props.data.subtotal * 100, 'order description???')
-                 */
+                 const {makePayment} = this.props;
+                 makePayment(result.token, this.props.data.subtotal * 100, 'order description???');
                 });
         } else {
             console.log("Stripe.js hasn't loaded yet")
@@ -120,9 +118,8 @@ class PaymentForm extends React.Component{
                         >
                             PAY NOW
                         </PaymentRequestButtonElement>
-                    ) : null
+                    ) : <button>PAY NOW</button>
                 }
-                <button>PAY NOW</button>
             </form>
           </div>
         )
