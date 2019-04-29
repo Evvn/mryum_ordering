@@ -8,7 +8,7 @@ import { StripeProvider, Elements } from 'react-stripe-elements';
 class PaymentScreen extends React.Component{
     constructor(props) {
         super(props);
-        this.mock_data = { 
+        this.mock_data = {
             items: [
                 {
                     id: 'afvadfasf',
@@ -38,7 +38,7 @@ class PaymentScreen extends React.Component{
         return(
             <StripeProvider apiKey={'pk_test_gtRdjjtoOFsZqEvtkSD4sVir'}>
                 <Elements>
-                    <PaymentForm data={this.mock_data} makePayment={this.props.makePayment}/>
+                    <PaymentForm orderTotal={this.props.orderTotal} closePaymentScreen={this.props.closePaymentScreen} data={this.mock_data} makePayment={this.props.makePayment}/>
                 </Elements>
             </StripeProvider>
         )
@@ -51,4 +51,3 @@ const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 // });
 
 export default connect(null, mapDispatchToProps)(PaymentScreen)
-

@@ -4,7 +4,7 @@ import stub from '../../../data/airtableDatabaseStub.json';
 
 const initialState = {
   venue: '',
-  bffRes: stub,
+  bffRes: false,
   category: false,
   lang: 'en',
   item: false,

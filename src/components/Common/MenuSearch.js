@@ -18,7 +18,7 @@ class MenuSearch extends React.Component {
         // sanitize input
         for (let i = 0; i < input.length; i++) {
             let character = input.charAt(i);
-            let found = blackList.find((element) => element == character);
+            let found = blackList.find((element) => element === character);
 
             if (found) {
                 treated_input = `${treated_input}\\${character}`;
@@ -165,9 +165,9 @@ class MenuSearch extends React.Component {
     render() {
         return (
             <div>
-                <input 
-                    type="search" 
-                    placeholder="Search" 
+                <input
+                    type="search"
+                    placeholder="Search"
                     onKeyUp={(e) => {
                         let text = e.target.value;
                         this.debounce_input(text);

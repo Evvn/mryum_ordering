@@ -14,7 +14,7 @@ class PaymentForm extends React.Component{
             currency: 'aud',
             total: {
                 label: 'dunno yet',
-                amount: props.data.subtotal * 100, // amount needs to be in subunit of currency
+                amount: props.orderTotal * 100, // amount needs to be in subunit of currency
             },
         });
 
@@ -34,9 +34,10 @@ class PaymentForm extends React.Component{
         });
         // end of it
         this.state = {
-            disableButton: false,
-            canMakePayment: false,
-            paymentRequest,
+          hidePaymentRequest: false,
+          disableButton: false,
+          canMakePayment: false,
+          paymentRequest,
         }
     }
 
@@ -71,55 +72,59 @@ class PaymentForm extends React.Component{
       };
 
     render(){
-        const {data} = this.props;
+        const { data, orderTotal } = this.props;
         return(
             <div className="paymentScreenCont">
               <header className="header">
                 <h1 className="venue">Winter Village</h1>
-                <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/>
+                <img onClick={() => {this.props.closePaymentScreen()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/>
               </header>
+
               <form onSubmit={this.handleSubmit}>
-                  <div style={{width: '100%', height: '65px'}}>
-                          <h4>Checkout</h4>
-                  </div>
+                  <h2 className="checkoutHeading">Checkout</h2>
+
                   <div>
-                      <div style={{width: '100%', height: '65px', backgroundColor: 'lightgrey'}}>
-                          <h4>Table service</h4>
-                      </div>
-                      <label>
-                          Table service
+                    <div className="paymentHeading">
+                      Payment
+                    </div>
+                    <label>
+                        { // apple/google pay button hides if you cant use it
+                            this.state.canMakePayment && !this.state.hidePaymentRequest ? (
+                              <div className="paymentRequestCont">
+                                <PaymentRequestButtonElement
+                                    paymentRequest={this.state.paymentRequest}
+                                    style={{
+                                        paymentRequestButton: {
+                                            theme: 'dark',
+                                            height: '64px'
+                                        }
+                                    }}
+                                />
+                                <button className="payWithCard" onClick={(e) => {
+                                  e.preventDefault()
+                                  this.setState({
+                                    hidePaymentRequest: true
+                                  })
+                                }}>Pay with card</button>
+                              </div>
+                            ) :
+                            <div style={{
+                              padding: '22px 18px 22px 17px',
+                              borderBottom: '1px solid #e8e8e8',
+                            }}>
+                                <CardElement {...this.createOptions('18px', '0px')}/>
+                                {/* hideIcon={true} taken out of CardElement */}
+                            </div>
+                        }
 
-                      </label>
-                      <div style={{width: '100%', height: '65px', backgroundColor: 'lightgrey'}}>
-                          <h4>Payment</h4>
-                      </div>
-                      <label>
-                          <div style={{padding: '22px 18px 22px 17px'}}>
-                              <CardElement {...this.createOptions('18px', '0px')} hideIcon={true}/>
-                          </div>
-                      </label>
+                    </label>
                   </div>
-                  <div style={{marignTop: '103px', height: '65px'}}>
-                      <span>Order Total</span>
-                      <span style={{float: 'right', paddingRight: '18px'}}><b>{data.subtotal.toFixed(2)}</b></span>
-                  </div>
 
-
-                { // apple/google pay button hides if you cant use it
-                    this.state.canMakePayment ? (
-                        <PaymentRequestButtonElement
-                            paymentRequest={this.state.paymentRequest}
-                            style={{
-                                paymentRequestButton: {
-                                    theme: 'dark',
-                                    height: '64px'
-                                }
-                            }}
-                        >
-                            PAY NOW
-                        </PaymentRequestButtonElement>
-                    ) : <button>PAY NOW</button>
-                }
+                <div className="orderTotal">
+                  <span>Order Total</span>
+                  <span>{orderTotal.toFixed(2)}</span>
+                </div>
+                <button className="payNowBtn">PAY NOW</button>
             </form>
           </div>
         )
