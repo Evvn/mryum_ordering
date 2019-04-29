@@ -93,6 +93,7 @@ class CartContainer extends React.Component{
     }
 
     render(){
+        const { paymentRes } = this.props;
         const {showPaymentScreen} = this.state;
         if(showPaymentScreen){
           return(
