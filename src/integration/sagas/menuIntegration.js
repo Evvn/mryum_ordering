@@ -6,7 +6,7 @@ import { sortByValue } from '../../utils/objectUtils.js';
 
 export function* getMenuData(action) {
   try {
-    const res = yield callBff(`menu/${action.venue}`, 'GET')
+    const res = yield callBff(`ordering/menu/${action.venue}`, 'GET')
       .then(response => response)
       yield put({
         type: actionTypes.GET_MENU_DATA_SUCCESS,
