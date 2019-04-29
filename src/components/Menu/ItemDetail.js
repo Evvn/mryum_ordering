@@ -98,8 +98,18 @@ class ItemDetail extends React.Component {
     }
   }
 
+  getAddons(){
+    const { details } = this.props;
+    
+    return details.addons.map(addOn => (
+    <button>
+      {addOn.AIRTABLE_MENU_PAYLOAD.fields['Add-On Name']}
+    </button>));
+  }
+
   render() {
     const {details, lang, addToCart} = this.props;
+    const addons = details.addons;
     const {stagedQuantity} = this.state;
     let name = details.name
     let desc = '';
@@ -167,6 +177,11 @@ class ItemDetail extends React.Component {
             <div className="previewDescription">
               <JsxParser jsx={`${desc}`
 }/>
+            </div>
+
+            <div>
+              <p>Add-Ons</p>
+              {details.addons ? this.getAddons() : null}
             </div>
 
             <div className="previewDetails">

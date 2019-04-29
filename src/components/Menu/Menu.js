@@ -87,7 +87,6 @@ class Menu extends Component {
       itemId,
       addToCart,
     } = this.props
-    console.log(menuItems[itemId]);
     const desktopView = window.innerWidth > 768 ? true : false;
 
     return desktopView ?
