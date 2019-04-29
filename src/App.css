@@ -600,10 +600,12 @@ header .filter .filterIcon {
   position: fixed;
   z-index: 5;
   top: 20px;
-  right: 16px;
+  right: 41px;
 }
 header .filter .filterList {
   background-color: #ffffff;
+  color: #373737;
+  font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
   border: 1px solid #aaa;
   position: absolute;
   top: 50px;
@@ -755,6 +757,8 @@ header .cartBadge {
   white-space: nowrap;
   font-weight: 600;
   display: none;
+  color: #373737;
+  font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
 }
 .languageList p:first-of-type {
   border-top: none;
@@ -930,6 +934,7 @@ h1 img {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  text-align: left;
 }
 .section span {
   display: block;
@@ -961,6 +966,7 @@ h1 img {
   height: auto;
   margin-bottom: 0;
   padding-bottom: 6px;
+  text-align: left;
 }
 
 .title::first-letter {
@@ -1091,22 +1097,27 @@ h1 img {
   min-height: 80px;
   height: 100%;
   border-bottom: 1px solid #e8e8e8;
-  margin: 0 17px;
 }
 .menuListItem .leftBox,
 .menuListItem .rightBox {
+  padding: 15px 0;
   background-image: none !important;
   grid-area: leftBox;
   width: 100%;
   max-width: 500px;
+  height: 90px;
 }
 .menuListItem .leftBox .title,
 .menuListItem .rightBox .title {
-  padding: 15px 10px 5px;
+  padding: 15px 15px 5px;
 }
 .menuListItem .leftBox .title h3,
 .menuListItem .rightBox .title h3 {
-  font-size: 20px;
+  font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
+  font-size: 18px;
+  color: #494949;
+  letter-spacing: 0.5px;
+  text-align: left;
   display: flex;
   justify-content: space-between;
 }
@@ -2163,7 +2174,7 @@ body {
   font-family: "Avenir", "Helvetica", sans-serif;
   font-weight: 500;
   font-size: 30px;
-  text-align: center;
+  text-align: left;
   margin: 90px auto;
   padding: 0 35px;
 }

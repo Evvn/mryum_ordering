@@ -682,11 +682,13 @@ header {
       position: fixed;
       z-index: 5;
       top: 20px;
-      right: 16px;
+      right: 41px;
     }
 
     .filterList {
       background-color: $white;
+      color: $sectionFontColor;
+      font-family: "SF-UI-Text-Semibold", 'Helvetica Semibold', sans-serif;
       border: 1px solid #aaa;
       position: absolute;
       top: 50px;
@@ -857,6 +859,8 @@ header {
     white-space: nowrap;
     font-weight: 600;
     display: none;
+    color: $sectionFontColor;
+    font-family: "SF-UI-Text-Semibold", 'Helvetica Semibold', sans-serif;
   }
 
   p:first-of-type {
@@ -1062,6 +1066,7 @@ h1 {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  text-align: left;
 
   span {
     display: block;
@@ -1095,6 +1100,7 @@ h1 {
   height: auto;
   margin-bottom: 0;
   padding-bottom: 6px;
+  text-align: left;
 }
 
 .title::first-letter {
@@ -1249,20 +1255,25 @@ h1 {
   height: 100%;
   // max-height: 105px;
   border-bottom: 1px solid #e8e8e8;
-  margin: 0 17px;
 
   .leftBox,
   .rightBox {
+    padding: 15px 0;
     background-image: none !important;
     grid-area: leftBox;
     width: 100%;
     max-width: $maxWidth;
+    height: 90px;
 
     .title {
-      padding: 15px 10px 5px;
+      padding: 15px 15px 5px;
 
       h3 {
-        font-size: 20px;
+        font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
+        font-size: 18px;
+        color: #494949;
+        letter-spacing: 0.5px;
+        text-align: left;
         display: flex;
         justify-content: space-between;
       }
@@ -2477,7 +2488,7 @@ footer {
       font-family: "Avenir", "Helvetica", sans-serif;
       font-weight: 500;
       font-size: 30px;
-      text-align: center;
+      text-align: left;
       margin: 90px auto;
       padding: 0 35px;
     }

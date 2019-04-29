@@ -14,7 +14,14 @@ class CartContainer extends React.Component{
 
         this.state = {
             showPaymentScreen: false,
+            orderTotal: 0,
         }
+
+        this.getTotal = this.getTotal.bind(this)
+    }
+
+    componentDidMount() {
+      this.getTotal()
     }
 
     getQuantity(items){
@@ -25,41 +32,48 @@ class CartContainer extends React.Component{
         return quantity;
     }
 
-    getTotal(order) {
+    getTotal() {
+      const { currentOrder } = this.props
       let total = 0
-      Object.values(order).forEach((item, index) => {
+      Object.values(currentOrder).forEach((item, index) => {
         total = total + (item[0].price * item[0].quantity)
       })
-      return total.toFixed(2)
+      this.setState({
+        orderTotal: total,
+      })
     }
 
     printOrder(){
-        const { currentOrder, removeFromCart } = this.props;
-        const itemGroups = Object.keys(currentOrder);
-        if(itemGroups.length === 0){
-            return (
-                <div>
-                    Cart
-                    <h1>Cart is Empty</h1>
-                </div>
+      const { currentOrder, removeFromCart } = this.props;
+      const itemGroups = Object.keys(currentOrder);
+      const orderTotal = this.state.orderTotal
+      let total = 0
+      Object.values(currentOrder).forEach((item, index) => {
+        total = total + (item[0].price * item[0].quantity)
+      })
 
-            );
-        } else {
-          return (
-          <div className="cartCont">
-            <header className="header">
-              <h1 className="venue">Winter Village</h1>
-              <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/>
-            </header>
-            <h2 className="cartHeading">Your Order</h2>
-            {itemGroups.map(itemGroup => <CartItem items={currentOrder[itemGroup]}/>)}
-            <div className="orderTotal">
-              <span>Order Total</span>
-              <span>{this.getTotal(currentOrder)}</span>
+      return (
+        <div className="cartCont">
+          <header className="header">
+            <h1 className="venue">Winter Village</h1>
+            <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/>
+          </header>
+          <h2 className="cartHeading">Your Order</h2>
+          { itemGroups.length === 0 ?
+            <div className="emptyCart">
+              <img src="/icons/cart_icon_sad.svg" alt=""/>
+              <span>Your cart is empty!</span>
             </div>
-            <button className="payNowBtn" onClick={(e) => {this.openPaymentScreen()}}>Checkout</button>
-          </div>);
-      }
+            :
+            itemGroups.map(itemGroup => <CartItem key={itemGroup} itemId={itemGroup} items={currentOrder[itemGroup]} removeFromCart={removeFromCart} />)
+           }
+          <div className="orderTotal">
+            <span>Order Total</span>
+            <span>{orderTotal.toFixed(2)}</span>
+          </div>
+          <button className="payNowBtn" onClick={(e) => {this.openPaymentScreen()}}>Checkout</button>
+        </div>
+      );
     }
 
     openPaymentScreen(){
@@ -78,7 +92,13 @@ class CartContainer extends React.Component{
         const {showPaymentScreen} = this.state;
         return(
             <div>
-                {showPaymentScreen ? <PaymentScreen closePaymentScreen={this.closePaymentScreen} /> : this.printOrder()}
+                {showPaymentScreen ?
+                  <PaymentScreen
+                    orderTotal={this.state.orderTotal}
+                    closePaymentScreen={this.closePaymentScreen}
+                  />
+                  : this.printOrder()
+                }
             </div>
         )
     }

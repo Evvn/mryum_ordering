@@ -38,7 +38,7 @@ class PaymentScreen extends React.Component{
         return(
             <StripeProvider apiKey={'pk_test_gtRdjjtoOFsZqEvtkSD4sVir'}>
                 <Elements>
-                    <PaymentForm closePaymentScreen={this.props.closePaymentScreen} data={this.mock_data} makePayment={this.props.makePayment}/>
+                    <PaymentForm orderTotal={this.props.orderTotal} closePaymentScreen={this.props.closePaymentScreen} data={this.mock_data} makePayment={this.props.makePayment}/>
                 </Elements>
             </StripeProvider>
         )

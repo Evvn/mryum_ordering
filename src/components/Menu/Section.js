@@ -81,8 +81,8 @@ class Section extends React.Component {
     // let updatedIndex = -1;
 
     let section = menuSection.map((item, index) => {
-      const hasTag = item.fields.Tags ? true : false;
-      const tags = item.fields.Tags;
+      const hasTag = item.fields.tags ? true : false;
+      const tags = item.fields.tags;
       const menuItemTemplate = (
         <MenuItem
           key={item.id}
@@ -102,6 +102,8 @@ class Section extends React.Component {
       if (tagsInUse.length > 0 && !hasTag) {
         return ''
       }
+
+
 
       return hasTag ? tags[0] !== 'LIST' ? this.processItem(item, index) : this.getList(item, index) : menuItemTemplate
     });
