@@ -6,28 +6,11 @@ class CartItem extends React.Component {
 
   }
 
-  getItemSubtotal(item) {
-    let subtotal = item.price;
-    item.addOns.map(addOn => {
-      subtotal = subtotal + addOn.price;
-    })
 
-    return subtotal;
-  }
-
-  getCostDetails(items) {
-    let quantity = 0;
-    let subtotal = 0;
-    items.map(item => {
-      quantity = quantity + item.quantity;
-      subtotal = subtotal + (quantity * this.getItemSubtotal(item));
-    });
-    return {quantity, subtotal};
-  };
 
   printItem() {
-    const {itemId, items, removeFromCart} = this.props;
-    const {quantity, subtotal} = this.getCostDetails(items);
+    const {itemId, items, removeFromCart, addToTotal} = this.props;
+    const {quantity, subtotal} = items;
     return (
       <div className="cartItem">
         <div>

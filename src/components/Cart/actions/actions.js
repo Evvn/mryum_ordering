@@ -23,3 +23,10 @@ export function makePayment(token, amount, desc) {
     desc
   };
 }
+
+export function updateOrderTotal(orderTotal) {
+  return {
+    type: actionTypes.UPDATE_ORDER_TOTAL,
+    orderTotal,
+  };
+}
