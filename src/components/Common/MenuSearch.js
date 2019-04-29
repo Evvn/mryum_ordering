@@ -4,10 +4,6 @@ import debounce from 'lodash/debounce';
 
 
 class MenuSearch extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     search = async input => {
         const blackList = ['.', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-', '='];
         const {data} = this.props;

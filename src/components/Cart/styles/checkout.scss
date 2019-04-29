@@ -141,3 +141,36 @@
   outline: none;
   border: none;
 }
+
+.cardInput, .cardInput:focus {
+  padding: 22px 18px 22px 17px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.customerEmail, .customerEmail:focus,
+.customerName, .customerName:focus {
+  outline: none;
+  border: none;
+  width: 100%;
+  height: 66px;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 22px 18px 22px 17px;
+  font-size: 18px;
+  color: $secondary;
+  font-family: "SF-UI-Text-Normal", 'Helvetica', sans-serif;
+}
+
+.customerEmail::placeholder, .customerName::placeholder {
+  color: #757575;
+}
+
+.processingPaymentCont {
+  position: absolute;
+  top: 0;
+  z-index: 999;
+
+  h2 {
+    padding-top: 62px;
+    color: $white;
+  }
+}
