@@ -5,6 +5,7 @@ const initialState = {
   venueNames: false,
   categoryRes: false,
   clientType: false,
+  clientInfo: {},
 }
 
 function persistentCommonReducer(state = initialState, action) {
@@ -23,6 +24,7 @@ function persistentCommonReducer(state = initialState, action) {
       return {
         ...state,
         clientType: action.clientType,
+        clientInfo: {...action.clientInfo, ...state.clientInfo},
       };
     default:
       return state

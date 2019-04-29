@@ -12,7 +12,19 @@ class Landing extends React.Component {
   constructor(props) {
     super(props)
 
-    this.routeToMenu = this.routeToMenu.bind(this)
+    this.state ={
+      typeSelected: false,
+      seatedInput: '',
+      standingInput: '',
+    }
+
+    this.routeToMenu = this.routeToMenu.bind(this);
+    this.updateStandingInputValue = this.updateStandingInputValue.bind(this);
+    this.updateSeatedInputValue = this.updateSeatedInputValue.bind(this);
+
+    this.seatedInput = React.createRef();
+    this.standingInput = React.createRef();
+    
   }
 
 
@@ -21,8 +33,27 @@ class Landing extends React.Component {
     window.location = `/${venueUrl}/${routes.MENU}`;
   }
 
+  stageTypeSelection(type){
+    this.setState({typeSelected: type});
+  } 
+
+  updateStandingInputValue(e) {
+    this.setState({
+      standingInput: e.target.value
+    });
+  }
+
+  updateSeatedInputValue(e) {
+    this.setState({
+      seatedInput: e.target.value
+    });
+  }
+
+
+
   render() {
     const { setClientType, clientType } = this.props;
+    const { typeSelected, seatedInput, standingInput } = this.state;
 
     return (
       <div className="landingCont">
@@ -31,14 +62,14 @@ class Landing extends React.Component {
 
         <div className="buttons">
           <button
-            className={classNames(clientType && clientType === clientTypes.SEATED ? 'clientType selected' : 'clientType')}
-            onClick={() => setClientType(clientTypes.SEATED)}
+            className={classNames(typeSelected && typeSelected === clientTypes.SEATED ? 'clientType selected' : 'clientType')}
+            onClick={() => this.stageTypeSelection(clientTypes.SEATED)}
           >
             {clientTypes.SEATED}
           </button>
           <button
-            className={classNames(clientType && clientType === clientTypes.STANDING ? 'clientType selected' : 'clientType')}
-            onClick={() => setClientType(clientTypes.STANDING)}
+            className={classNames(typeSelected && typeSelected === clientTypes.STANDING ? 'clientType selected' : 'clientType')}
+            onClick={() => this.stageTypeSelection(clientTypes.STANDING)}
           >
             {clientTypes.STANDING}
           </button>
@@ -47,20 +78,20 @@ class Landing extends React.Component {
         <div className="instructions">
           <p>
             {
-              clientType ?
+              typeSelected ?
                 (
-                  clientType === clientTypes.SEATED ? clientTypes.SEATED_INTRO :
-                  clientType === clientTypes.STANDING ? clientTypes.STANDING_INTRO : ''
+                  typeSelected === clientTypes.SEATED ? clientTypes.SEATED_INTRO :
+                  typeSelected === clientTypes.STANDING ? clientTypes.STANDING_INTRO : ''
                 )
               : <span>&nbsp;</span>
              }
           </p>
           <p>
             {
-              clientType ?
+              typeSelected ?
                 (
-                  clientType === clientTypes.SEATED ? clientTypes.SEATED_INSTRUCTIONS :
-                  clientType === clientTypes.STANDING ? clientTypes.STANDING_INSTRUCTIONS : ''
+                  typeSelected === clientTypes.SEATED ? clientTypes.SEATED_INSTRUCTIONS :
+                  typeSelected === clientTypes.STANDING ? clientTypes.STANDING_INSTRUCTIONS : ''
                 )
               : <span>&nbsp;</span>
              }
@@ -68,18 +99,18 @@ class Landing extends React.Component {
         </div>
 
         {
-          clientType ?
+          typeSelected ?
             (
-              clientType === clientTypes.SEATED ?
-                <input className="collectInfo"type="text" placeholder={clientTypes.SEATED_INPUT}/> :
-              clientType === clientTypes.STANDING ?
-                <input className="collectInfo"type="text" placeholder={clientTypes.STANDING_INPUT}/> :
+              typeSelected === clientTypes.SEATED ?
+                <input className="collectInfo"type="text" placeholder={clientTypes.SEATED_INPUT} onChange={this.updateSeatedInputValue}/> :
+                typeSelected === clientTypes.STANDING ?
+                <input className="collectInfo"type="text" placeholder={clientTypes.STANDING_INPUT} onChange={this.updateStandingInputValue}/> :
               ''
             )
           : ''
          }
 
-        { clientType ? <div className="viewMenu" onClick={this.routeToMenu}>View menu</div> : '' }
+  { typeSelected ? <div className="viewMenu" onClick={(e) => {setClientType(typeSelected, {tableNumber: seatedInput, phone: standingInput}); this.routeToMenu();}}>View menu</div> : '' }
 
       </div>
     );
