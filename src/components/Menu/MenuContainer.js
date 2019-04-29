@@ -33,15 +33,15 @@ class MenuContainer extends React.Component {
 
  componentWillMount() {
    const { getMenuData, bffRes, venue, itemId, setItemId, clearSectionPositions, venueUrl } = this.props;
-   /*if (!bffRes || venueUrl !== venue) {
+   if (!bffRes) {
     document.title = "Mr Yum";
-     getMenuData(this.params.requestedVenue, this.params.item);
+     getMenuData(venueUrl);
      clearSectionPositions();
    }
    else{
-    const venueName = Object.values(bffRes)[0].fields.Venue;
-    document.title = venueName + " Menu";
-   }*/
+    //const venueName = Object.values(bffRes)[0].fields.Venue;
+    document.title = venueUrl + " Menu";
+   }
    if(this.params.item !== itemId){
      setItemId(this.params.item)
    }
@@ -49,10 +49,10 @@ class MenuContainer extends React.Component {
 
  componentWillUpdate() {
    const { getMenuData, bffRes, venue, itemId, setItemId, clearSectionPositions } = this.props;
-   /*if (!bffRes || this.params.requestedVenue !== venue) {
+   if (!bffRes) {
      getMenuData(this.params.requestedVenue, this.params.item);
      clearSectionPositions();
-   }*/
+   }
 
    if(this.params.item !== itemId){
      setItemId(this.params.item)
