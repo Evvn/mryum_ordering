@@ -37,7 +37,6 @@ class Menu extends Component {
       const menuItem = menuItems[item];
       const section = menuItem.fields.sections;
       if (!placedSections.includes(section)){
-        console.log(section, menuItem)
         menuSections[section] = [menuItem];
       }
       else{
@@ -87,6 +86,10 @@ class Menu extends Component {
       itemId,
       addToCart,
     } = this.props
+<<<<<<< HEAD
+=======
+
+>>>>>>> a3fc6bc11cd87695dc5bd40f412ac58bfbee3a47
     const desktopView = window.innerWidth > 768 ? true : false;
 
     return desktopView ?

@@ -8,7 +8,8 @@ export const clientTypes = {
     SEATED: 'Seated',
     STANDING_INTRO: 'Nice legs!',
     SEATED_INTRO: 'Score!',
-    STANDING_INSTRUCTIONS: 'Enter your mobile number  below to receive an sms when your order is ready.',
+    // eslint-disable-next-line
+    STANDING_INSTRUCTIONS: 'Enter your mobile number  below to receive an sms  when your order is ready.',
     SEATED_INSTRUCTIONS: "Enter your table number below and we'll track you down mwahahaha!",
     STANDING_INPUT: 'Your mobile number',
     SEATED_INPUT: 'Your table number',

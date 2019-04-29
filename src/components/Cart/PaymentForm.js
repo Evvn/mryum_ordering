@@ -1,4 +1,5 @@
 import React from 'react';
+import ProcessingPayment from './ProcessingPayment.js'
 import {injectStripe, PaymentRequestButtonElement, CardElement } from 'react-stripe-elements';
 
 //css
@@ -38,18 +39,25 @@ class PaymentForm extends React.Component{
           disableButton: false,
           canMakePayment: false,
           paymentRequest,
+          email: '',
+          customerName: '',
+          processingPayment: false,
         }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
+        this.setState({
+          processingPayment: true,
+        })
         if (this.props.stripe) {
             this.props.stripe
-             .createToken({type: 'card', name: 'pitchBlak'})
+             .createToken({type: 'card', name: this.state.customerName, email: this.state.email})
              .then((result) => {
-                 const {makePayment} = this.props;
-                 makePayment(result.token, this.props.data.subtotal * 100, 'order description???');
-                });
+              // console.log(result);
+              const { makePayment } = this.props;
+              makePayment(result.token, this.props.orderTotal * 100, 'Order description...', this.state.email, this.state.customerName)
+            } );
         } else {
             console.log("Stripe.js hasn't loaded yet")
         }
@@ -72,62 +80,82 @@ class PaymentForm extends React.Component{
       };
 
     render(){
-        const { data, orderTotal } = this.props;
-        return(
-            <div className="paymentScreenCont">
-              <header className="header">
-                <h1 className="venue">Winter Village</h1>
-                <img onClick={() => {this.props.closePaymentScreen()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/>
-              </header>
+        const { orderTotal, paymentRes } = this.props;
+        console.log(paymentRes);
+        console.log('processing ' + this.state.processingPayment);
+        return (
+          <div className="paymentScreenCont">
+            { this.state.processingPayment ? <ProcessingPayment paymentRes={paymentRes}/> : '' }
+            <header className="header">
+              <h1 className="venue">Winter Village</h1>
+              <img onClick={() => {this.props.closePaymentScreen()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/>
+            </header>
 
-              <form onSubmit={this.handleSubmit}>
-                  <h2 className="checkoutHeading">Checkout</h2>
+            <form onSubmit={this.handleSubmit}>
+                <h2 className="checkoutHeading">Checkout</h2>
 
-                  <div>
-                    <div className="paymentHeading">
-                      Payment
-                    </div>
-                    <label>
-                        { // apple/google pay button hides if you cant use it
-                            this.state.canMakePayment && !this.state.hidePaymentRequest ? (
-                              <div className="paymentRequestCont">
-                                <PaymentRequestButtonElement
-                                    paymentRequest={this.state.paymentRequest}
-                                    style={{
-                                        paymentRequestButton: {
-                                            theme: 'dark',
-                                            height: '64px'
-                                        }
-                                    }}
-                                />
-                                <button className="payWithCard" onClick={(e) => {
-                                  e.preventDefault()
-                                  this.setState({
-                                    hidePaymentRequest: true
-                                  })
-                                }}>Pay with card</button>
-                              </div>
-                            ) :
-                            <div style={{
-                              padding: '22px 18px 22px 17px',
-                              borderBottom: '1px solid #e8e8e8',
-                            }}>
-                                <CardElement {...this.createOptions('18px', '0px')}/>
-                                {/* hideIcon={true} taken out of CardElement */}
-                            </div>
-                        }
-
-                    </label>
+                <div>
+                  <div className="paymentHeading">
+                    Payment
                   </div>
+                  <input
+                    value={this.state.customerName}
+                    onChange={(e) => {
+                      this.setState({
+                        customerName: e.target.value
+                      })
+                    }}
+                    type="text"
+                    className="customerName"
+                    placeholder="Name for order (required)" />
+                  <input
+                    value={this.state.email}
+                    onChange={(e) => {
+                      this.setState({
+                        email: e.target.value
+                      })
+                    }}
+                    type="email"
+                    className="customerEmail"
+                    placeholder="Email for receipt (optional)" />
+                  <label>
+                      { // apple/google pay button hides if you cant use it
+                          this.state.canMakePayment && !this.state.hidePaymentRequest ? (
+                            <div className="paymentRequestCont">
+                              <PaymentRequestButtonElement
+                                  paymentRequest={this.state.paymentRequest}
+                                  style={{
+                                      paymentRequestButton: {
+                                          theme: 'dark',
+                                          height: '64px'
+                                      }
+                                  }}
+                              />
+                              <button className="payWithCard" onClick={(e) => {
+                                e.preventDefault()
+                                this.setState({
+                                  hidePaymentRequest: true
+                                })
+                              }}>Pay with card</button>
+                            </div>
+                          ) :
+                          <div className="cardInput">
+                              <CardElement {...this.createOptions('18px', '0px')}/>
+                              {/* hideIcon={true} taken out of CardElement */}
+                          </div>
+                      }
 
-                <div className="orderTotal">
-                  <span>Order Total</span>
-                  <span>{orderTotal.toFixed(2)}</span>
+                  </label>
                 </div>
-                <button className="payNowBtn">PAY NOW</button>
-            </form>
-          </div>
-        )
+
+              <div className="orderTotal">
+                <span>Order Total</span>
+                <span>{orderTotal.toFixed(2)}</span>
+              </div>
+              <button className="payNowBtn">PAY NOW</button>
+          </form>
+        </div>
+      )
     }
 };
 

@@ -25,10 +25,10 @@ class CartContainer extends React.Component{
       item.addOns.map(addOn => {
         subtotal = subtotal + addOn.price;
       })
-  
+
       return subtotal;
     }
-  
+
     getCostDetails(items) {
       let quantity = 0;
       let subtotal = 0;
@@ -42,6 +42,7 @@ class CartContainer extends React.Component{
 
     getQuantity(items){
         let quantity = 0;
+        // eslint-disable-next-line
         items.map(item => {
             quantity = quantity + item.quantity;
         });
@@ -69,7 +70,7 @@ class CartContainer extends React.Component{
 
       return {total: subtotal, processedItems};
 
-        
+
     }
 
 
@@ -99,6 +100,7 @@ class CartContainer extends React.Component{
                   <PaymentScreen
                     orderTotal={this.state.orderTotal}
                     closePaymentScreen={this.closePaymentScreen}
+                    paymentRes={paymentRes}
                   />
             </div>
         )
@@ -137,6 +139,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 
 const mapStateToProps = state => ({
   currentOrder: state.persistentCart.currentOrder,
+  paymentRes: state.persistentCart.paymentRes,
   orderTotal: state.persistentCart.orderTotal,
 });
 

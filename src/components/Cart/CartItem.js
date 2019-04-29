@@ -1,15 +1,9 @@
 import React from 'react';
 
 class CartItem extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
-
-
 
   printItem() {
-    const {itemId, items, removeFromCart, addToTotal} = this.props;
+    const {itemId, items, removeFromCart} = this.props;
     const {quantity, subtotal} = items;
     return (
       <div className="cartItem">

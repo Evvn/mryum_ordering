@@ -6,6 +6,7 @@ import './styles/categorySelect.scss'
 const CategorySelection = (props) => {
   const { setCategory, categories} = props;
 
+  // eslint-disable-next-line
   const createBackground = (url) => {
     let style = {
       backgroundImage: `url('${url}')`,
