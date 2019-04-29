@@ -15,12 +15,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 class App extends React.Component {
 
-  componentWillMount() {
-    const { getVenueNames, venueNames } = this.props
-    /*if (!venueNames) {
-      getVenueNames();
-    }*/
-  }
+  // componentWillMount() {
+  //   const { getVenueNames, venueNames } = this.props
+  //   if (!venueNames) {
+  //     getVenueNames();
+  //   }
+  // }
 
   componentWillUnmount(){
     localStorage.clear('persist:persistedStore')
@@ -31,6 +31,7 @@ class App extends React.Component {
   }
 
   render() {
+    // eslint-disable-next-line
     const { router, venueNames, isLoading } = this.props
     // const path = router.location.pathname.split('/')[1];
     // const showMenu = venueNames ? venueNames.includes(path) ? true : false : false;

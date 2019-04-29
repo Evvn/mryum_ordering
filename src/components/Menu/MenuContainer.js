@@ -7,13 +7,12 @@ import LanguageSelect from './LanguageSelect.js';
 import Menu from './Menu';
 // import { persistStore } from 'redux-persist'
 import Footer from './Footer';
-import Water from './Water';
-import MenuSearch from '../Common/MenuSearch';
+// import MenuSearch from '../Common/MenuSearch';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 import * as actions from './actions/actions.js';
 import * as cartActions from '../Cart/actions/actions.js';
 import classNames from 'classnames'
-import ReactGA from 'react-ga'
+// import ReactGA from 'react-ga'
 import { venues } from '../Common/enums/commonEnums.js';
 
 import CategorySelect from '../CategorySelect/CategorySelect.js';
@@ -32,7 +31,7 @@ class MenuContainer extends React.Component {
   }
 
  componentWillMount() {
-   const { getMenuData, bffRes, venue, itemId, setItemId, clearSectionPositions, venueUrl } = this.props;
+   const { getMenuData, bffRes, itemId, setItemId, clearSectionPositions, venueUrl } = this.props;;
    if (!bffRes) {
     document.title = "Mr Yum";
      getMenuData(venueUrl);
@@ -48,7 +47,7 @@ class MenuContainer extends React.Component {
  }
 
  componentWillUpdate() {
-   const { getMenuData, bffRes, venue, itemId, setItemId, clearSectionPositions } = this.props;
+   const { getMenuData, bffRes, itemId, setItemId, clearSectionPositions } = this.props;
    if (!bffRes) {
      getMenuData(this.params.requestedVenue, this.params.item);
      clearSectionPositions();
@@ -85,7 +84,6 @@ class MenuContainer extends React.Component {
       updateFilter,
       updateLang,
       lang,
-      bffRes,
       itemId,
       venueUrl,
       category,

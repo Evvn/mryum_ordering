@@ -40,7 +40,6 @@ class Section extends React.Component {
     if (tags) {
       if ((tagsInUse.length > 0 && tagsInUse.every(tag => tags.includes(tag)))
         || tagsInUse.length === 0) {
-          console.log(item)
           return (
             <MenuItem
               key={item.id}
@@ -138,6 +137,7 @@ class Section extends React.Component {
 
   render() {
     const { name, index, tagsInUse } = this.props
+    let tags = tagsInUse
     let nameClone = name;
     let subSection = ""
     if (nameClone.indexOf("%") !== -1) {
@@ -146,9 +146,9 @@ class Section extends React.Component {
     }
 
     // replace nameClone with tags in use
-    if (tagsInUse.length > 0) {
-      tagsInUse = tagsInUse.join(', ')
-      nameClone = tagsInUse
+    if (tags.length > 0) {
+      tags = tags.join(', ')
+      nameClone = tags
               .replace(new RegExp("\\bV\\b"), 'Vegetarian')
               .replace(new RegExp("\\bVE\\b"), 'Vegan')
               .replace(new RegExp("\\bGF\\b"), 'Gluten Free')
@@ -160,8 +160,8 @@ class Section extends React.Component {
 
     return (
       <div>
-        {tagsInUse.length > 0 && index > 0 ? '' :
-          <h2 className={`section ${ index === 0 && tagsInUse.length === 0 ? 'sectionTaller' : '' }` } >{ nameClone }<span className="subSection">{ subSection }</span></h2>
+        {tags.length > 0 && index > 0 ? '' :
+          <h2 className={`section ${ index === 0 && tags.length === 0 ? 'sectionTaller' : '' }` } >{ nameClone }<span className="subSection">{ subSection }</span></h2>
         }
         { section }
       </div>

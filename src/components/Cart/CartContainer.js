@@ -26,6 +26,7 @@ class CartContainer extends React.Component{
 
     getQuantity(items){
         let quantity = 0;
+        // eslint-disable-next-line
         items.map(item => {
             quantity = quantity + item.quantity;
         });
@@ -90,12 +91,14 @@ class CartContainer extends React.Component{
 
     render(){
         const {showPaymentScreen} = this.state;
+        const { paymentRes } = this.props
         return(
             <div>
                 {showPaymentScreen ?
                   <PaymentScreen
                     orderTotal={this.state.orderTotal}
                     closePaymentScreen={this.closePaymentScreen}
+                    paymentRes={paymentRes}
                   />
                   : this.printOrder()
                 }
@@ -108,6 +111,7 @@ const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 
 const mapStateToProps = state => ({
   currentOrder: state.persistentCart.currentOrder,
+  paymentRes: state.persistentCart.paymentRes,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartContainer)

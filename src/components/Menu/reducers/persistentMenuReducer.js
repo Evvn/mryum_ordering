@@ -1,6 +1,6 @@
 import * as actionTypes from '../actions/actionTypes/actionTypes.js';
 import { filter } from '../enums/menuEnums.js';
-import stub from '../../../data/airtableDatabaseStub.json';
+// import stub from '../../../data/airtableDatabaseStub.json';
 
 const initialState = {
   venue: '',

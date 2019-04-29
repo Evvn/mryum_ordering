@@ -1,13 +1,10 @@
 import React from 'react';
 
 class CartItem extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   getItemSubtotal(item) {
     let subtotal = item.price;
+    // eslint-disable-next-line
     item.addOns.map(addOn => {
       subtotal = subtotal + addOn.price;
     })
@@ -18,6 +15,7 @@ class CartItem extends React.Component {
   getCostDetails(items) {
     let quantity = 0;
     let subtotal = 0;
+    // eslint-disable-next-line
     items.map(item => {
       quantity = quantity + item.quantity;
       subtotal = subtotal + (quantity * this.getItemSubtotal(item));

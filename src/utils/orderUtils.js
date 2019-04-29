@@ -1,8 +1,9 @@
 import _ from 'lodash';
 export const getSubtotals = item => {
-   
+
     const itemClone = item;
     let subtotal = 0.0;
+    // eslint-disable-next-line
     item.addOns.map(addOn => {
         subtotal = subtotal + addOn.price;
     });
@@ -26,12 +27,13 @@ export const buildItemTemplate = (item, quantity) => {
 
 export const addToOrder = (oldOrderState, newItem) => {
     const state = _.cloneDeep(oldOrderState);
-    
+
     let added = false;
     const newItems = [];
     let orderTotal = 0.0;
-    
+
     console.log(state);
+    // eslint-disable-next-line
     state.items.map(item => {
         let itemClone = item;
         if(item.id === newItem.id){
@@ -43,7 +45,7 @@ export const addToOrder = (oldOrderState, newItem) => {
         orderTotal = orderTotal + itemOutput.subtotal;
         newItems.push(itemOutput);
     });
-    
+
     if(!added){
         const itemOutput = getSubtotals(newItem);
         orderTotal = orderTotal + itemOutput.subtotal;
@@ -59,10 +61,11 @@ export const addToOrder = (oldOrderState, newItem) => {
 };
 
 export const removeFromOrder = (oldOrderState, itemToRemove, quantity) => {
-    const { items, subtotal } = oldOrderState;
+    const { items } = oldOrderState;
 
     const newItems = [];
     let orderTotal = 0;
+    // eslint-disable-next-line
     items.map(item => {
         let itemClone = item;
         if(item.id !== itemToRemove.id){
@@ -72,7 +75,7 @@ export const removeFromOrder = (oldOrderState, itemToRemove, quantity) => {
         else{
             orderTotal = orderTotal - itemClone.subtotal;
         }
-        
+
     });
 
     return {
@@ -81,4 +84,3 @@ export const removeFromOrder = (oldOrderState, itemToRemove, quantity) => {
     };
 
 };
-

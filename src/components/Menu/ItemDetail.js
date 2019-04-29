@@ -99,7 +99,7 @@ class ItemDetail extends React.Component {
   }
 
   render() {
-    const {details, lang, addToCart} = this.props;
+    const {details, lang} = this.props;
     const {stagedQuantity} = this.state;
     let name = details.name
     let desc = '';
