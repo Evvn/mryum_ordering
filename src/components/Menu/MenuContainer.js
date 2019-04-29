@@ -73,7 +73,8 @@ class MenuContainer extends React.Component {
  }
 
  openCart(){
-  window.location = `/wv/cart`;
+   const { venueUrl } = this.props;
+  window.location = `/${venueUrl}/cart`;
  }
 
 

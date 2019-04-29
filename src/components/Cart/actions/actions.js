@@ -24,3 +24,10 @@ export function makePayment(token, amount, desc, email) {
     email,
   };
 }
+
+export function updateOrderTotal(orderTotal) {
+  return {
+    type: actionTypes.UPDATE_ORDER_TOTAL,
+    orderTotal,
+  };
+}

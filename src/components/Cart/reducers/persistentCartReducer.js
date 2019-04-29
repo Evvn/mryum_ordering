@@ -29,7 +29,8 @@ import * as actionTypes from '../actions/actionTypes/actionTypes.js';
 
 const initialState = {
   currentOrder: {},
-  paymentRes: false
+  paymentRes: false,
+  orderTotal: 0,
 }
 
 function persistentCartReducer(state = initialState, action) {
@@ -48,6 +49,11 @@ function persistentCartReducer(state = initialState, action) {
       return {
         ...state,
         paymentRes: action.res
+      }
+    case actionTypes.UPDATE_ORDER_TOTAL:
+      return {
+        ...state,
+        orderTotal: action.orderTotal,
       }
     default:
       return state
