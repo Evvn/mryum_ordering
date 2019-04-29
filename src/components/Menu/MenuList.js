@@ -14,9 +14,9 @@ class MenuList extends React.Component {
       />
     )
     let trimmedName = item.name
-    if (trimmedName && trimmedName.length > 30) {
-      trimmedName = trimmedName.substring(0,31).trim() + '...'
-    }
+    // if (trimmedName && trimmedName.length > 30) {
+    //   trimmedName = trimmedName.substring(0,31).trim() + '...'
+    // }
 
     return (
       <div>
