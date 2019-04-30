@@ -23,7 +23,7 @@ class CartContainer extends React.Component{
     getItemSubtotal(item) {
       let subtotal = item.price;
       item.addOns.map(addOn => {
-        subtotal = subtotal + addOn.price;
+        subtotal = subtotal + addOn['Price (Not Linked)'];
       })
 
       return subtotal;
@@ -93,22 +93,22 @@ class CartContainer extends React.Component{
     }
 
     render(){
-        const { paymentRes } = this.props;
+        const { paymentRes,  currentOrder, removeFromCart  } = this.props;
+        const itemGroups = Object.keys(currentOrder);
         const {showPaymentScreen} = this.state;
+        const {total, processedItems} = this.processItems(itemGroups);
         if(showPaymentScreen){
           return(
             <div>
                   <PaymentScreen
-                    orderTotal={this.state.orderTotal}
+                    orderTotal={total}
                     closePaymentScreen={this.closePaymentScreen}
                     paymentRes={paymentRes}
                   />
             </div>
         )
       } else{
-        const { currentOrder, removeFromCart, orderTotal } = this.props;
-        const itemGroups = Object.keys(currentOrder);
-        const {total, processedItems} = this.processItems(itemGroups);
+        
 
         return (
           <div className="cartCont">
