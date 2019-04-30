@@ -4,15 +4,14 @@ import _ from 'lodash';
 import { takeLatest, put, select,} from 'redux-saga/effects';
 import * as orderUtils from '../../utils/orderUtils.js';
 import callBff from '../callBff.js'
-
-
+import Airtable from 'airtable'
 
 export function* addToOrder(action) {
   try {
 
     const getCurrentOrder = state => state.persistentCart.currentOrder;
     let currentOrder = yield select(getCurrentOrder);
-    const newItem = yield orderUtils.buildItemTemplate(action.item, action.quantity, action.addOns);
+    const newItem = yield orderUtils.buildItemTemplate(action.item, action.quantity);
     let orderClone = yield _.cloneDeep(currentOrder);
 
     const nextCurrentOrder = {};
@@ -65,19 +64,46 @@ export function* removeFromOrder(action) {
 
 export function* makePayment(action) {
   try {
-    const res = yield callBff(`ordering/payment`, 'POST', {
-      amount: action.amount,
-      currency: 'aud',
-      source: action.token.id,
-      description: action.desc,
-      email: action.email,
-    }).then((response) => response)
-    yield put({
-      type: actionTypes.MAKE_STRIPE_CHARGE_SUCCESS,
-      res,
-    })
+    const orderObj = action
+      const res = yield callBff(`ordering/payment`, 'POST', {
+        amount: action.amount,
+        currency: 'aud',
+        source: action.token.id,
+        description: action.desc,
+        email: action.email === '' ? undefined : action.email,
+      }).then((response) => response)
 
-    console.log(res);
+      yield console.log(res);
+      yield put({
+        type: actionTypes.MAKE_STRIPE_CHARGE_SUCCESS,
+        res
+      })
+
+      // send order to airtable
+      const base = new Airtable({apiKey: process.env.REACT_APP_AIRTABLE_API_KEY}).base('app4XnP7NuSCWMWD7')
+      console.log(orderObj);
+      const uniqueCode = (Math.floor(1000 + Math.random() * 9000))
+      console.log(uniqueCode);
+
+      Object.keys(orderObj.order).forEach(item => {
+        base('Orders').create({
+          "stripe_transaction_id": res.id,
+          "venue_id": 'Winter Village',
+          "item_id": [item],
+          "processed": false,
+          "customer_name": res.billing_details.name,
+          "phone_number": "0413206203",
+          "created_time": Date(),
+          "quantity": orderObj.order[item][0].quantity,
+          "table_or_pickup": 'pickup',
+          "unique_code": uniqueCode,
+        }, function(err, record) {
+            if (err) { console.error(err); return; }
+            console.log(record.getId());
+            console.log(uniqueCode);
+        });
+      })
+
       // then call bff stuff for airtable, ask about specifics later
       /*
         const getCurrentOrder = state => state.persistentCart.currentOrder;
@@ -90,6 +116,10 @@ export function* makePayment(action) {
         })
       */
   } catch (error) {
+    yield put({
+      type: actionTypes.MAKE_STRIPE_CHARGE_FAILURE,
+      error,
+    })
     console.log(error)
   }
 }
@@ -100,6 +130,6 @@ export function* actionWatcher() {
   yield [
     takeLatest(actionTypes.ADD_TO_ORDER_REQUEST, addToOrder),
     takeLatest(actionTypes.REMOVE_FROM_ORDER_REQUEST, removeFromOrder),
-    takeLatest(actionTypes.MAKE_STRIPE_CHARGE, makePayment)
+    takeLatest(actionTypes.MAKE_STRIPE_CHARGE_REQUEST, makePayment)
   ]
 }

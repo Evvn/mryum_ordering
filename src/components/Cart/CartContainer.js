@@ -93,9 +93,9 @@ class CartContainer extends React.Component{
     }
 
     render(){
-        const { paymentRes,  currentOrder, removeFromCart  } = this.props;
-        const itemGroups = Object.keys(currentOrder);
         const {showPaymentScreen} = this.state;
+        const { currentOrder, removeFromCart , paymentRes, processingPayment, paymentError} = this.props;
+        const itemGroups = Object.keys(currentOrder);
         const {total, processedItems} = this.processItems(itemGroups);
         if(showPaymentScreen){
           return(
@@ -104,12 +104,13 @@ class CartContainer extends React.Component{
                     orderTotal={total}
                     closePaymentScreen={this.closePaymentScreen}
                     paymentRes={paymentRes}
+                    processingPayment={processingPayment}
+                    paymentError={paymentError}
+                    currentOrder={currentOrder}
                   />
             </div>
         )
       } else{
-        
-
         return (
           <div className="cartCont">
             <header className="header">
@@ -141,6 +142,8 @@ const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch)
 const mapStateToProps = state => ({
   currentOrder: state.persistentCart.currentOrder,
   paymentRes: state.persistentCart.paymentRes,
+  processingPayment: state.persistentCart.processingPayment,
+  paymentError: state.persistentCart.paymentError,
   orderTotal: state.persistentCart.orderTotal,
 });
 

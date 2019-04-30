@@ -3,7 +3,7 @@ import { filter } from '../enums/menuEnums.js';
 // import stub from '../../../data/airtableDatabaseStub.json';
 
 const initialState = {
-  venue: '',
+  venue: false,
   bffRes: false,
   category: false,
   lang: 'en',

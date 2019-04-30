@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import React from 'react';
 import * as actions from './actions/actions.js'
-import { clientTypes, routes } from '../Common/enums/commonEnums.js';
+import { clientTypes, routes, pages } from '../Common/enums/commonEnums.js';
 import classNames from 'classnames'
 
 //css
@@ -24,7 +24,15 @@ class Landing extends React.Component {
 
     this.seatedInput = React.createRef();
     this.standingInput = React.createRef();
-    
+
+  }
+
+  componentWillMount() {
+    const { venueUrl} = this.props;
+    if (!pages.landing[venueUrl]) {
+      this.setState({typeSelected: clientTypes.STANDING});
+      // this.routeToMenu()
+    }
   }
 
 
@@ -35,7 +43,7 @@ class Landing extends React.Component {
 
   stageTypeSelection(type){
     this.setState({typeSelected: type});
-  } 
+  }
 
   updateStandingInputValue(e) {
     this.setState({
@@ -110,7 +118,7 @@ class Landing extends React.Component {
           : ''
          }
 
-  { typeSelected ? <div className="viewMenu" onClick={(e) => {setClientType(typeSelected, {tableNumber: seatedInput, phone: standingInput}); this.routeToMenu();}}>View menu</div> : '' }
+  { typeSelected ? <div className="viewMenu" onClick={(e) => {setClientType(typeSelected, {tableNumber: seatedInput, phone: standingInput}); this.routeToMenu();}}>Submit</div> : '' }
 
       </div>
     );

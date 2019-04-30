@@ -8,7 +8,6 @@ class ProcessingPayment extends React.Component {
       <div className="processingPaymentCont">
         <div className="loading">
           <img src="/mryum_assets/Mr_Yum_logo_white.svg" alt="Mr Yum"/>
-          { this.props.paymentRes ? <h2>Payment success!</h2> :
             <div>
               <h2>Processing payment...</h2>
               <div className="spinner">
@@ -17,7 +16,6 @@ class ProcessingPayment extends React.Component {
                 <div className="bounce3"></div>
               </div>
             </div>
-           }
         </div>
       </div>
     )
