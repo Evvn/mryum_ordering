@@ -14,11 +14,11 @@ export const getSubtotals = item => {
     return itemClone;
 }
 
-export const buildItemTemplate = (item, quantity) => {
+export const buildItemTemplate = (item, quantity, addOns) => {
     return {
         id: item.id,
         name: item.name,
-        addOns: [],
+        addOns,
         modifiers: [],
         price: item.price,
         quantity,
