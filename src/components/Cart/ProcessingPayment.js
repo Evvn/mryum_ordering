@@ -7,7 +7,7 @@ class ProcessingPayment extends React.Component {
     return (
       <div className="processingPaymentCont">
         <div className="loading">
-          <img src="/mryum_assets/Mr_Yum_logo_white.svg" alt="Mr Yum"/>
+          <img src="/mryum_assets/wv_logo_white.svg" alt="Mr Yum"/>
             <div>
               <h2>Processing payment...</h2>
               <div className="spinner">

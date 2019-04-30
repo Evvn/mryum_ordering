@@ -11,7 +11,7 @@ export function* addToOrder(action) {
 
     const getCurrentOrder = state => state.persistentCart.currentOrder;
     let currentOrder = yield select(getCurrentOrder);
-    const newItem = yield orderUtils.buildItemTemplate(action.item, action.quantity);
+    const newItem = yield orderUtils.buildItemTemplate(action.item, action.quantity, action.addOns);
     let orderClone = yield _.cloneDeep(currentOrder);
 
     const nextCurrentOrder = {};

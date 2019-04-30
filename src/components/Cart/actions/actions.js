@@ -27,6 +27,12 @@ export function makePayment(token, amount, desc, order, email) {
   };
 }
 
+export function clearStripeRes() {
+  return {
+    type: actionTypes.CLEAR_STRIPE_RES,
+  }
+}
+
 export function updateOrderTotal(orderTotal) {
   return {
     type: actionTypes.UPDATE_ORDER_TOTAL,

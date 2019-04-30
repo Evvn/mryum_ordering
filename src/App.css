@@ -390,8 +390,8 @@ body {
   flex-direction: column;
 }
 .loading img {
-  width: 50vw;
-  max-width: 250px;
+  width: 70vw;
+  max-width: 300px;
   margin: 0 auto;
 }
 .loading .tooltip {
@@ -1423,7 +1423,7 @@ h1 img {
 }
 .cta .mryum {
   margin: 0 auto;
-  width: 130px;
+  width: 225px;
   margin-bottom: 25px;
 }
 .cta h3 {
@@ -1758,6 +1758,7 @@ footer a:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #051331;
 }
 .modalCont .modalInner {
   width: 70vw;

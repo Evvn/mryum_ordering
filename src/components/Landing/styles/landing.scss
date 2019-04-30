@@ -3,10 +3,12 @@
 .landingCont {
   min-height: 100vh;
   max-height: 100vh;
-  background-color: $primary;
-  color: $white;
+  // background-color: $primary;
+  background-image: linear-gradient(to bottom, #bed6d6, #ffffff);
+  color: #3c4653;
   font-family: "SF-UI-Text-Regular", 'Helvetica', sans-serif;
   padding: 40px;
+  margin-top: -20px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -19,6 +21,15 @@ h1, h2, h3, h4 {
   text-align: center;
   padding-bottom: 40px;
   font-size: 30px;
+}
+
+h3 {
+  font-size: 21px;
+}
+
+img {
+  margin: 25px auto;
+  width: 250px;
 }
 
 .buttons {
@@ -42,7 +53,7 @@ h1, h2, h3, h4 {
 
 .selected {
   background-color: $white;
-  color: $primary;
+  color: #3c4653;
 }
 
 .clientType:focus {
@@ -50,10 +61,16 @@ h1, h2, h3, h4 {
 }
 
 .instructions > p {
-  font-size: 23px;
+  // font-size: 23px;
+  font-size: 19px;
   line-height: 1.3;
   text-align: center;
-  padding-bottom: 40px;
+  // padding-bottom: 40px;
+  padding-bottom: 20px;
+}
+
+.instructions > p > span {
+  font-family: "SF-UI-Text-Semibold", 'Helvetica Semibold', sans-serif;
 }
 
 .collectInfo {
@@ -63,12 +80,12 @@ h1, h2, h3, h4 {
   border-radius: 7px;
   border: none;
   height: 55px;
-  color: $primary;
+  color: #3c4653;
   text-align: center;
 }
 
 .collectInfo::placeholder {
-  color: $primary;
+  color: #3c4653;
 }
 
 .collectInfo:focus {
@@ -81,9 +98,9 @@ h1, h2, h3, h4 {
   left: 0;
   text-align: center;
   padding: 18px;
-  background-color: $white;
+  background-color: $secondary;
   width: 100%;
-  color: $primary;
+  color: $white;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 18px;

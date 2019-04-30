@@ -4,7 +4,7 @@ import './styles/checkout.scss'
 
 class PaymentHandler extends React.Component {
   render() {
-    const { paymentRes, paymentError } = this.props
+    const { paymentRes, paymentError, clearStripeRes } = this.props
 
     console.log(paymentRes);
     console.log(paymentError);
@@ -12,7 +12,7 @@ class PaymentHandler extends React.Component {
     return (
       <div className="processingPaymentCont">
         <div className="loading">
-          <img className="paymentHandlerImg" src="/mryum_assets/Mr_Yum_logo_white.svg" alt="Mr Yum"/>
+          <img className="paymentHandlerImg" src="/mryum_assets/wv_logo_white.svg" alt="Mr Yum"/>
             <div>
               { !paymentError ?
                 <div className="paymentSuccess">
@@ -21,6 +21,7 @@ class PaymentHandler extends React.Component {
                   <a
                     className="backToMenu"
                     href={'/' + window.location.pathname.split('/')[1] + '/menu'}
+                    onClick={() => {clearStripeRes()}}
                   >
                     Back to menu
                   </a>
@@ -32,6 +33,7 @@ class PaymentHandler extends React.Component {
                   <a
                     className="backToMenu"
                     href={'/' + window.location.pathname.split('/')[1] + '/cart'}
+                    onClick={() => {clearStripeRes()}}
                   >
                     Back to cart
                   </a>

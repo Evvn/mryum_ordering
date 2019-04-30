@@ -20,7 +20,7 @@ class Filter extends React.Component {
 
   closeFilterMenu() {
     const path = window.location.pathname.split('/')
-    if (!path[2]) {
+    if (!path[3]) {
       // close filter if it's open
       if (document.querySelector('.filterList') !== null) {
         document.querySelector('.filterList').classList.remove('open')
