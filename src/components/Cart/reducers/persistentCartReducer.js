@@ -31,6 +31,8 @@ const initialState = {
   currentOrder: {},
   paymentRes: false,
   orderTotal: 0,
+  processingPayment: false,
+  paymentError: false,
 }
 
 function persistentCartReducer(state = initialState, action) {
@@ -45,10 +47,23 @@ function persistentCartReducer(state = initialState, action) {
         ...state,
         currentOrder: action.currentOrder,
       }
+    case actionTypes.MAKE_STRIPE_CHARGE_REQUEST:
+      return {
+        ...state,
+        processingPayment: true,
+      }
     case actionTypes.MAKE_STRIPE_CHARGE_SUCCESS:
       return {
         ...state,
-        paymentRes: action.res
+        paymentRes: action.res,
+        processingPayment: false,
+      }
+    case actionTypes.MAKE_STRIPE_CHARGE_FAILURE:
+      return {
+        ...state,
+        paymentRes: false,
+        processingPayment: false,
+        paymentError: action.error,
       }
     case actionTypes.UPDATE_ORDER_TOTAL:
       return {

@@ -1,5 +1,6 @@
 import React from 'react';
 import ProcessingPayment from './ProcessingPayment.js'
+import PaymentHandler from './PaymentHandler.js'
 import {injectStripe, PaymentRequestButtonElement, CardElement } from 'react-stripe-elements';
 
 //css
@@ -24,40 +25,47 @@ class PaymentForm extends React.Component{
         });
 
         paymentRequest.on('token', ({complete, token, ...data}) => {
-            console.log('Received Stripe token: ', token);
-            console.log('Received customer information: ', data);
-            // this.props.onToken(token, this.props.amount, this.props.desc);
-            complete('success')
+          this.setState({processingPayment: true})
+          console.log('Received Stripe token: ', token);
+          console.log('Received customer information: ', data);
+          // this.props.onToken(token, this.props.amount, this.props.desc);
+          complete('success')
         });
 
         paymentRequest.canMakePayment().then((result) => {
-            this.setState({canMakePayment: !!result});
+            this.setState({canMakePayment: !!result, hidePaymentRequest: !!result,});
         });
         // end of it
         this.state = {
-          hidePaymentRequest: false,
+          hidePaymentRequest: true,
           disableButton: false,
           canMakePayment: false,
           paymentRequest,
           email: '',
           customerName: '',
-          processingPayment: false,
         }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.setState({
-          processingPayment: true,
-        })
         if (this.props.stripe) {
+          if (this.state.email !== '') {
             this.props.stripe
              .createToken({type: 'card', name: this.state.customerName, email: this.state.email})
              .then((result) => {
               // console.log(result);
               const { makePayment } = this.props;
-              makePayment(result.token, this.props.orderTotal * 100, 'Order description...', this.state.email, this.state.customerName)
-            } );
+              makePayment(result.token, this.props.orderTotal * 100, 'Order description...', this.state.email)
+            });
+          } else {
+            this.props.stripe
+             .createToken({type: 'card', name: this.state.customerName, })
+             .then((result) => {
+              // console.log(result);
+              const { makePayment } = this.props;
+              makePayment(result.token, this.props.orderTotal * 100, 'Order description...', this.props.currentOrder, this.state.email)
+            });
+          }
         } else {
             console.log("Stripe.js hasn't loaded yet")
         }
@@ -80,12 +88,20 @@ class PaymentForm extends React.Component{
       };
 
     render(){
-        const { orderTotal, paymentRes } = this.props;
-        console.log(paymentRes);
-        console.log('processing ' + this.state.processingPayment);
+        const { orderTotal, paymentRes, processingPayment, paymentError } = this.props;
         return (
           <div className="paymentScreenCont">
-            { this.state.processingPayment ? <ProcessingPayment paymentRes={paymentRes}/> : '' }
+
+            { processingPayment ? <ProcessingPayment /> : '' }
+            { paymentRes || paymentError ?
+              <PaymentHandler
+              paymentRes={paymentRes}
+              paymentError={paymentError}
+              />
+            :
+              ''
+            }
+
             <header className="header">
               <h1 className="venue">Winter Village</h1>
               <img onClick={() => {this.props.closePaymentScreen()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/>
@@ -121,22 +137,24 @@ class PaymentForm extends React.Component{
                   <label>
                       { // apple/google pay button hides if you cant use it
                           this.state.canMakePayment && !this.state.hidePaymentRequest ? (
-                            <div className="paymentRequestCont">
-                              <PaymentRequestButtonElement
-                                  paymentRequest={this.state.paymentRequest}
-                                  style={{
-                                      paymentRequestButton: {
-                                          theme: 'dark',
-                                          height: '64px'
-                                      }
-                                  }}
-                              />
+                            <div>
                               <button className="payWithCard" onClick={(e) => {
                                 e.preventDefault()
                                 this.setState({
                                   hidePaymentRequest: true
                                 })
                               }}>Pay with card</button>
+                              <div className="paymentRequestCont">
+                                <PaymentRequestButtonElement
+                                    paymentRequest={this.state.paymentRequest}
+                                    style={{
+                                        paymentRequestButton: {
+                                            theme: 'dark',
+                                            height: '64px'
+                                        }
+                                    }}
+                                />
+                              </div>
                             </div>
                           ) :
                           <div className="cardInput">
@@ -152,7 +170,8 @@ class PaymentForm extends React.Component{
                 <span>Order Total</span>
                 <span>{orderTotal.toFixed(2)}</span>
               </div>
-              <button className="payNowBtn">PAY NOW</button>
+
+              { this.state.hidePaymentRequest ? '' : <button className="payNowBtn">PAY NOW</button> }
           </form>
         </div>
       )
