@@ -10,7 +10,7 @@ class MenuItem extends React.Component {
   itemDetails(item) {
     const { lang } = this.props
     let name = item.name
-    let desc = item['Item Description Raw']
+    let desc = item.description;
     let translatedName = 'name-' + lang
     let translatedDesc = 'description-' + lang
     let trimmedName;

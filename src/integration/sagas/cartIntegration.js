@@ -100,6 +100,7 @@ export function* makePayment(action) {
         }, function(err, record) {
             if (err) { console.error(err); return; }
             console.log(record.getId());
+            console.log(uniqueCode);
         });
       })
 

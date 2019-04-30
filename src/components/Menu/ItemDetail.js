@@ -3,6 +3,7 @@ import JsxParser from 'react-jsx-parser'
 import Swipe from "react-easy-swipe";
 import { toast } from "react-toastify";
 
+import AddOnContainer from './AddOnContainer';
 //css
 import './styles/itemDetail.scss'
 
@@ -12,12 +13,14 @@ class ItemDetail extends React.Component {
 
     this.state = {
       swipeRight: false,
-      stagedQuantity: 1
+      stagedQuantity: 1,
+      selectedAddOns: false,
     }
 
     this.onSwipeRight = this.onSwipeRight.bind(this);
     this.onSwipeMove = this.onSwipeMove.bind(this);
     this.onSwipeEnd = this.onSwipeEnd.bind(this);
+    this.updateAddOns = this.updateAddOns.bind(this);
   }
 
   componentDidMount() {
@@ -63,7 +66,8 @@ class ItemDetail extends React.Component {
 
   handleAddToCart(details, stagedQuantity) {
     const {addToCart} = this.props;
-    addToCart(details, stagedQuantity);
+    const { selectedAddOns } = this.state;
+    addToCart(details, stagedQuantity, selectedAddOns);
     toast.success(`Added ${stagedQuantity} ${details.name}`);
   }
 
@@ -98,21 +102,17 @@ class ItemDetail extends React.Component {
     }
   }
 
-  getAddons(){
-    const { details } = this.props;
-    
-    return details.addons.map(addOn => (
-    <button>
-      {addOn.AIRTABLE_MENU_PAYLOAD.fields['Add-On Name']}
-    </button>));
+  updateAddOns(addOnState){
+    this.setState({selectedAddOns: addOnState});
   }
+
 
   render() {
     const {details, lang, addToCart} = this.props;
     const addons = details.addons;
     const {stagedQuantity} = this.state;
     let name = details.name
-    let desc = '';
+    let desc = details.description;
     let translatedName = 'name-' + lang
     let translatedDesc = 'description-' + lang
     let creditUrl
@@ -179,10 +179,8 @@ class ItemDetail extends React.Component {
 }/>
             </div>
 
-            <div>
-              <p>Add-Ons</p>
-              {details.addons ? this.getAddons() : null}
-            </div>
+  
+            {details.addons ? <AddOnContainer addons={details.addons} updateAddOns={this.updateAddOns}/> : null}
 
             <div className="previewDetails">
               <div className="previewPrice">{details['price']}</div>

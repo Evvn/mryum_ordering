@@ -23,7 +23,7 @@ class CartContainer extends React.Component{
     getItemSubtotal(item) {
       let subtotal = item.price;
       item.addOns.map(addOn => {
-        subtotal = subtotal + addOn.price;
+        subtotal = subtotal + addOn['Price (Not Linked)'];
       })
 
       return subtotal;
