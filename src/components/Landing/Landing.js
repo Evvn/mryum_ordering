@@ -60,15 +60,20 @@ class Landing extends React.Component {
 
 
   render() {
+    // eslint-disable-next-line
     const { setClientType, clientType } = this.props;
     const { typeSelected, seatedInput, standingInput } = this.state;
 
     return (
       <div className="landingCont">
 
-        <h2>Are you...</h2>
+        {/* <h2>Are you...</h2> */}
 
-        <div className="buttons">
+        <img src="/mryum_assets/wv_logo.svg" alt="winter village"/>
+
+        <h3>Welcome to our mobile food  menu and ordering!</h3>
+
+        {/* <div className="buttons">
           <button
             className={classNames(typeSelected && typeSelected === clientTypes.SEATED ? 'clientType selected' : 'clientType')}
             onClick={() => this.stageTypeSelection(clientTypes.SEATED)}
@@ -81,10 +86,10 @@ class Landing extends React.Component {
           >
             {clientTypes.STANDING}
           </button>
-        </div>
+        </div> */}
 
         <div className="instructions">
-          <p>
+          {/* <p>
             {
               typeSelected ?
                 (
@@ -103,7 +108,10 @@ class Landing extends React.Component {
                 )
               : <span>&nbsp;</span>
              }
-          </p>
+          </p> */}
+          <p><span>Step 1: </span>View the menu</p>
+          <p><span>Step 2: </span>Order and pay for food on your phone</p>
+          <p><span>Step 3: </span>Get an SMS when your order is ready for pick up at the Feast Kitchen container</p>
         </div>
 
         {
@@ -118,7 +126,14 @@ class Landing extends React.Component {
           : ''
          }
 
-  { typeSelected ? <div className="viewMenu" onClick={(e) => {setClientType(typeSelected, {tableNumber: seatedInput, phone: standingInput}); this.routeToMenu();}}>Submit</div> : '' }
+        { typeSelected ?
+          <div
+            className="viewMenu"
+            onClick={(e) => {
+              setClientType(typeSelected, {tableNumber: seatedInput, phone: standingInput}); this.routeToMenu();
+              }}
+            >Got it!</div>
+          : '' }
 
       </div>
     );

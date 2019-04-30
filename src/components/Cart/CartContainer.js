@@ -22,10 +22,11 @@ class CartContainer extends React.Component{
 
     getItemSubtotal(item) {
       let subtotal = item.price;
-      item.addOns.map(addOn => {
-        subtotal = subtotal + addOn['Price (Not Linked)'];
-      })
-
+      if (item.addOns) {
+        item.addOns.map(addOn => {
+          return subtotal = subtotal + addOn['Price (Not Linked)'];
+        })
+      }
       return subtotal;
     }
 
@@ -34,7 +35,7 @@ class CartContainer extends React.Component{
       let subtotal = 0;
       items.map(item => {
         quantity = quantity + item.quantity;
-        subtotal = subtotal + (quantity * this.getItemSubtotal(item));
+        return subtotal = subtotal + (quantity * this.getItemSubtotal(item));
       });
       return {quantity, subtotal};
     };
@@ -53,6 +54,8 @@ class CartContainer extends React.Component{
     processItems(itemGroups){
       const {removeFromCart, currentOrder} = this.props;
       let subtotal = 0;
+
+      console.log(currentOrder);
 
       const processedItems = itemGroups.map(itemGroup => {
         const costDetails= this.getCostDetails(currentOrder[itemGroup]);
@@ -94,7 +97,7 @@ class CartContainer extends React.Component{
 
     render(){
         const {showPaymentScreen} = this.state;
-        const { currentOrder, removeFromCart , paymentRes, processingPayment, paymentError} = this.props;
+        const { currentOrder, paymentRes, processingPayment, paymentError, clearStripeRes } = this.props;
         const itemGroups = Object.keys(currentOrder);
         const {total, processedItems} = this.processItems(itemGroups);
         if(showPaymentScreen){
@@ -107,6 +110,7 @@ class CartContainer extends React.Component{
                     processingPayment={processingPayment}
                     paymentError={paymentError}
                     currentOrder={currentOrder}
+                    clearStripeRes={clearStripeRes}
                   />
             </div>
         )

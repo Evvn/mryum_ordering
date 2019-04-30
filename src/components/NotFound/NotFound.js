@@ -6,7 +6,7 @@ class NotFound extends React.Component {
   render() {
     return(
       <div className="loading">
-        <img className="pnf" src="/mryum_assets/Mr_Yum_logo_white.svg" alt="Mr Yum"/>
+        <img className="pnf" src="/mryum_assets/wv_logo_white.svg" alt="Mr Yum"/>
         <div>
           <h2 className="pnf">We can't find what you're looking for!</h2>
         </div>

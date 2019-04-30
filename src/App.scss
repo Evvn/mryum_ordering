@@ -447,8 +447,8 @@ body {
   flex-direction: column;
 
   img {
-    width: 50vw;
-    max-width: 250px;
+    width: 70vw;
+    max-width: 300px;
     margin: 0 auto;
   }
 
@@ -1622,7 +1622,7 @@ h1 {
 
   .mryum {
     margin: 0 auto;
-    width: 130px;
+    width: 225px;
     margin-bottom: 25px;
   }
 
@@ -1989,6 +1989,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: $secondary;
 
   .modalInner {
     width: 70vw;

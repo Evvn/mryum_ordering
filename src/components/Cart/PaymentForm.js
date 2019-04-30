@@ -15,7 +15,7 @@ class PaymentForm extends React.Component{
             country: 'AU',
             currency: 'aud',
             total: {
-                label: 'dunno yet',
+                label: 'Winter Village',
                 amount: props.orderTotal * 100, // amount needs to be in subunit of currency
             },
         });
@@ -33,11 +33,11 @@ class PaymentForm extends React.Component{
         });
 
         paymentRequest.canMakePayment().then((result) => {
-            this.setState({canMakePayment: !!result, hidePaymentRequest: !!result,});
+            this.setState({canMakePayment: !!result});
         });
         // end of it
         this.state = {
-          hidePaymentRequest: true,
+          hidePaymentRequest: false,
           disableButton: false,
           canMakePayment: false,
           paymentRequest,
@@ -88,7 +88,7 @@ class PaymentForm extends React.Component{
       };
 
     render(){
-        const { orderTotal, paymentRes, processingPayment, paymentError } = this.props;
+        const { orderTotal, paymentRes, processingPayment, paymentError, clearStripeRes } = this.props;
         return (
           <div className="paymentScreenCont">
 
@@ -97,6 +97,7 @@ class PaymentForm extends React.Component{
               <PaymentHandler
               paymentRes={paymentRes}
               paymentError={paymentError}
+              clearStripeRes={clearStripeRes}
               />
             :
               ''
@@ -171,7 +172,7 @@ class PaymentForm extends React.Component{
                 <span>{orderTotal.toFixed(2)}</span>
               </div>
 
-              { this.state.hidePaymentRequest ? '' : <button className="payNowBtn">PAY NOW</button> }
+              <button className="payNowBtn">PAY NOW</button>
           </form>
         </div>
       )

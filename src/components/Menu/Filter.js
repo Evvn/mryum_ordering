@@ -23,7 +23,7 @@ class Filter extends React.Component {
 
   closeLangMenu() {
     const path = window.location.pathname.split('/')
-    if (!path[2]) {
+    if (!path[3]) {
       // on filter menu click, close language menu if it's currently open
       document.querySelector('.languageList').classList.remove('langOpen')
       document.querySelector('.langArrow').classList.remove('rotate')

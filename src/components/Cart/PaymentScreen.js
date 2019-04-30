@@ -47,6 +47,7 @@ class PaymentScreen extends React.Component{
                       processingPayment={this.props.processingPayment}
                       paymentError={this.props.paymentError}
                       currentOrder={this.props.currentOrder}
+                      clearStripeRes={this.props.clearStripeRes}
                     />
                 </Elements>
             </StripeProvider>

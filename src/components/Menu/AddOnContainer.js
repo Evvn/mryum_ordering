@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash';
-
 import AddOn from './AddOn.js';
 
 class AddOnContainer extends React.Component {
@@ -28,20 +27,20 @@ class AddOnContainer extends React.Component {
 
         updateAddOns(Object.keys(stateClone).map(addOn => stateClone[addOn]));
         this.setState({addOnState: stateClone});
-        
+
     }
 
     render(){
         const { addons } = this.props;
-    
+
     return (
       <div>
       <p>Add-Ons</p>
-        {addons.map(addOn => (
-          <AddOn details={addOn.AIRTABLE_MENU_PAYLOAD.fields} onSelect={this.selectAddOn}/>))}
+        {addons.map((addOn, index) => (
+          <AddOn key={index} details={addOn.AIRTABLE_MENU_PAYLOAD.fields} onSelect={this.selectAddOn}/>))}
       </div>
     );
-    }   
+    }
 }
 
 export default AddOnContainer;

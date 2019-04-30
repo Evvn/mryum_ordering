@@ -108,7 +108,9 @@ class ItemDetail extends React.Component {
 
 
   render() {
+    // eslint-disable-next-line
     const {details, lang, addToCart} = this.props;
+    // eslint-disable-next-line
     const addons = details.addons;
     const {stagedQuantity} = this.state;
     let name = details.name
@@ -163,23 +165,23 @@ class ItemDetail extends React.Component {
               <div className="prevDefinitionText"></div>
             </div>
 
-            {/* No image credit? Don't show this section */
-            } {
+            {/* No image credit? Don't show this section */ }
+            {
               !!details['image credit'] && !!details.Tags && details.Tags[0] !== 'LIST'
                 ? <div className="imageCredit">
                     <div className="imageCreditLabel">photo by
                       <a className="imageCreditLink" href={creditUrl}>{details['image credit']}</a>
                     </div>
                   </div>
-                : null
-            }<div className="previewName">{name}</div>
+                : null}
+
+            <div className="previewName">{name}</div>
 
             <div className="previewDescription">
-              <JsxParser jsx={`${desc}`
-}/>
+              <JsxParser jsx={`${desc}`}/>
             </div>
 
-  
+
             {details.addons ? <AddOnContainer addons={details.addons} updateAddOns={this.updateAddOns}/> : null}
 
             <div className="previewDetails">
