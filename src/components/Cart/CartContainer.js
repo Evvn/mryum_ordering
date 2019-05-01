@@ -55,8 +55,6 @@ class CartContainer extends React.Component{
       const {removeFromCart, currentOrder} = this.props;
       let subtotal = 0;
 
-      console.log(currentOrder);
-
       const processedItems = itemGroups.map(itemGroup => {
         const costDetails= this.getCostDetails(currentOrder[itemGroup]);
         subtotal = subtotal + costDetails.subtotal;
@@ -70,12 +68,8 @@ class CartContainer extends React.Component{
         );
       });
 
-
       return {total: subtotal, processedItems};
-
-
     }
-
 
     openPaymentScreen(){
         this.setState({showPaymentScreen: true})
@@ -96,10 +90,19 @@ class CartContainer extends React.Component{
     }
 
     render(){
+      const {
+        currentOrder,
+        paymentRes,
+        processingPayment,
+        paymentError,
+        clearStripeRes,
+        clearStripeErr,
+        clientInfo,
+      } = this.props;
         const {showPaymentScreen} = this.state;
-        const { currentOrder, paymentRes, processingPayment, paymentError, clearStripeRes } = this.props;
         const itemGroups = Object.keys(currentOrder);
         const {total, processedItems} = this.processItems(itemGroups);
+
         if(showPaymentScreen){
           return(
             <div>
@@ -111,6 +114,8 @@ class CartContainer extends React.Component{
                     paymentError={paymentError}
                     currentOrder={currentOrder}
                     clearStripeRes={clearStripeRes}
+                    clearStripeErr={clearStripeErr}
+                    clientInfo={clientInfo}
                   />
             </div>
         )
@@ -149,6 +154,7 @@ const mapStateToProps = state => ({
   processingPayment: state.persistentCart.processingPayment,
   paymentError: state.persistentCart.paymentError,
   orderTotal: state.persistentCart.orderTotal,
+  clientInfo: state.persistentCommon.clientInfo,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartContainer)

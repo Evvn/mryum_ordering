@@ -72,6 +72,12 @@ function persistentCartReducer(state = initialState, action) {
         paymentError: false,
         currentOrder: {}, // reset current order to empty
       }
+    case actionTypes.CLEAR_STRIPE_ERR:
+      return {
+        ...state,
+        paymentRes: false,
+        paymentError: false,
+      }
     case actionTypes.UPDATE_ORDER_TOTAL:
       return {
         ...state,

@@ -35,19 +35,34 @@ class PaymentScreen extends React.Component{
     }
 
     render(){
+      const {
+        orderTotal,
+        closePaymentScreen,
+        makePayment,
+        paymentRes,
+        processingPayment,
+        paymentError,
+        currentOrder,
+        clearStripeRes,
+        clearStripeErr,
+        clientInfo
+      } = this.props
+
         return(
             <StripeProvider apiKey={'pk_test_gtRdjjtoOFsZqEvtkSD4sVir'}>
                 <Elements>
                     <PaymentForm
-                      orderTotal={this.props.orderTotal}
-                      closePaymentScreen={this.props.closePaymentScreen}
+                      orderTotal={orderTotal}
+                      closePaymentScreen={closePaymentScreen}
                       data={this.mock_data}
-                      makePayment={this.props.makePayment}
-                      paymentRes={this.props.paymentRes}
-                      processingPayment={this.props.processingPayment}
-                      paymentError={this.props.paymentError}
-                      currentOrder={this.props.currentOrder}
-                      clearStripeRes={this.props.clearStripeRes}
+                      makePayment={makePayment}
+                      paymentRes={paymentRes}
+                      processingPayment={processingPayment}
+                      paymentError={paymentError}
+                      currentOrder={currentOrder}
+                      clearStripeRes={clearStripeRes}
+                      clearStripeErr={clearStripeErr}
+                      clientInfo={clientInfo}
                     />
                 </Elements>
             </StripeProvider>
