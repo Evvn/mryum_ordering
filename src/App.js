@@ -83,6 +83,17 @@ class App extends React.Component {
               />
             )}
         />
+        {/* for wv */}
+        <Route
+              exact
+              path="/wv"
+              component={({ match }) => (
+                <Landing
+                  venueUrl={'wv'}
+                  routeTo={'wv'}
+                />
+              )}
+          />
         <Route component={NotFound} />
         </Switch>
       </div>

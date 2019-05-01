@@ -91,7 +91,7 @@ export function* makePayment(action) {
           "item_id": [item],
           "processed": false,
           "customer_name": res.billing_details.name,
-          "phone_number": orderObj.clientInfo.phone,
+          "phone_number": orderObj.clientInfo.phone.slice(1),
           "created_time": Date(),
           "quantity": orderObj.order[item][0].quantity,
           "table_or_pickup": 'pickup',

@@ -2,6 +2,8 @@ import React from 'react';
 import _ from 'lodash';
 import AddOn from './AddOn.js';
 
+import './styles/addOns.scss'
+
 class AddOnContainer extends React.Component {
     constructor(props){
         super(props);
@@ -34,10 +36,12 @@ class AddOnContainer extends React.Component {
         const { addons } = this.props;
 
     return (
-      <div>
+      <div className="addOnsCont">
       <p>Add-Ons</p>
-        {addons.map((addOn, index) => (
-          <AddOn key={index} details={addOn.AIRTABLE_MENU_PAYLOAD.fields} onSelect={this.selectAddOn}/>))}
+        <div className="addOns">
+          {addons.map((addOn, index) => (
+            <AddOn key={index} details={addOn.AIRTABLE_MENU_PAYLOAD.fields} onSelect={this.selectAddOn}/>))}
+        </div>
       </div>
     );
     }

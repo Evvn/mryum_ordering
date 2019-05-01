@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import * as actions from './actions/actions.js'
 import { clientTypes, routes, pages } from '../Common/enums/commonEnums.js';
+import { toast } from "react-toastify";
 // import classNames from 'classnames'
 
 //css
@@ -72,7 +73,7 @@ class Landing extends React.Component {
 
           <img className="wvLogo" src="/mryum_assets/wv_logo.svg" alt="winter village"/>
 
-          <h3>Welcome to our mobile food  menu and ordering!</h3>
+          <h3>Welcome to our mobile food menu and ordering!</h3>
 
           {/* <div className="buttons">
             <button
@@ -119,9 +120,9 @@ class Landing extends React.Component {
             typeSelected ?
               (
                 typeSelected === clientTypes.SEATED ?
-                  <input className="collectInfo"type="text" placeholder={clientTypes.SEATED_INPUT} onChange={this.updateSeatedInputValue}/> :
+                  <input className="collectInfo" type="text" placeholder={clientTypes.SEATED_INPUT} onChange={this.updateSeatedInputValue}/> :
                   typeSelected === clientTypes.STANDING ?
-                  <input className="collectInfo"type="text" placeholder={clientTypes.STANDING_INPUT} onChange={this.updateStandingInputValue}/> :
+                  <input className="collectInfo" type="text" placeholder={clientTypes.STANDING_INPUT} onChange={this.updateStandingInputValue}/> :
                 ''
               )
             : ''
@@ -131,7 +132,12 @@ class Landing extends React.Component {
             <div
               className="viewMenu"
               onClick={(e) => {
-                setClientType(typeSelected, {tableNumber: seatedInput, phone: standingInput}); this.routeToMenu();
+                // check that number does not contain
+                if (standingInput.length > 8 && !standingInput.match(/[a-z]/i)) {
+                  setClientType(typeSelected, {tableNumber: seatedInput, phone: standingInput}); this.routeToMenu();
+                } else {
+                  toast.error(`${standingInput} does not look like a valid phone number`);
+                }
                 }}
               >Got it!</div>
             : '' }

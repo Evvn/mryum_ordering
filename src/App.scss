@@ -1402,7 +1402,7 @@ h1 {
 .previewModal {
   background-color: $white;
   height: 100vh;
-  overflow: auto;
+  // overflow: auto;
   max-width: $maxWidth;
   position: fixed;
   top: 62px;
@@ -1450,7 +1450,7 @@ h1 {
   }
 
   .previewWrapper {
-    overflow: auto;
+    // overflow: auto;
     // height: 100%;
     max-width: $maxWidth;
 
@@ -1686,8 +1686,9 @@ footer {
   align-items: center;
   background: $primary;
   color: $white;
-  font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
+  font-family: 'SF-UI-Text-Semibold', 'Helvetica Semibold', sans-serif;
   border-radius: 25px;
+  font-size: 16px;
   line-height: 48px;
   height: 40px;
   width: 170px;

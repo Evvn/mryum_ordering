@@ -1,4 +1,5 @@
 import React from 'react';
+import './styles/addOns.scss'
 
 class AddOn extends React.Component {
     constructor(props){
@@ -14,7 +15,7 @@ class AddOn extends React.Component {
     selectAddon(){
         const { details, onSelect } = this.props;
         const { selected } = this.state;
-        
+
         if(selected){
             this.setState({selected: false});
         }
@@ -23,21 +24,30 @@ class AddOn extends React.Component {
         }
 
         onSelect(details);
-        
+
     }
 
     render(){
         const { details } = this.props;
         const { selected } = this.state;
-        const style = selected ? {background: 'green'} : {};
+        const style = selected ? {
+          background: '#d1a4b5',
+          borderColor: '#d1a4b5',
+          backgroundImage: "url('/icons/tick_icon.svg')",
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        } : {};
+
         return (
+          <div className="addOn">
             <div>
-                <button style={style} onClick={() => {this.selectAddon(details)}}>
-                  {details['Add-On Name']}
-                </button>
+              <span className="addOnName">{details['Add-On Name']}</span>
+              <span className="addOnPrice">+ {details['Price (Not Linked)']}</span>
+            </div>
+            <button className="addOnBtn" style={style} onClick={() => {this.selectAddon(details)}}/>
           </div>
         );
-    }   
+    }
 }
 
 export default AddOn;

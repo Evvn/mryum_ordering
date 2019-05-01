@@ -46,7 +46,12 @@ class MenuContainer extends React.Component {
  }
 
  componentWillUpdate() {
-   const { venue, venueUrl, getMenuData, bffRes, itemId, setItemId, clearSectionPositions } = this.props;
+   const { venue, venueUrl, getMenuData, bffRes, itemId, setItemId, clearSectionPositions, clientInfo } = this.props;
+
+   if (Object.keys(clientInfo).length === 0) {
+     window.location = '/wv/landing'
+   }
+
    if (!bffRes || venue !== venueUrl) {
      getMenuData(venueUrl);
      clearSectionPositions();
@@ -88,10 +93,12 @@ class MenuContainer extends React.Component {
       venueUrl,
       category,
       setCategory,
+      currentOrder,
     } = this.props;
     // const venueName = bffRes ? Object.values(bffRes.menuByItem)[0].fields.Venue : false;
     const itemView = itemId ? true : false;
     const filtersInUse = Object.values(filter).includes(true)
+    const cartInUse = Object.keys(currentOrder).length > 0 ? true : false
 
     // replace venues.wv when we have a real bff res
     // {venues[venueUrl]}
@@ -109,8 +116,8 @@ class MenuContainer extends React.Component {
           {/* { !itemView && <MenuSearch data={bffRes} hide={false} onInput={(result) => console.log(result)}/>} */}
           <img onClick={(e)=>{this.openCart()}} className="cartIcon" src="/icons/cart_icon.svg" alt="cart"/>
 
-          {/* TODO: check if cart has items, display badge if so */}
-          {/* { somethingHere && <div className="cartBadge"/> } */}
+
+          { cartInUse && <div className="cartBadge"/> }
         </header>
       </div>
     );
@@ -129,6 +136,7 @@ class MenuContainer extends React.Component {
       addToCart,
     } = this.props;
 
+    console.log(bffRes.menuByCategory[category]);
 
     return (
       isLoading || !bffRes ? <LoadingScreen/> :
@@ -173,6 +181,8 @@ const mapStateToProps = state => ({
   filter: state.persistentMenu.filter,
   lang: state.persistentMenu.lang,
   setCategory: state.persistentMenu.setCategory,
+  currentOrder: state.persistentCart.currentOrder,
+  clientInfo: state.persistentCommon.clientInfo,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuContainer)

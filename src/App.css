@@ -1233,7 +1233,6 @@ h1 img {
 .previewModal {
   background-color: #ffffff;
   height: 100vh;
-  overflow: auto;
   max-width: 500px;
   position: fixed;
   top: 62px;
@@ -1274,7 +1273,6 @@ h1 img {
   max-height: 100vw;
 }
 .previewModal .previewWrapper {
-  overflow: auto;
   max-width: 500px;
 }
 .previewModal .previewWrapper .prevDefinition {
@@ -1481,8 +1479,9 @@ footer a:focus {
   align-items: center;
   background: #d1a4b5;
   color: #ffffff;
-  font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
+  font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
   border-radius: 25px;
+  font-size: 16px;
   line-height: 48px;
   height: 40px;
   width: 170px;

@@ -19,7 +19,7 @@
 // }
 
 .emptyCart {
-  height: 400px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,6 +33,18 @@
   img {
     height: 150px;
     padding-bottom: 25px;
+  }
+
+  button, button:focus {
+    border: none;
+    outline: none;
+    background-color: $secondary;
+    color: $white;
+    height: 45px;
+    padding: 0 25px;
+    font-size: 20px;
+    margin-top: 25px;
+    border-radius: 40px;
   }
 }
 
@@ -158,10 +170,11 @@
   font-family: "SF-UI-Text-Bold", 'Helvetica Bold', sans-serif;
   outline: none;
   background-color: $white;
-  height: 25px;
-  border-radius: 12px;
-  font-size: 12px;
-  margin: 0 auto;
+  height: 40px;
+  border-radius: 18px;
+  font-size: 20px;
+  margin: 25px auto;
+  margin-left: 15px;
 }
 
 .paymentRequestCont {
@@ -197,6 +210,8 @@
 .processingPaymentCont {
   position: absolute;
   top: 0;
+  min-height: 100vh;
+  overflow: hidden;
   z-index: 999;
   color: $white;
   text-align: center;
@@ -228,17 +243,20 @@
   background-position: center;
   color: #3c4653;
   padding: 15px 0 62px 0;
-  margin-top: -25px;
-  margin-bottom: 30px;
   overflow: hidden;
+  z-index: 888;
+
+  .wvLogo {
+    width: 200px;
+    top: -10px;
+    position: relative;
+    padding-bottom: 0;
+  }
 
   h2 {
     font-size: 21px;
-    padding: 25px;
-  }
-
-  p > span {
-    font-family: "SF-UI-Text-Semibold", 'Helvetica Semibold', sans-serif;
+    padding: 15px;
+    padding-top: 10px;
   }
 
   p {
@@ -284,7 +302,7 @@
   font-family: "SF-UI-Text-Bold", 'Helvetica Bold', sans-serif;
   height: 62px;
   width: 100vw;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   display: flex;
