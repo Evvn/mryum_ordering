@@ -24,7 +24,7 @@ function persistentCommonReducer(state = initialState, action) {
       return {
         ...state,
         clientType: action.clientType,
-        clientInfo: {...action.clientInfo, ...state.clientInfo},
+        clientInfo: {...action.clientInfo, ...action.clientInfo},
       };
     default:
       return state

@@ -1,14 +1,23 @@
 @import '../../../palette.scss';
 
+.gradientBackground {
+  background-image: linear-gradient(to bottom, #bed6d6, #ffffff);
+  width: 100vw;
+  height: 100vh;
+}
+
 .landingCont {
   min-height: 100vh;
   max-height: 100vh;
   // background-color: $primary;
-  background-image: linear-gradient(to bottom, #bed6d6, #ffffff);
+  background-image: url('/mryum_assets/snowflakes.svg');
+  background-repeat: no-repeat;
+  background-size:  cover;
+  background-position: center;
   color: #3c4653;
   font-family: "SF-UI-Text-Regular", 'Helvetica', sans-serif;
   padding: 40px;
-  margin-top: -20px;
+  margin-top: -30px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -28,8 +37,13 @@ h3 {
 }
 
 img {
-  margin: 25px auto;
+  margin: 0 auto;
+}
+
+.wvLogo {
   width: 250px;
+  position: relative;
+  top: -40px;
 }
 
 .buttons {
@@ -76,7 +90,8 @@ img {
 .collectInfo {
   font-size: 18px;
   width: 250px;
-  margin: 0 auto;
+  margin: 30px auto;
+  margin-bottom: 0px;
   border-radius: 7px;
   border: none;
   height: 55px;

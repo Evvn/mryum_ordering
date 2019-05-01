@@ -129,6 +129,7 @@ class MenuContainer extends React.Component {
       addToCart,
     } = this.props;
 
+
     return (
       isLoading || !bffRes ? <LoadingScreen/> :
       (

@@ -47,28 +47,26 @@ class PaymentForm extends React.Component{
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        if (this.props.stripe) {
-          if (this.state.email !== '') {
-            this.props.stripe
-             .createToken({type: 'card', name: this.state.customerName, email: this.state.email})
-             .then((result) => {
-              // console.log(result);
-              const { makePayment } = this.props;
-              makePayment(result.token, this.props.orderTotal * 100, 'Order description...', this.state.email)
-            });
-          } else {
-            this.props.stripe
-             .createToken({type: 'card', name: this.state.customerName, })
-             .then((result) => {
-              // console.log(result);
-              const { makePayment } = this.props;
-              makePayment(result.token, this.props.orderTotal * 100, 'Order description...', this.props.currentOrder, this.state.email)
-            });
-          }
-        } else {
-            console.log("Stripe.js hasn't loaded yet")
-        }
+      const { orderTotal, currentOrder, clientInfo, stripe } = this.props
+      const { customerName, email } = this.state
+      e.preventDefault();
+      if (stripe) {
+        stripe
+         .createToken({type: 'card', name: customerName, })
+         .then((result) => {
+          // console.log(result);
+          const { makePayment } = this.props;
+          makePayment(
+            result.token,
+            orderTotal * 100,
+            'Mr Yum',
+            currentOrder,
+            clientInfo,
+            email === '' ? undefined : email)
+        });
+      } else {
+          console.log("Stripe.js hasn't loaded yet")
+      }
     }
 
     createOptions = (fontSize, padding) => {
@@ -88,7 +86,15 @@ class PaymentForm extends React.Component{
       };
 
     render(){
-        const { orderTotal, paymentRes, processingPayment, paymentError, clearStripeRes } = this.props;
+        const {
+          orderTotal,
+          paymentRes,
+          processingPayment,
+          paymentError,
+          clearStripeRes,
+          clearStripeErr,
+        } = this.props;
+
         return (
           <div className="paymentScreenCont">
 
@@ -98,6 +104,7 @@ class PaymentForm extends React.Component{
               paymentRes={paymentRes}
               paymentError={paymentError}
               clearStripeRes={clearStripeRes}
+              clearStripeErr={clearStripeErr}
               />
             :
               ''

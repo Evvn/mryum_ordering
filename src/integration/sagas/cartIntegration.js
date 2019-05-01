@@ -70,6 +70,7 @@ export function* makePayment(action) {
         currency: 'aud',
         source: action.token.id,
         description: action.desc,
+        clientInfo: action.clientInfo,
         email: action.email === '' ? undefined : action.email,
       }).then((response) => response)
 
@@ -81,9 +82,7 @@ export function* makePayment(action) {
 
       // send order to airtable
       const base = new Airtable({apiKey: process.env.REACT_APP_AIRTABLE_API_KEY}).base('app4XnP7NuSCWMWD7')
-      console.log(orderObj);
       const uniqueCode = (Math.floor(1000 + Math.random() * 9000))
-      console.log(uniqueCode);
 
       Object.keys(orderObj.order).forEach(item => {
         base('Orders').create({
@@ -92,15 +91,13 @@ export function* makePayment(action) {
           "item_id": [item],
           "processed": false,
           "customer_name": res.billing_details.name,
-          "phone_number": "0413206203",
+          "phone_number": orderObj.clientInfo.phone,
           "created_time": Date(),
           "quantity": orderObj.order[item][0].quantity,
           "table_or_pickup": 'pickup',
           "unique_code": uniqueCode,
         }, function(err, record) {
             if (err) { console.error(err); return; }
-            console.log(record.getId());
-            console.log(uniqueCode);
         });
       })
 
