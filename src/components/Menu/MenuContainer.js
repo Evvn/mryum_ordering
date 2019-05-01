@@ -90,10 +90,10 @@ class MenuContainer extends React.Component {
       updateLang,
       lang,
       itemId,
-      venueUrl,
       category,
-      setCategory,
       currentOrder,
+      // setCategory,
+      // venueUrl,
     } = this.props;
     // const venueName = bffRes ? Object.values(bffRes.menuByItem)[0].fields.Venue : false;
     const itemView = itemId ? true : false;
@@ -108,8 +108,8 @@ class MenuContainer extends React.Component {
         <header className={ classNames('header', itemView ? 'previewHeader' : '') }>
           {/* back arrow for routing, control this and venuename via props */}
           { itemView ? <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/> : null }
-          { category && !!venueUrl && !itemView? <img onClick={() => {setCategory(false)}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/> : null }
-          { !category && !itemView? <h1 className="venue">{venues.wintervillage}</h1> : null }
+          {/* { category && !!venueUrl && !itemView? <img onClick={() => {setCategory(false)}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/> : null } */}
+          { category && !itemView? <h1 className="venue">{venues.wv}</h1> : null }
           { !itemView && <Filter filter={filter} updateFilter={updateFilter} lang={lang} /> }
           { category && !itemView && !filtersInUse ? <HorizontalScrollNav sectionPositions={sectionPositions}/> : ''}
           { !itemView && <LanguageSelect lang={lang} updateLang={updateLang} /> }
@@ -135,8 +135,6 @@ class MenuContainer extends React.Component {
       setCategory,
       addToCart,
     } = this.props;
-
-    console.log(bffRes.menuByCategory[category]);
 
     return (
       isLoading || !bffRes ? <LoadingScreen/> :

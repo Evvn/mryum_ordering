@@ -74,7 +74,7 @@ export function* makePayment(action) {
         email: action.email === '' ? undefined : action.email,
       }).then((response) => response)
 
-      yield console.log(res);
+      // yield console.log(res);
       yield put({
         type: actionTypes.MAKE_STRIPE_CHARGE_SUCCESS,
         res
@@ -98,6 +98,8 @@ export function* makePayment(action) {
           "unique_code": uniqueCode,
         }, function(err, record) {
             if (err) { console.error(err); return; }
+            // CALL bff
+            // websocket between merchant app and bff
         });
       })
 

@@ -19,7 +19,7 @@ class Footer extends React.Component {
           </a>
         </div>
 
-        <footer>©Copyright Mr Yum 2018</footer>
+        <footer>©Copyright Mr Yum 2019</footer>
       </div>
     )
   }

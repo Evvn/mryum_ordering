@@ -27,11 +27,11 @@
   margin: 0 auto;
   font-family: "SF-UI-Text-Semibold", 'Helvetica Semibold', sans-serif;
   font-weight: 600;
-  font-size: 28px;
+  font-size: 22px;
   color: $sectionFontColor;
 
   img {
-    height: 150px;
+    height: 100px;
     padding-bottom: 25px;
   }
 
@@ -40,9 +40,9 @@
     outline: none;
     background-color: $secondary;
     color: $white;
-    height: 45px;
+    height: 35px;
     padding: 0 25px;
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 25px;
     border-radius: 40px;
   }
@@ -56,9 +56,11 @@
   color: $sectionFontColor;
   margin: 15px;
   border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 15px;
 }
 
 .checkoutHeading {
+  margin-bottom: 0px;
   border-bottom: none;
 }
 

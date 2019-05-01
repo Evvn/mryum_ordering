@@ -7,7 +7,7 @@ export const languageWarnings = {
   fr: {
     greeting: 'Bonjour 🙂',
     instructions: 'Un petit avertissement, les menus sont souvent pleins de mots familiers ou de mots qui ne se traduisent pas parfaitement. Nous avons fait de notre mieux mais quelques erreurs sont possibles et nous aimerions recevoir vos commentaires pour améliorer votre experience. Merci beaucoup!',
-    confirmation: "Je l'ai!",
+    confirmation: "J'ai compris!",
   },
   el: {
     greeting: 'Καλημερα 🙂',

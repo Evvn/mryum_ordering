@@ -33,7 +33,6 @@
   font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
   font-size: 16px;
   color: #494949;
-  letter-spacing: 0.5px;
 }
 
 .previewModal .previewWrapper .prevDefinition .prevDefinitionText, .firstVisit .closeInstructions, .firstVisit .instructions, .bodyText, body {
@@ -166,7 +165,7 @@ body {
   margin-bottom: 10px;
 }
 .feedbackCont .feedbackBtn {
-  background-color: #d1a4b5;
+  background-color: #7991c3;
   border-radius: 25px;
   color: #ffffff;
   padding: 10px 20px;
@@ -242,7 +241,7 @@ body {
   text-align: center;
 }
 .feedbackLightbox .feedbackForm button {
-  background-color: #d1a4b5;
+  background-color: #7991c3;
   color: #ffffff;
   font-size: 100%;
   padding: 7px 25px;
@@ -276,7 +275,7 @@ body {
   background-color: inherit;
 }
 .feedbackLightbox .feedbackForm .fbThankyouBtn {
-  background-color: #d1a4b5;
+  background-color: #7991c3;
   color: #ffffff;
   font-size: 100%;
   padding: 7px 25px;
@@ -319,7 +318,7 @@ body {
 .broadsheet a:link,
 .broadsheet a:visited {
   color: #ffffff;
-  background-color: #d1a4b5;
+  background-color: #7991c3;
   text-decoration: none;
   padding: 10px;
   border-radius: 25px;
@@ -359,8 +358,8 @@ body {
 .newbroadsheet a:hover,
 .newbroadsheet a:link,
 .newbroadsheet a:visited {
-  color: #d1a4b5;
-  border-bottom: 2px solid #d1a4b5;
+  color: #7991c3;
+  border-bottom: 2px solid #7991c3;
   text-decoration: none;
   width: 200px;
   text-align: center;
@@ -376,7 +375,7 @@ body {
   font-weight: bold;
   font-size: 20px;
   position: absolute;
-  top: 18px;
+  top: 19px;
 }
 
 .loading {
@@ -504,7 +503,7 @@ body {
 }
 .selectSection .red {
   color: #ffffff;
-  background-color: #d1a4b5;
+  background-color: #7991c3;
   border-radius: 50px;
   margin-left: 10px;
 }
@@ -568,7 +567,7 @@ header .filterWarningCont .filterWarning h3 {
   font-size: 150%;
 }
 header .filterWarningCont .filterWarning p {
-  background-color: #d1a4b5;
+  background-color: #7991c3;
   color: #ffffff;
   width: 70%;
   border-radius: 15px;
@@ -595,7 +594,7 @@ header .filter .filterText {
 header .filter .filterIcon {
   width: 8px;
   height: 8px;
-  background-color: #d1a4b5;
+  background-color: #7991c3;
   border-radius: 10px;
   position: fixed;
   z-index: 5;
@@ -642,8 +641,8 @@ header .filter .filterList p .checkBox {
 }
 header .filter .filterList p .checkedBox {
   border-radius: 2px;
-  border-color: #d1a4b5;
-  background-color: #d1a4b5;
+  border-color: #7991c3;
+  background-color: #7991c3;
 }
 header .filter .filterList p:nth-of-type(1) {
   border-top: none;
@@ -701,7 +700,7 @@ header .cartBadge {
   height: 8px;
   width: 8px;
   border-radius: 8px;
-  background-color: #d1a4b5;
+  background-color: #7991c3;
   position: absolute;
   top: 18px;
   right: 10px;
@@ -778,8 +777,8 @@ header .cartBadge {
   transition: 0.2s ease all;
 }
 .languageList .radioSelected {
-  background-color: #d1a4b5;
-  border-color: #d1a4b5;
+  background-color: #7991c3;
+  border-color: #7991c3;
 }
 
 .langOpen {
@@ -834,7 +833,7 @@ header .cartBadge {
 }
 .selectSectionHS .red {
   color: #ffffff;
-  background-color: #d1a4b5;
+  background-color: #7991c3;
   border-radius: 15px;
   margin-left: 10px;
 }
@@ -940,6 +939,7 @@ h1 img {
   display: block;
   margin-top: 7px;
   font-size: 12px;
+  margin-bottom: 10px;
 }
 
 .section::first-letter {
@@ -1116,7 +1116,6 @@ h1 img {
   font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
   font-size: 18px;
   color: #494949;
-  letter-spacing: 0.5px;
   text-align: left;
   display: flex;
   justify-content: space-between;
@@ -1233,6 +1232,7 @@ h1 img {
 .previewModal {
   background-color: #ffffff;
   height: 100vh;
+  overflow: auto;
   max-width: 500px;
   position: fixed;
   top: 62px;
@@ -1273,6 +1273,7 @@ h1 img {
   max-height: 100vw;
 }
 .previewModal .previewWrapper {
+  overflow: auto;
   max-width: 500px;
 }
 .previewModal .previewWrapper .prevDefinition {
@@ -1329,7 +1330,6 @@ h1 img {
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
-  letter-spacing: 0.5px;
   color: #494949;
   padding: 20px 20px 15px;
   text-transform: capitalize;
@@ -1343,7 +1343,6 @@ h1 img {
   font-style: normal;
   font-stretch: normal;
   line-height: 1.25;
-  letter-spacing: 0.5px;
   color: #6f6f6f;
   padding: 0 20px 20px;
   white-space: pre-wrap;
@@ -1428,7 +1427,6 @@ h1 img {
   color: #373737;
   margin: 10px;
   font-size: 20px;
-  letter-spacing: 0.5px;
 }
 .cta p {
   color: #6f6f6f;
@@ -1456,7 +1454,6 @@ footer {
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
-  letter-spacing: 0.5px;
   text-align: center;
   color: #ffffff;
   background-color: #051331;
@@ -1477,7 +1474,7 @@ footer a:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #d1a4b5;
+  background: #7991c3;
   color: #ffffff;
   font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
   border-radius: 25px;
@@ -1590,6 +1587,10 @@ footer a:focus {
 .footerCont {
   bottom: 0;
 }
+.footerCont h3 {
+  padding-bottom: 5px;
+  margin-bottom: 0;
+}
 .footerCont .linkToMenu {
   font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
   font-size: 14px;
@@ -1597,7 +1598,6 @@ footer a:focus {
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
-  letter-spacing: 0.5px;
   text-align: center;
   color: #6f6f6f;
   margin: -15px 0 55px;
@@ -1720,7 +1720,6 @@ footer a:focus {
   font-weight: bold;
   font-size: 17px;
   color: #494949;
-  letter-spacing: 0.5px;
 }
 
 .listItem {
@@ -1758,6 +1757,7 @@ footer a:focus {
   justify-content: center;
   align-items: center;
   color: #051331;
+  text-align: center;
 }
 .modalCont .modalInner {
   width: 70vw;
@@ -1777,9 +1777,10 @@ footer a:focus {
 }
 .modalCont .modalBody {
   padding-bottom: 10px;
+  text-align: center;
 }
 .modalCont .modalCta {
-  background-color: #d1a4b5;
+  background-color: #7991c3;
   color: #ffffff;
   padding: 5px 25px;
   border-radius: 25px;

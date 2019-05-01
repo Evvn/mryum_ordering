@@ -22,7 +22,7 @@ class PaymentHandler extends React.Component {
                       href={'/' + window.location.pathname.split('/')[1] + '/menu'}
                       onClick={() => {clearStripeRes()}}
                     >
-                      Can't wait!
+                      Got it!
                     </a>
                   </div>
                   :

@@ -136,7 +136,11 @@ class Landing extends React.Component {
                 if (standingInput.length > 8 && !standingInput.match(/[a-z]/i)) {
                   setClientType(typeSelected, {tableNumber: seatedInput, phone: standingInput}); this.routeToMenu();
                 } else {
-                  toast.error(`${standingInput} does not look like a valid phone number`);
+                  if (standingInput === '') {
+                    toast.error(`Please enter a valid phone number`);
+                  } else {
+                    toast.error(`${standingInput} does not look like a valid phone number`);
+                  }
                 }
                 }}
               >Got it!</div>

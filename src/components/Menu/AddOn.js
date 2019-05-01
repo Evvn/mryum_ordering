@@ -31,8 +31,8 @@ class AddOn extends React.Component {
         const { details } = this.props;
         const { selected } = this.state;
         const style = selected ? {
-          background: '#d1a4b5',
-          borderColor: '#d1a4b5',
+          background: '#7991c3',
+          borderColor: '#7991c3',
           backgroundImage: "url('/icons/tick_icon.svg')",
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
