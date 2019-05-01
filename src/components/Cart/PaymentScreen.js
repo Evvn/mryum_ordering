@@ -49,7 +49,7 @@ class PaymentScreen extends React.Component{
       } = this.props
 
         return(
-            <StripeProvider apiKey={'pk_test_gtRdjjtoOFsZqEvtkSD4sVir'}>
+            <StripeProvider apiKey={process.env.REACT_APP_STRIPE_API_KEY}>
                 <Elements>
                     <PaymentForm
                       orderTotal={orderTotal}

@@ -61,20 +61,58 @@ class Menu extends Component {
     } else {
       let sections = []
 
-      Object.keys(menuSections).forEach((section,index) => {
-          sections.push(
-            <Section
-              key={index}
-              index={index}
-              menuSection={menuSections[section]}
-              name={section}
-              setSectionPosition={setSectionPosition}
-              tagsInUse={tagsInUse}
-              routeToItemDetail={routeToItemDetail}
-              lang={lang}
-            />
-          )
-        });
+      sections.push(
+        <Section
+          key={0}
+          index={0}
+          menuSection={menuSections[Object.keys(menuSections)[0]]}
+          name={Object.keys(menuSections)[0]}
+          setSectionPosition={setSectionPosition}
+          tagsInUse={tagsInUse}
+          routeToItemDetail={routeToItemDetail}
+          lang={lang}
+        />
+      )
+      sections.push(
+        <Section
+          key={2}
+          index={2}
+          menuSection={menuSections[Object.keys(menuSections)[2]]}
+          name={Object.keys(menuSections)[2]}
+          setSectionPosition={setSectionPosition}
+          tagsInUse={tagsInUse}
+          routeToItemDetail={routeToItemDetail}
+          lang={lang}
+        />
+      )
+      sections.push(
+        <Section
+          key={1}
+          index={1}
+          menuSection={menuSections[Object.keys(menuSections)[1]]}
+          name={Object.keys(menuSections)[1]}
+          setSectionPosition={setSectionPosition}
+          tagsInUse={tagsInUse}
+          routeToItemDetail={routeToItemDetail}
+          lang={lang}
+        />
+      )
+
+      // Object.keys(menuSections).forEach((section,index) => {
+      //   console.log(section);
+      //     sections.push(
+      //       <Section
+      //         key={index}
+      //         index={index}
+      //         menuSection={menuSections[section]}
+      //         name={section}
+      //         setSectionPosition={setSectionPosition}
+      //         tagsInUse={tagsInUse}
+      //         routeToItemDetail={routeToItemDetail}
+      //         lang={lang}
+      //       />
+      //     )
+      //   });
       return sections;
     }
   }

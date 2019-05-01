@@ -46,7 +46,12 @@ class MenuContainer extends React.Component {
  }
 
  componentWillUpdate() {
-   const { venue, venueUrl, getMenuData, bffRes, itemId, setItemId, clearSectionPositions } = this.props;
+   const { venue, venueUrl, getMenuData, bffRes, itemId, setItemId, clearSectionPositions, clientInfo } = this.props;
+
+   if (Object.keys(clientInfo).length === 0) {
+     window.location = '/wv/landing'
+   }
+
    if (!bffRes || venue !== venueUrl) {
      getMenuData(venueUrl);
      clearSectionPositions();
@@ -85,13 +90,15 @@ class MenuContainer extends React.Component {
       updateLang,
       lang,
       itemId,
-      venueUrl,
       category,
-      setCategory,
+      currentOrder,
+      // setCategory,
+      // venueUrl,
     } = this.props;
     // const venueName = bffRes ? Object.values(bffRes.menuByItem)[0].fields.Venue : false;
     const itemView = itemId ? true : false;
     const filtersInUse = Object.values(filter).includes(true)
+    const cartInUse = Object.keys(currentOrder).length > 0 ? true : false
 
     // replace venues.wv when we have a real bff res
     // {venues[venueUrl]}
@@ -101,16 +108,16 @@ class MenuContainer extends React.Component {
         <header className={ classNames('header', itemView ? 'previewHeader' : '') }>
           {/* back arrow for routing, control this and venuename via props */}
           { itemView ? <img onClick={() => {window.history.back()}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/> : null }
-          { category && !!venueUrl && !itemView? <img onClick={() => {setCategory(false)}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/> : null }
-          { !category && !itemView? <h1 className="venue">{venues.wintervillage}</h1> : null }
+          {/* { category && !!venueUrl && !itemView? <img onClick={() => {setCategory(false)}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/> : null } */}
+          { category && !itemView? <h1 className="venue">{venues.wv}</h1> : null }
           { !itemView && <Filter filter={filter} updateFilter={updateFilter} lang={lang} /> }
           { category && !itemView && !filtersInUse ? <HorizontalScrollNav sectionPositions={sectionPositions}/> : ''}
           { !itemView && <LanguageSelect lang={lang} updateLang={updateLang} /> }
           {/* { !itemView && <MenuSearch data={bffRes} hide={false} onInput={(result) => console.log(result)}/>} */}
           <img onClick={(e)=>{this.openCart()}} className="cartIcon" src="/icons/cart_icon.svg" alt="cart"/>
 
-          {/* TODO: check if cart has items, display badge if so */}
-          {/* { somethingHere && <div className="cartBadge"/> } */}
+
+          { cartInUse && <div className="cartBadge"/> }
         </header>
       </div>
     );
@@ -128,7 +135,6 @@ class MenuContainer extends React.Component {
       setCategory,
       addToCart,
     } = this.props;
-
 
     return (
       isLoading || !bffRes ? <LoadingScreen/> :
@@ -173,6 +179,8 @@ const mapStateToProps = state => ({
   filter: state.persistentMenu.filter,
   lang: state.persistentMenu.lang,
   setCategory: state.persistentMenu.setCategory,
+  currentOrder: state.persistentCart.currentOrder,
+  clientInfo: state.persistentCommon.clientInfo,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuContainer)

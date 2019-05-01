@@ -131,6 +131,7 @@ class CartContainer extends React.Component{
               <div className="emptyCart">
                 <img src="/icons/cart_icon_sad.svg" alt=""/>
                 <span>Your cart is empty!</span>
+                <button onClick={() => {window.history.back()}}>Back to menu</button>
               </div>
               :
               processedItems

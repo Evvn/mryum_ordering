@@ -1,0 +1,51 @@
+@import '../../../palette.scss';
+
+.addOnsCont {
+
+  p {
+    background-color: #f0f0f0;
+    height: 65px;
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    font-size: 19px;
+    letter-spacing: .5px;
+    color: $sectionFontColor;
+    font-family: "SF-UI-Text-Semibold", 'Helvetica Semibold', sans-serif;
+  }
+
+  .addOns {
+    padding: 0;
+  }
+
+  .addOn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 25px 20px;
+    margin: 0 15px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .addOn {
+    width: auto;
+  }
+
+  .addOnName {
+    color: $sectionFontColor;
+  }
+
+  .addOnPrice {
+    color: #6f6f6f;
+  }
+
+  .addOnBtn, .addOnBtn:focus {
+    border: 2px solid #e2e2e2;
+    border-radius: 1px;
+    outline: none;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+  }
+}

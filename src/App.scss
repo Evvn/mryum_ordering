@@ -39,7 +39,7 @@
   font-family: 'SF-UI-Text-Semibold', 'Helvetica Semibold', sans-serif;
   font-size: 16px;
   color: $titleFontColor;
-  letter-spacing: 0.5px;
+  // letter-spacing: 0.5px;
 }
 
 %bodyFont {
@@ -433,7 +433,7 @@ body {
   font-weight: bold;
   font-size: 20px;
   position: absolute;
-  top: 18px;
+  top: 19px;
 }
 
 .loading {
@@ -1072,6 +1072,7 @@ h1 {
     display: block;
     margin-top: 7px;
     font-size: 12px;
+    margin-bottom: 10px;
   }
 }
 
@@ -1272,7 +1273,7 @@ h1 {
         font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
         font-size: 18px;
         color: #494949;
-        letter-spacing: 0.5px;
+        // letter-spacing: 0.5px;
         text-align: left;
         display: flex;
         justify-content: space-between;
@@ -1517,7 +1518,7 @@ h1 {
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
-    letter-spacing: 0.5px;
+    // letter-spacing: 0.5px;
     color: $titleFontColor;
     padding: 20px 20px 15px;
     text-transform: capitalize;
@@ -1532,7 +1533,7 @@ h1 {
     font-style: normal;
     font-stretch: normal;
     line-height: 1.25;
-    letter-spacing: 0.5px;
+    // letter-spacing: 0.5px;
     color: #6f6f6f;
     padding: 0 20px 20px;
     white-space: pre-wrap;
@@ -1630,7 +1631,7 @@ h1 {
     color: $sectionFontColor;
     margin: 10px;
     font-size: 20px;
-    letter-spacing: 0.5px;
+    // letter-spacing: 0.5px;
   }
 
   p {
@@ -1661,7 +1662,7 @@ footer {
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
-  letter-spacing: 0.5px;
+  // letter-spacing: 0.5px;
   text-align: center;
   color: $white;
   background-color: $secondary;
@@ -1686,8 +1687,9 @@ footer {
   align-items: center;
   background: $primary;
   color: $white;
-  font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
+  font-family: 'SF-UI-Text-Semibold', 'Helvetica Semibold', sans-serif;
   border-radius: 25px;
+  font-size: 16px;
   line-height: 48px;
   height: 40px;
   width: 170px;
@@ -1811,6 +1813,11 @@ footer {
 .footerCont {
   bottom: 0;
 
+  h3 {
+    padding-bottom: 5px;
+    margin-bottom: 0;
+  }
+
   .linkToMenu {
     font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
     font-size: 14px;
@@ -1818,7 +1825,7 @@ footer {
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
-    letter-spacing: 0.5px;
+    // letter-spacing: 0.5px;
     text-align: center;
     color: $bodyFontColor;
     margin: -15px 0 55px;
@@ -1949,7 +1956,7 @@ footer {
   font-weight: bold;
   font-size: 17px;
   color: #494949;
-  letter-spacing: 0.5px;
+  // letter-spacing: 0.5px;
 }
 
 .listItem {
@@ -1990,6 +1997,7 @@ footer {
   justify-content: center;
   align-items: center;
   color: $secondary;
+  text-align: center;
 
   .modalInner {
     width: 70vw;
@@ -2011,6 +2019,7 @@ footer {
 
   .modalBody {
     padding-bottom: 10px;
+    text-align: center;
   }
 
   .modalCta {

@@ -40,7 +40,7 @@ export const filterWarnings = {
   fr: {
     greeting: 'Salut! 👋',
     warning: "Assurez-vous d'informer le personnel de toute allergie lorsque vous commandez!",
-    confirmation: "Je l'ai!",
+    confirmation: "J'ai compris!",
   },
   el: {
     greeting: 'Γεια! 👋',

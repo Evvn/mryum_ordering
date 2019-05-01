@@ -10,20 +10,19 @@ class PaymentHandler extends React.Component {
       <div className="processingPaymentCont">
         <div className="gradientCont">
           <div className="loading">
-            <img className="paymentHandlerImg" src="/mryum_assets/wv_logo.svg" alt="Mr Yum"/>
+            <img className="wvLogo" src="/mryum_assets/wv_logo.svg" alt="Mr Yum"/>
               <div>
                 { !paymentError ?
                   <div className="paymentSuccess">
                     <h2>Thank you for your order!</h2>
-                    <p><span>What's next:</span></p>
-                    <p>You will receive an SMS when your order is ready for pick up. Make your way to the Feat Kitchen container and pick up your food!</p>
+                    <p>You will receive an SMS when your order is ready for pick up. Make your way to the Feast Kitchen container and pick up your food!</p>
                     <div className="containerImg"></div>
                     <a
                       className="orderConfirmation"
                       href={'/' + window.location.pathname.split('/')[1] + '/menu'}
                       onClick={() => {clearStripeRes()}}
                     >
-                      Can't wait!
+                      Got it!
                     </a>
                   </div>
                   :

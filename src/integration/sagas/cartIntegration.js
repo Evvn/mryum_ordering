@@ -74,7 +74,7 @@ export function* makePayment(action) {
         email: action.email === '' ? undefined : action.email,
       }).then((response) => response)
 
-      yield console.log(res);
+      // yield console.log(res);
       yield put({
         type: actionTypes.MAKE_STRIPE_CHARGE_SUCCESS,
         res
@@ -91,13 +91,15 @@ export function* makePayment(action) {
           "item_id": [item],
           "processed": false,
           "customer_name": res.billing_details.name,
-          "phone_number": orderObj.clientInfo.phone,
+          "phone_number": orderObj.clientInfo.phone.slice(1),
           "created_time": Date(),
           "quantity": orderObj.order[item][0].quantity,
           "table_or_pickup": 'pickup',
           "unique_code": uniqueCode,
         }, function(err, record) {
             if (err) { console.error(err); return; }
+            // CALL bff
+            // websocket between merchant app and bff
         });
       })
 

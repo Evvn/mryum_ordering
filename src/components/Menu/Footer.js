@@ -10,16 +10,16 @@ class Footer extends React.Component {
             <img src="/mryum_assets/wv_logo.svg" alt="Mr Yum"/>
           </div>
 
-          <h3>Are you loving Mr Yum's visual menus?</h3>
+          <h3>Did you know you can book an igloo for your next visit?</h3>
 
-          <p>Check out our website to learn more and discover other participating venues.</p>
+          <p>Check out our website to learn more and make your booking.</p>
 
-          <a className='ctaBtn' href="/">
-            <span>Check it out!</span>
+          <a className='ctaBtn' href="https://thewintervillage.com.au/igloos">
+            <span>Book an igloo!</span>
           </a>
         </div>
 
-        <footer>©Copyright Mr Yum 2018</footer>
+        <footer>©Copyright Mr Yum 2019</footer>
       </div>
     )
   }
