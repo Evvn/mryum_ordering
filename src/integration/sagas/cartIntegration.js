@@ -8,7 +8,6 @@ import Airtable from 'airtable'
 
 export function* addToOrder(action) {
   try {
-
     const getCurrentOrder = state => state.persistentCart.currentOrder;
     let currentOrder = yield select(getCurrentOrder);
     const newItem = yield orderUtils.buildItemTemplate(action.item, action.quantity, action.addOns);
@@ -16,16 +15,30 @@ export function* addToOrder(action) {
 
     const nextCurrentOrder = {};
 
-    if(orderClone[newItem.id]){
-        nextCurrentOrder[newItem.id] = [newItem].concat(orderClone[newItem.id]);
+    // grab new item addons as array
+    // if item is in cart, check if addons match
+    // if yes, update quantity
+    // if no, make new item with addons
+    // update remove from cart to check addons as well
+
+    let newAddons = (newItem.addOns || []).map(addon => addon.record_id)
+
+    if (orderClone[newAddons.join('')+newItem.id]){
+      let oldAddons = (orderClone[newAddons.join('')+newItem.id][0].addOns || []).map(addon => addon.record_id)
+      if (newAddons.join('') === oldAddons.join('')) {
+        nextCurrentOrder[newAddons.join('')+newItem.id] = orderClone[newAddons.join('')+newItem.id]
+        nextCurrentOrder[newAddons.join('')+newItem.id][0].quantity++
+      } else {
+        nextCurrentOrder[newAddons.join('')+newItem.id] = [newItem];
+      }
     }
-    else{
-      nextCurrentOrder[newItem.id] = [newItem];
+    else {
+      nextCurrentOrder[newAddons.join('')+newItem.id] = [newItem];
     }
 
     yield put({
       type: actionTypes.ADD_TO_ORDER_SUCCESS,
-      currentOrder: {...nextCurrentOrder, ...orderClone},
+      currentOrder: {...orderClone, ...nextCurrentOrder},
     });
 
   } catch (error) {
@@ -42,12 +55,15 @@ export function* removeFromOrder(action) {
     const getCurrentOrder = state => state.persistentCart.currentOrder;
     let currentOrder = yield select(getCurrentOrder);
     let orderClone = yield _.cloneDeep(currentOrder);
-    yield console.log(orderClone);
-    delete orderClone[action.id];
-      yield put({
-        type: actionTypes.REMOVE_FROM_ORDER_SUCCESS,
-        currentOrder: orderClone,
-      })
+    if (orderClone[action.id][0].quantity > 1) {
+      yield orderClone[action.id][0].quantity--
+    } else {
+      delete orderClone[action.id];
+    }
+    yield put({
+      type: actionTypes.REMOVE_FROM_ORDER_SUCCESS,
+      currentOrder: orderClone,
+    })
   } catch (error) {
     console.log(error)
     yield put({
@@ -71,6 +87,7 @@ export function* makePayment(action) {
         source: action.token.id,
         description: action.desc,
         clientInfo: action.clientInfo,
+        customerName: action.customerName,
         email: action.email === '' ? undefined : action.email,
       }).then((response) => response)
 
@@ -84,13 +101,35 @@ export function* makePayment(action) {
       const base = new Airtable({apiKey: process.env.REACT_APP_AIRTABLE_API_KEY}).base('app4XnP7NuSCWMWD7')
       const uniqueCode = (Math.floor(1000 + Math.random() * 9000))
 
+      // mikes flash new json machnine
+      // Object.keys(orderObj.order).forEach(item => {
+      //   base('NewOrders').create({
+      //     "stripe_transaction_id": res.id,
+      //     "venue_id": 'Winter Village',
+      //     "item_id": [item],
+      //     "processed": false,
+      //     "customer_name": orderObj.customerName,
+      //     "phone_number": orderObj.clientInfo.phone.slice(1),
+      //     "created_time": Date(),
+      //     "quantity": orderObj.order[item][0].quantity,
+      //     "table_or_pickup": 'pickup',
+      //     "unique_code": uniqueCode,
+      //   }, function(err, record) {
+      //       if (err) { console.error(err); return; }
+      //       // CALL bff
+      //       // websocket between merchant app and bff
+      //   });
+      // })
+
       Object.keys(orderObj.order).forEach(item => {
+        let addons = (orderObj.order[item][0].addOns || []).map(addon => addon.record_id)
         base('Orders').create({
           "stripe_transaction_id": res.id,
           "venue_id": 'Winter Village',
           "item_id": [item],
+          "addons": addons,
           "processed": false,
-          "customer_name": res.billing_details.name,
+          "customer_name": orderObj.customerName,
           "phone_number": orderObj.clientInfo.phone.slice(1),
           "created_time": Date(),
           "quantity": orderObj.order[item][0].quantity,

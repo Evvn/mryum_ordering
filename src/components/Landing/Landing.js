@@ -73,7 +73,7 @@ class Landing extends React.Component {
 
           <img className="wvLogo" src="/mryum_assets/wv_logo.svg" alt="winter village"/>
 
-          <h3>Welcome to our mobile food menu and ordering!</h3>
+          <h3>How to order food:</h3>
 
           {/* <div className="buttons">
             <button
@@ -111,29 +111,36 @@ class Landing extends React.Component {
                 : <span>&nbsp;</span>
                }
             </p> */}
-            <p><span>Step 1: </span>View the menu</p>
-            <p><span>Step 2: </span>Order and pay for food on your phone</p>
-            <p><span>Step 3: </span>Get an SMS when your order is ready for pick up at the Feast Kitchen container</p>
+            <p><span>Step 1: </span>Verify your number so we can SMS you when your order is ready</p>
+            <p><span>Step 2: </span>View menu options, order, and pay on your phone</p>
+            <p><span>Step 3: </span>You'll receive an SMS when your order is ready to pickup</p>
           </div>
 
           {
             typeSelected ?
               (
                 typeSelected === clientTypes.SEATED ?
-                  <input className="collectInfo" type="text" placeholder={clientTypes.SEATED_INPUT} onChange={this.updateSeatedInputValue}/> :
+                  <input className="collectInfo" type="text" placeholder={clientTypes.SEATED_INPUT} onChange={this.updateSeatedInputValue}/>
+                  :
                   typeSelected === clientTypes.STANDING ?
-                  <input className="collectInfo" type="text" placeholder={clientTypes.STANDING_INPUT} onChange={this.updateStandingInputValue}/> :
+                    // <input className="collectInfo" type="text" placeholder={clientTypes.STANDING_INPUT} onChange={this.updateStandingInputValue}/>
+                    <input className="collectInfo" type="text" placeholder={'Mobile number (04xx...)'} onChange={this.updateStandingInputValue}/>
+                  :
                 ''
               )
             : ''
            }
+
+           <div className="disclaimer">
+             <span>*All drinks to be ordered at the bar (because of boring liquor rules).</span>
+           </div>
 
           { typeSelected ?
             <div
               className="viewMenu"
               onClick={(e) => {
                 // check that number does not contain
-                if (standingInput.length > 8 && !standingInput.match(/[a-z]/i)) {
+                if (standingInput.length === 10 && !standingInput.match(/[a-z]/i)) {
                   setClientType(typeSelected, {tableNumber: seatedInput, phone: standingInput}); this.routeToMenu();
                 } else {
                   if (standingInput === '') {

@@ -40,7 +40,7 @@ class App extends React.Component {
       <div>
         <ToastContainer
           position={toast.POSITION.TOP_CENTER}
-          autoClose={2000}
+          autoClose={1500}
         />
         {isLoading ? <LoadingScreen/> : ''}
         <Switch>

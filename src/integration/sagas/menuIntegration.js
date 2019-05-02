@@ -19,6 +19,7 @@ export function* getMenuData(action) {
       })
   } catch (error) {
     console.log(error)
+    // network error instead
     window.location = '/notfound'
     yield put({
       type: actionTypes.GET_MENU_DATA_FAILURE,

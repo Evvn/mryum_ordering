@@ -34,32 +34,32 @@ export const filterNames = {
 export const filterWarnings = {
   en: {
     greeting: 'Hi! 👋',
-    warning: 'Make sure you let the staff know about any allergies when you order!',
+    warning: 'Make sure you check the item descriptions for allergy information!',
     confirmation: 'Got it!',
   },
   fr: {
     greeting: 'Salut! 👋',
-    warning: "Assurez-vous d'informer le personnel de toute allergie lorsque vous commandez!",
+    warning: "Assurez-vous de vérifier les descriptions des articles pour obtenir des informations sur les allergies!",
     confirmation: "J'ai compris!",
   },
   el: {
     greeting: 'Γεια! 👋',
-    warning: 'Βεβαιωθείτε ότι έχετε ενημερώσει το προσωπικό για τυχόν αλλεργίες όταν παραγγείλετε!',
+    warning: 'Βεβαιωθείτε ότι έχετε ελέγξει τις περιγραφές αντικειμένων για πληροφορίες σχετικά με τις αλλεργίες!',
     confirmation: 'Το κατάλαβα!',
   },
   zhCN: {
     greeting: '嗨！ 👋',
-    warning: '确保在订购时让工作人员了解任何过敏情况！',
+    warning: '请务必查看过敏信息的项目描述！',
     confirmation: '得到它了！',
   },
   es: {
     greeting: '¡Hola! 👋',
-    warning: '¡Asegúrese de informar al personal sobre cualquier alergia cuando realice el pedido!',
+    warning: '¡Asegúrese de revisar las descripciones de los artículos para obtener información sobre alergias!',
     confirmation: '¡Lo tengo!',
   },
   it: {
     greeting: 'Ciao! 👋',
-    warning: 'Assicurati di far sapere allo staff di eventuali allergie quando ordini!',
+    warning: 'Assicurati di controllare le descrizioni degli articoli per le informazioni sulle allergie!',
     confirmation: 'Fatto!',
   },
 }

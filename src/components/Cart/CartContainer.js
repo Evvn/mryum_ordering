@@ -54,9 +54,8 @@ class CartContainer extends React.Component{
     processItems(itemGroups){
       const {removeFromCart, currentOrder} = this.props;
       let subtotal = 0;
-
       const processedItems = itemGroups.map(itemGroup => {
-        const costDetails= this.getCostDetails(currentOrder[itemGroup]);
+        const costDetails = this.getCostDetails(currentOrder[itemGroup]);
         subtotal = subtotal + costDetails.subtotal;
         return (
           <CartItem
@@ -85,7 +84,6 @@ class CartContainer extends React.Component{
 
     updateTotal(itemTotal){
       const { updateOrderTotal, orderTotal } = this.props;
-      console.log(orderTotal)
       updateOrderTotal(itemTotal + _.cloneDeep(orderTotal));
     }
 
@@ -106,17 +104,17 @@ class CartContainer extends React.Component{
         if(showPaymentScreen){
           return(
             <div>
-                  <PaymentScreen
-                    orderTotal={total}
-                    closePaymentScreen={this.closePaymentScreen}
-                    paymentRes={paymentRes}
-                    processingPayment={processingPayment}
-                    paymentError={paymentError}
-                    currentOrder={currentOrder}
-                    clearStripeRes={clearStripeRes}
-                    clearStripeErr={clearStripeErr}
-                    clientInfo={clientInfo}
-                  />
+                <PaymentScreen
+                  orderTotal={total}
+                  closePaymentScreen={this.closePaymentScreen}
+                  paymentRes={paymentRes}
+                  processingPayment={processingPayment}
+                  paymentError={paymentError}
+                  currentOrder={currentOrder}
+                  clearStripeRes={clearStripeRes}
+                  clearStripeErr={clearStripeErr}
+                  clientInfo={clientInfo}
+                />
             </div>
         )
       } else{
@@ -138,7 +136,7 @@ class CartContainer extends React.Component{
              }
             <div className="orderTotal">
               <span>Order Total</span>
-              <span>{total.toFixed(2)}</span>
+              <span>${total.toFixed(2)}</span>
             </div>
             <button className="payNowBtn" onClick={(e) => {this.openPaymentScreen()}}>Checkout</button>
           </div>

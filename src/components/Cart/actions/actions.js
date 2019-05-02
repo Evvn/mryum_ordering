@@ -16,7 +16,7 @@ export function removeFromCart(id) {
     };
   }
 
-export function makePayment(token, amount, desc, order, clientInfo, email) {
+export function makePayment(token, amount, desc, order, clientInfo, customerName, email) {
   return {
     type: actionTypes.MAKE_STRIPE_CHARGE_REQUEST,
     token,
@@ -24,6 +24,7 @@ export function makePayment(token, amount, desc, order, clientInfo, email) {
     desc,
     order,
     clientInfo,
+    customerName,
     email,
   };
 }

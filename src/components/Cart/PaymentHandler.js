@@ -15,7 +15,7 @@ class PaymentHandler extends React.Component {
                 { !paymentError ?
                   <div className="paymentSuccess">
                     <h2>Thank you for your order!</h2>
-                    <p>You will receive an SMS when your order is ready for pick up. Make your way to the Feast Kitchen container and pick up your food!</p>
+                    <p>You will receive an SMS when your order is ready for pick up at the Feast Kitchen container. <span aria-label="point-down" role="img">👇</span></p>
                     <div className="containerImg"></div>
                     <a
                       className="orderConfirmation"
@@ -28,7 +28,7 @@ class PaymentHandler extends React.Component {
                   :
                   <div className="paymentError">
                     <h2>Payment error :(</h2>
-                    <p>Your card was not be charged, please check your card number and try again.</p>
+                    <p>Your card has not be charged, please check your card number and try again.</p>
                     <a
                       className="orderConfirmation"
                       href={'/' + window.location.pathname.split('/')[1] + '/cart'}

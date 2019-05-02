@@ -42,7 +42,7 @@ class AddOn extends React.Component {
           <div className="addOn">
             <div>
               <span className="addOnName">{details['Add-On Name']}</span>
-              <span className="addOnPrice">+ {details['Price (Not Linked)']}</span>
+              <span className="addOnPrice">+ ${details['Price (Not Linked)']}</span>
             </div>
             <button className="addOnBtn" style={style} onClick={() => {this.selectAddon(details)}}/>
           </div>

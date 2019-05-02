@@ -271,11 +271,10 @@
   .containerImg {
     width: 250px;
     height: 168px;
-    background-image: url('/mryum_assets/Mr_Yum_logo_white.svg');
-    background-color: #f38ef5;
+    background-image: url('/feast_container.jpg');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     margin: 0 auto;
     margin-top: 30px;
   }

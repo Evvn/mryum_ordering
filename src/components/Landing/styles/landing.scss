@@ -45,7 +45,7 @@ img {
 .wvLogo {
   width: 200px;
   position: relative;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 }
 
 .buttons {
@@ -78,7 +78,7 @@ img {
 
 .instructions > p {
   // font-size: 23px;
-  font-size: 19px;
+  font-size: 17px;
   line-height: 1.3;
   text-align: center;
   // padding-bottom: 40px;
@@ -107,6 +107,18 @@ img {
 
 .collectInfo:focus {
   outline: none;
+}
+
+.disclaimer {
+  width: 230px;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.43;
+  color: #5b6674;
+  padding-top: 15px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "SF-UI-Text-Normal", 'Helvetica', sans-serif;
 }
 
 .viewMenu {

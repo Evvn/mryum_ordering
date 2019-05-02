@@ -2,7 +2,7 @@ import React from 'react';
 import ProcessingPayment from './ProcessingPayment.js'
 import PaymentHandler from './PaymentHandler.js'
 import {injectStripe, PaymentRequestButtonElement, CardElement } from 'react-stripe-elements';
-
+import { toast } from "react-toastify";
 //css
 import './styles/checkout.scss'
 
@@ -20,15 +20,31 @@ class PaymentForm extends React.Component{
             },
         });
 
-        paymentRequest.on('click', () => {
-            this.setState({disableButton: true});
+        paymentRequest.on('click', function(event) {
+          this.setState({disableButton: true});
+          const { customerName } = this.state
+          if (customerName === '') {
+            event.preventDefault()
+            toast.error(<div><p>Please enter a name for your order.</p><p>(Your card has not been charged)</p></div>);
+            return
+          }
         });
 
         paymentRequest.on('token', ({complete, token, ...data}) => {
+          const { orderTotal, currentOrder, clientInfo, makePayment } = this.props
+          const { customerName, email } = this.state
+          makePayment(
+            token,
+            orderTotal * 100,
+            'Mr Yum',
+            currentOrder,
+            clientInfo,
+            customerName,
+            email === '' ? undefined : email)
           this.setState({processingPayment: true})
           console.log('Received Stripe token: ', token);
           console.log('Received customer information: ', data);
-          // this.props.onToken(token, this.props.amount, this.props.desc);
+
           complete('success')
         });
 
@@ -47,21 +63,26 @@ class PaymentForm extends React.Component{
     }
 
     handleSubmit = (e) => {
-      const { orderTotal, currentOrder, clientInfo, stripe } = this.props
+      const { orderTotal, currentOrder, clientInfo, stripe, makePayment } = this.props
       const { customerName, email } = this.state
       e.preventDefault();
+
+      if (customerName === '') {
+        toast.error(<div><p>Please enter a name for your order.</p><p>(Your card has not been charged)</p></div>);
+        return
+      }
       if (stripe) {
         stripe
          .createToken({type: 'card', name: customerName, })
          .then((result) => {
           // console.log(result);
-          const { makePayment } = this.props;
           makePayment(
             result.token,
             orderTotal * 100,
             'Mr Yum',
             currentOrder,
             clientInfo,
+            customerName,
             email === '' ? undefined : email)
         });
       } else {
@@ -93,7 +114,17 @@ class PaymentForm extends React.Component{
           paymentError,
           clearStripeRes,
           clearStripeErr,
+          currentOrder,
         } = this.props;
+        const { customerName } = this.state
+
+        console.log(currentOrder);
+
+        // let forMike = []
+        // Object.keys(currentOrder).forEach(item => {
+        //   forMike.push(currentOrder[item])
+        // })
+        // console.log(JSON.stringify(forMike));
 
         return (
           <div className="paymentScreenCont">
@@ -144,7 +175,7 @@ class PaymentForm extends React.Component{
                     placeholder="Email for receipt (optional)" />
                   <label>
                       { // apple/google pay button hides if you cant use it
-                          this.state.canMakePayment && !this.state.hidePaymentRequest ? (
+                          this.state.canMakePayment && !this.state.hidePaymentRequest && customerName !== '' ? (
                             <div>
                               <button className="payWithCard" onClick={(e) => {
                                 e.preventDefault()
@@ -165,9 +196,8 @@ class PaymentForm extends React.Component{
                               </div>
                             </div>
                           ) :
-                          <div className="cardInput">
-                              <CardElement {...this.createOptions('18px', '0px')}/>
-                              {/* hideIcon={true} taken out of CardElement */}
+                          <div>
+                            { customerName !== '' ? <div className="cardInput"><CardElement {...this.createOptions('18px', '0px')}/></div> : '' }
                           </div>
                       }
 
@@ -176,10 +206,10 @@ class PaymentForm extends React.Component{
 
               <div className="orderTotal">
                 <span>Order Total</span>
-                <span>{orderTotal.toFixed(2)}</span>
+                <span>${orderTotal.toFixed(2)}</span>
               </div>
 
-              <button className="payNowBtn">PAY NOW</button>
+              <button className="payNowBtn">{customerName === '' ? 'Enter your name' : 'PAY NOW'}</button>
           </form>
         </div>
       )
