@@ -1,16 +1,17 @@
-@import '../../../palette.scss';
-
+@import "../../../palette.scss";
 
 // NOTE
 // Some styling for this still lives in the big App.scss file and needs to be moved, this is where I'll be adding new styles relevant to ordering and WV/HS
 
-.cartCont, .paymentScreenCont {
+.cartCont,
+.paymentScreenCont,
+.customerScreenCont {
   padding: 62px 0 186px 0;
   min-height: 100vh;
   background-color: $white;
 
   h1 {
-    padding: 3px 0  0 50px;
+    padding: 3px 0 0 50px;
   }
 }
 
@@ -25,7 +26,7 @@
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
-  font-family: "SF-UI-Text-Semibold", 'Helvetica Semibold', sans-serif;
+  font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
   font-weight: 600;
   font-size: 22px;
   color: $sectionFontColor;
@@ -35,7 +36,8 @@
     padding-bottom: 25px;
   }
 
-  button, button:focus {
+  button,
+  button:focus {
     border: none;
     outline: none;
     background-color: $secondary;
@@ -48,29 +50,30 @@
   }
 }
 
-.cartHeading, .checkoutHeading {
+.cartHeading,
+.checkoutHeading {
   font-size: 25px;
   text-align: left;
   font-weight: 500;
-  font-family: "SF-UI-Text-Semibold", 'Helvetica Semibold', sans-serif;
+  font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
   color: $sectionFontColor;
   margin: 15px;
   border-bottom: 1px solid #e8e8e8;
   padding-bottom: 15px;
 }
-
+.customerHeading,
 .checkoutHeading {
   margin-bottom: 0px;
   border-bottom: none;
 }
 
 .paymentHeading {
-    font-family: "SF-UI-Text-Bold", 'Helvetica Bold', sans-serif;
-    padding: 20px 15px;
-    background-color: $grey;
-    color: $titleFontColor;
-    font-size: 19px;
-    letter-spacing: .5px;
+  font-family: "SF-UI-Text-Bold", "Helvetica Bold", sans-serif;
+  padding: 20px 15px;
+  background-color: $grey;
+  color: $titleFontColor;
+  font-size: 19px;
+  letter-spacing: 0.5px;
 }
 
 .cartItem {
@@ -85,11 +88,11 @@
 .cartItemQuantity {
   color: $primary;
   font-size: 18px;
-  font-family: "SF-UI-Text-Semibold", 'Helvetica Semibold', sans-serif;
+  font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
 }
 
 .cartItemName {
-  font-family: "SF-UI-Text-Normal", 'Helvetica', sans-serif;
+  font-family: "SF-UI-Text-Normal", "Helvetica", sans-serif;
   font-size: 17px;
   color: $sectionFontColor;
   padding-left: 15px;
@@ -108,15 +111,16 @@
 .cartItemPrice {
   display: block;
   font-size: 17px;
-  font-family: "SF-UI-Text-Normal", 'Helvetica', sans-serif;
+  font-family: "SF-UI-Text-Normal", "Helvetica", sans-serif;
 }
 
-.removeItmBtn, .removeItmBtn:focus {
+.removeItmBtn,
+.removeItmBtn:focus {
   position: absolute;
   right: 15px;
   border: 1px solid $primary;
   color: $secondary;
-  font-family: "SF-UI-Text-Bold", 'Helvetica Bold', sans-serif;
+  font-family: "SF-UI-Text-Bold", "Helvetica Bold", sans-serif;
   outline: none;
   background-color: $white;
   height: 25px;
@@ -145,11 +149,12 @@
   align-items: center;
   padding: 0 15px;
   font-size: 17px;
-  font-family: "SF-UI-Text-Normal", 'Helvetica', sans-serif;
-   box-shadow: 0 -1px 17px 0 rgba(0, 0, 0, 0.14);
+  font-family: "SF-UI-Text-Normal", "Helvetica", sans-serif;
+  box-shadow: 0 -1px 17px 0 rgba(0, 0, 0, 0.14);
 }
 
-.payNowBtn, .payNowBtn:focus {
+.payNowBtn,
+.payNowBtn:focus {
   background-color: $primary;
   color: $white;
   position: fixed;
@@ -158,7 +163,7 @@
   width: 100%;
   height: 64px;
   text-transform: uppercase;
-  font-family: "SF-UI-Text-Bold", 'Helvetica Bold', sans-serif;
+  font-family: "SF-UI-Text-Bold", "Helvetica Bold", sans-serif;
   line-height: 1.33;
   letter-spacing: 1px;
   font-size: 18px;
@@ -166,10 +171,11 @@
   border: none;
 }
 
-.payWithCard, .payWithCard:focus {
+.payWithCard,
+.payWithCard:focus {
   border: 1px solid $primary;
   color: $secondary;
-  font-family: "SF-UI-Text-Bold", 'Helvetica Bold', sans-serif;
+  font-family: "SF-UI-Text-Bold", "Helvetica Bold", sans-serif;
   outline: none;
   background-color: $white;
   height: 40px;
@@ -187,13 +193,18 @@
   z-index: 13;
 }
 
-.cardInput, .cardInput:focus {
+.cardInput,
+.cardInput:focus {
   padding: 22px 18px 22px 17px;
   border-bottom: 1px solid #e8e8e8;
 }
 
-.customerEmail, .customerEmail:focus,
-.customerName, .customerName:focus {
+.customerEmail,
+.customerEmail:focus,
+.customerName,
+.customerName:focus,
+.collectInfo,
+.collectInfo:focus {
   outline: none;
   border: none;
   width: 100%;
@@ -202,11 +213,34 @@
   padding: 22px 18px 22px 17px;
   font-size: 18px;
   color: $secondary;
-  font-family: "SF-UI-Text-Normal", 'Helvetica', sans-serif;
+  font-family: "SF-UI-Text-Normal", "Helvetica", sans-serif;
 }
 
-.customerEmail::placeholder, .customerName::placeholder {
+.customerName,
+.customerName:focus {
+  border-bottom: none;
+}
+
+.customerEmail::placeholder,
+.customerName::placeholder {
   color: #757575;
+}
+
+.react-phone-number-input {
+  background-color: $white;
+  display: flex;
+
+  .react-phone-number-input__row {
+    width: 200px;
+  }
+
+  input {
+    border-bottom: none;
+  }
+
+  input::placeholder {
+    color: #3c4653;
+  }
 }
 
 .processingPaymentCont {
@@ -224,8 +258,8 @@
   }
 
   p {
-    font-family: "SF-UI-Text-Semibold", 'Helvetica Semibold', sans-serif;
-    letter-spacing: .5px;
+    font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
+    letter-spacing: 0.5px;
     font-size: 24px;
     padding: 30px;
     padding-top: 0px;
@@ -238,9 +272,9 @@
 }
 
 .processingPaymentCont > .gradientCont > .loading {
-  background-image: url('/mryum_assets/snowflakes.svg');
+  background-image: url("/mryum_assets/snowflakes.svg");
   background-repeat: no-repeat;
-  background-size:  cover;
+  background-size: cover;
   background-color: transparent;
   background-position: center;
   color: #3c4653;
@@ -262,7 +296,7 @@
   }
 
   p {
-    font-family: "SF-UI-Text-Normal", 'Helvetica', sans-serif;
+    font-family: "SF-UI-Text-Normal", "Helvetica", sans-serif;
     font-size: 19px;
     line-height: 1.32;
     padding-bottom: 15px;
@@ -271,7 +305,7 @@
   .containerImg {
     width: 250px;
     height: 168px;
-    background-image: url('/feast_container.jpg');
+    background-image: url("/feast_container.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -284,7 +318,8 @@
   width: 220px;
 }
 
-.backToMenu, .backToMenu:focus {
+.backToMenu,
+.backToMenu:focus {
   text-decoration: none;
   color: $secondary;
   background-color: white;
@@ -293,14 +328,15 @@
   padding: 10px 15px;
 }
 
-.orderConfirmation, .orderConfirmation:focus {
+.orderConfirmation,
+.orderConfirmation:focus {
   text-decoration: none;
   color: $white;
   background-color: $secondary;
   text-transform: uppercase;
   font-size: 18px;
   letter-spacing: 1px;
-  font-family: "SF-UI-Text-Bold", 'Helvetica Bold', sans-serif;
+  font-family: "SF-UI-Text-Bold", "Helvetica Bold", sans-serif;
   height: 62px;
   width: 100vw;
   position: fixed;

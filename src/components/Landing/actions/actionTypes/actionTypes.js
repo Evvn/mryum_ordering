@@ -1,1 +1,1 @@
-export const SET_CLIENT_TYPE = 'SET_CLIENT_TYPE';
+export const SET_CLIENT_TYPE = "SET_CLIENT_TYPE";

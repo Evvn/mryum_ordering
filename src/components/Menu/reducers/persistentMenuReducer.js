@@ -1,15 +1,15 @@
-import * as actionTypes from '../actions/actionTypes/actionTypes.js';
-import { filter } from '../enums/menuEnums.js';
+import * as actionTypes from "../actions/actionTypes/actionTypes.js";
+import { filter } from "../enums/menuEnums.js";
 // import stub from '../../../data/airtableDatabaseStub.json';
 
 const initialState = {
   venue: false,
   bffRes: false,
   category: false,
-  lang: 'en',
+  lang: "en",
   item: false,
   filter
-}
+};
 
 function menuReducer(state = initialState, action) {
   switch (action.type) {
@@ -18,30 +18,30 @@ function menuReducer(state = initialState, action) {
         ...state,
         venue: action.venue,
         bffRes: action.res,
-        item: action.item,
-      }
+        item: action.item
+      };
     case actionTypes.UPDATE_LANG:
       return {
         ...state,
-        lang: action.lang,
-      }
+        lang: action.lang
+      };
     case actionTypes.UPDATE_FILTER:
       return {
         ...state,
-        filter: action.filter,
-      }
+        filter: action.filter
+      };
     case actionTypes.SET_ITEM_ID:
       return {
         ...state,
-        item: action.id,
-      }
+        item: action.id
+      };
     case actionTypes.SET_CATEGORY:
       return {
         ...state,
-        category: action.category,
-      }
+        category: action.category
+      };
     default:
-      return state
+      return state;
   }
 }
 
