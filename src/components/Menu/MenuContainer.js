@@ -34,10 +34,6 @@ class MenuContainer extends React.Component {
           : false
     };
 
-    if (window.location.pathname === "/" || window.location.pathname === "/wv") {
-      window.location.pathname = "/wv/menu";
-    }
-
     this.routeToItemDetail = this.routeToItemDetail.bind(this);
   }
 
@@ -51,16 +47,24 @@ class MenuContainer extends React.Component {
       clearSectionPositions,
       venueUrl
     } = this.props;
-    if (!bffRes || venue !== venueUrl) {
-      document.title = "Mr Yum";
-      getMenuData(venueUrl);
-      clearSectionPositions();
+    console.log("wm");
+    if (
+      window.location.pathname === "/" ||
+      window.location.pathname === "/wv"
+    ) {
+      window.location.pathname = "/wv/menu";
     } else {
-      //const venueName = Object.values(bffRes)[0].fields.Venue;
-      document.title = venueUrl + " Menu";
-    }
-    if (this.params.item !== itemId) {
-      setItemId(this.params.item);
+      if (!bffRes || venue !== venueUrl) {
+        document.title = "Mr Yum";
+        getMenuData("wv");
+        clearSectionPositions();
+      } else {
+        //const venueName = Object.values(bffRes)[0].fields.Venue;
+        document.title = "Winter Village Menu";
+      }
+      if (this.params.item !== itemId) {
+        setItemId(this.params.item);
+      }
     }
   }
 
@@ -78,9 +82,10 @@ class MenuContainer extends React.Component {
     //  if (Object.keys(clientInfo).length === 0) {
     //    window.location = '/wv/landing'
     //  }
+    console.log("wu");
 
     if (!bffRes || venue !== venueUrl) {
-      getMenuData(venueUrl);
+      getMenuData("wv");
       clearSectionPositions();
     }
 

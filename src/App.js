@@ -57,6 +57,11 @@ class App extends React.Component {
         isOpen = true;
       }
     }
+
+    // FOR DEV
+    // if (process.env.REACT_APP_REDUX_DEV_TOOLS === "true") {
+    isOpen = true;
+    // }
     // const path = router.location.pathname.split('/')[1];
     // const showMenu = venueNames ? venueNames.includes(path) ? true : false : false;
     return (
@@ -111,14 +116,14 @@ class App extends React.Component {
                 exact
                 path="/wv"
                 component={({ match }) => (
-                  <MenuContainer venueUrl={"wv"} routeTo={"wv"} />
+                  <MenuContainer venueUrl={"wv"} itemId={false} />
                 )}
               />
               <Route
                 exact
                 path="/"
                 component={({ match }) => (
-                  <MenuContainer venueUrl={"wv"} routeTo={"wv"} />
+                  <MenuContainer venueUrl={"wv"} itemId={false} />
                 )}
               />
               <Route

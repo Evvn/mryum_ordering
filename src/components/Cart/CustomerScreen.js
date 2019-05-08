@@ -3,7 +3,7 @@ import phone from "phone";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { toast } from "react-toastify";
-import { loggerPlugin } from "router5";
+// import { loggerPlugin } from "router5";
 
 class CustomerScreen extends React.Component {
   constructor(props) {
@@ -68,7 +68,7 @@ class CustomerScreen extends React.Component {
           value={nameInput}
           onChange={e => this.updateNameInputValue(e)}
         />
-        <div className="paymentHeading">Mobile number for SMS</div>
+        <div className="paymentHeading">Number for SMS notification</div>
         {typeSelected ? (
           typeSelected === "Seated" ? (
             <input
