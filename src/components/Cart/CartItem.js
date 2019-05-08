@@ -1,4 +1,5 @@
 import React from 'react';
+import uuid from 'uuid/v4';
 
 class CartItem extends React.Component {
 
@@ -6,9 +7,9 @@ class CartItem extends React.Component {
     let addOnList = []
     addOns.forEach(addOn => {
       addOnList.push(
-        <div className="addOn">
+        <div className="addOn" key={uuid()}>
           <span className="addOnName">{addOn.name}</span>
-          <span className="addOnPrice">+{addOn.price.toFixed(2)}</span>
+          <span className="addOnPrice">+ ${addOn.price.toFixed(2)}</span>
         </div>
       )
     })
@@ -35,7 +36,7 @@ class CartItem extends React.Component {
             { this.printAddOns(addOns) }
           </div>
         </div>
-        <span className="cartItemPrice">{subtotal.toFixed(2)}</span>
+        <span className="cartItemPrice">${subtotal.toFixed(2)}</span>
         <button className="removeItmBtn" onClick={(e) => {removeFromCart(itemId)}}>Remove</button>
       </div>
     );

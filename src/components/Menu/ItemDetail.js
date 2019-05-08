@@ -115,8 +115,8 @@ class ItemDetail extends React.Component {
     const {stagedQuantity} = this.state;
     let name = details.name
     let desc = details.description;
-    let translatedName = 'name-' + lang
-    let translatedDesc = 'description-' + lang
+    let translatedName = 'name' + lang
+    let translatedDesc = 'description' + lang
     let creditUrl
     let img = details.image
       ? details.image[0].url
@@ -185,7 +185,7 @@ class ItemDetail extends React.Component {
             {details.addons ? <AddOnContainer addons={details.addons} updateAddOns={this.updateAddOns}/> : null}
 
             <div className="previewDetails">
-              <div className="previewPrice">{details['price']}</div>
+              <div className="previewPrice">${details['price']}</div>
 
               {/* Tags are LIST? Don't show */}
             {

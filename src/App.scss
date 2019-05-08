@@ -1,26 +1,29 @@
-@import './palette.scss';
+@import "./palette.scss";
 
 @font-face {
-  font-family: 'SF-UI-Text-Regular';
-  src: url("/fonts/SF-UI-Text-Regular.woff2") format('woff2'), url("/fonts/SF-UI-Text-Regular.woff") format('woff');
+  font-family: "SF-UI-Text-Regular";
+  src: url("/fonts/SF-UI-Text-Regular.woff2") format("woff2"),
+    url("/fonts/SF-UI-Text-Regular.woff") format("woff");
   font-weight: 500;
   font-style: italic;
 }
 @font-face {
-  font-family: 'SF-UI-Text-Semibold';
-  src: url("/fonts/SF-UI-Text-Semibold.woff2") format('woff2'), url("/fonts/SF-UI-Text-Semibold.woff") format('woff');
+  font-family: "SF-UI-Text-Semibold";
+  src: url("/fonts/SF-UI-Text-Semibold.woff2") format("woff2"),
+    url("/fonts/SF-UI-Text-Semibold.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
-  font-family: 'SF-UI-Text-Bold';
-  src: url("/fonts/SF-UI-Text-Bold.woff2") format('woff2'), url("/fonts/SF-UI-Text-Bold.woff") format('woff');
+  font-family: "SF-UI-Text-Bold";
+  src: url("/fonts/SF-UI-Text-Bold.woff2") format("woff2"),
+    url("/fonts/SF-UI-Text-Bold.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 %displayFont {
-  font-family: 'SF-UI-Text-Semibold', 'Helvetica Bold', sans-serif;
+  font-family: "SF-UI-Text-Semibold", "Helvetica Bold", sans-serif;
   font-weight: normal;
   // font-size: 22px;
   font-size: 22px;
@@ -29,34 +32,34 @@
 }
 
 %sectionFont {
-  font-family: 'SF-UI-Text-Semibold', 'Helvetica Bold', sans-serif;
+  font-family: "SF-UI-Text-Semibold", "Helvetica Bold", sans-serif;
   // font-size: 20px;
   font-size: 30px;
   color: $sectionFontColor;
 }
 
 %titleFont {
-  font-family: 'SF-UI-Text-Semibold', 'Helvetica Semibold', sans-serif;
+  font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
   font-size: 16px;
   color: $titleFontColor;
   // letter-spacing: 0.5px;
 }
 
 %bodyFont {
-  font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
+  font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
   font-size: 13px;
   color: $bodyFontColor;
 }
 
 %priceFont {
-  font-family: 'SF-UI-Text-Bold', 'Helvetica Bold', sans-serif;
+  font-family: "SF-UI-Text-Bold", "Helvetica Bold", sans-serif;
   font-size: 13px;
   color: $titleFontColor;
 }
 
 %tags {
   @extend %priceFont;
-  font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
+  font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
 }
 
 * {
@@ -197,7 +200,7 @@ body {
   bottom: 0;
   width: 100vw;
   z-index: 5;
-  background-color: rgba(#000,.7);
+  background-color: rgba(#000, 0.7);
 
   .feedbackForm {
     border-radius: 4px;
@@ -253,7 +256,6 @@ body {
         padding-left: 15px;
         padding-right: 15px;
       }
-
     }
 
     .feedbackText {
@@ -457,6 +459,14 @@ body {
     color: $white;
     font-size: 16px;
   }
+
+  h3 {
+    font-size: 18px;
+    margin: 20px;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .broadsheetLoading {
@@ -515,7 +525,7 @@ body {
   }
 
   40% {
-    -webkit-transform: scale(1.0);
+    -webkit-transform: scale(1);
   }
 }
 @keyframes sk-bouncedelay {
@@ -527,8 +537,8 @@ body {
   }
 
   40% {
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }
 
@@ -564,7 +574,7 @@ body {
     font-size: 14px;
     padding: 4px 12px;
     border-radius: 15px;
-    transition: .2s ease all;
+    transition: 0.2s ease all;
     /* Enable hardware acceleration to fix laggy transitions */
     -webkit-transform: translateZ(0);
     -moz-transform: translateZ(0);
@@ -618,7 +628,7 @@ header {
     left: 0;
     width: 100vw;
     z-index: 5;
-    background-color: rgba(#000,.7);
+    background-color: rgba(#000, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -688,7 +698,7 @@ header {
     .filterList {
       background-color: $white;
       color: $sectionFontColor;
-      font-family: "SF-UI-Text-Semibold", 'Helvetica Semibold', sans-serif;
+      font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
       border: 1px solid #aaa;
       position: absolute;
       top: 50px;
@@ -860,7 +870,7 @@ header {
     font-weight: 600;
     display: none;
     color: $sectionFontColor;
-    font-family: "SF-UI-Text-Semibold", 'Helvetica Semibold', sans-serif;
+    font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
   }
 
   p:first-of-type {
@@ -939,7 +949,7 @@ header {
     -ms-transform: translateZ(0);
     -o-transform: translateZ(0);
     transform: translateZ(0);
-    font-family: 'Helvetica';
+    font-family: "Helvetica";
   }
 
   .red {
@@ -1165,7 +1175,7 @@ h1 {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: rgba(#000,.7);
+    background-color: rgba(#000, 0.7);
     font-size: 22px;
     letter-spacing: 0.5px;
     transition: 0.4s ease all;
@@ -1175,54 +1185,54 @@ h1 {
     animation: flickerAnimation 2s infinite;
     @keyframes flickerAnimation {
       0% {
-        background-color: rgba(#000,0.7);
+        background-color: rgba(#000, 0.7);
       }
 
       50% {
-        background-color: rgba(#000,0.4);
+        background-color: rgba(#000, 0.4);
       }
 
       100% {
-        background-color: rgba(#000,0.7);
+        background-color: rgba(#000, 0.7);
       }
     }
     @-o-keyframes flickerAnimation {
       0% {
-        background-color: rgba(#000,0.7);
+        background-color: rgba(#000, 0.7);
       }
 
       50% {
-        background-color: rgba(#000,0.4);
+        background-color: rgba(#000, 0.4);
       }
 
       100% {
-        background-color: rgba(#000,0.7);
+        background-color: rgba(#000, 0.7);
       }
     }
     @-moz-keyframes flickerAnimation {
       0% {
-        background-color: rgba(#000,0.7);
+        background-color: rgba(#000, 0.7);
       }
 
       50% {
-        background-color: rgba(#000,0.4);
+        background-color: rgba(#000, 0.4);
       }
 
       100% {
-        background-color: rgba(#000,0.7);
+        background-color: rgba(#000, 0.7);
       }
     }
     @-webkit-keyframes flickerAnimation {
       0% {
-        background-color: rgba(#000,0.7);
+        background-color: rgba(#000, 0.7);
       }
 
       50% {
-        background-color: rgba(#000,0.4);
+        background-color: rgba(#000, 0.4);
       }
 
       100% {
-        background-color: rgba(#000,0.7);
+        background-color: rgba(#000, 0.7);
       }
     }
 
@@ -1331,7 +1341,7 @@ h1 {
   top: 0;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .firstVisit {
@@ -1342,7 +1352,7 @@ h1 {
   border: 1px solid #e5e5e5;
   border-radius: 5px;
   text-align: center;
-  box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
   position: fixed;
   left: 0;
   right: 0;
@@ -1431,7 +1441,7 @@ h1 {
 
       textarea,
       textarea::placeholder {
-        font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
+        font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
       }
     }
   }
@@ -1463,7 +1473,7 @@ h1 {
       background-color: $white;
       border: 1px solid #e5e5e5;
       border-radius: 55x;
-      box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
       position: absolute;
       left: 0;
       right: 0;
@@ -1512,7 +1522,7 @@ h1 {
 
   .previewName {
     max-width: $maxWidth;
-    font-family: 'SF-UI-Text-Semibold', 'Helvetica', sans-serif;
+    font-family: "SF-UI-Text-Semibold", "Helvetica", sans-serif;
     font-size: 22px;
     font-weight: 600;
     font-style: normal;
@@ -1527,7 +1537,7 @@ h1 {
   .imageCredit,
   .previewDescription {
     max-width: $maxWidth;
-    font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
+    font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
     font-size: 16px;
     font-weight: normal;
     font-style: normal;
@@ -1588,7 +1598,7 @@ h1 {
 
   .previewPrice {
     max-width: $maxWidth;
-    font-family: 'SF-UI-Text-Bold', 'Helvetica Bold', sans-serif;
+    font-family: "SF-UI-Text-Bold", "Helvetica Bold", sans-serif;
     font-size: 16px;
     font-weight: bold;
     font-style: normal;
@@ -1600,7 +1610,7 @@ h1 {
 
   .previewTags {
     max-width: $maxWidth;
-    font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
+    font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
     font-size: 16px;
     font-weight: normal;
     font-style: normal;
@@ -1636,14 +1646,14 @@ h1 {
 
   p {
     color: $bodyFontColor;
-    font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
+    font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
     font-size: 14px;
     line-height: 20px;
     margin: 10px 0;
   }
 
   .preRegister {
-    font-family: 'SF-UI-Text-Semibold', 'Helvetica', sans-serif;
+    font-family: "SF-UI-Text-Semibold", "Helvetica", sans-serif;
     font-weight: bold;
     color: $titleFontColor;
     font-size: 14px;
@@ -1656,7 +1666,7 @@ footer {
   justify-content: center;
   align-items: center;
   height: 57px;
-  font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
+  font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
   font-size: 12px;
   font-weight: 500;
   font-style: normal;
@@ -1687,7 +1697,7 @@ footer {
   align-items: center;
   background: $primary;
   color: $white;
-  font-family: 'SF-UI-Text-Semibold', 'Helvetica Semibold', sans-serif;
+  font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
   border-radius: 25px;
   font-size: 16px;
   line-height: 48px;
@@ -1723,7 +1733,7 @@ footer {
     text-align: left;
 
     .ctaBtn input {
-      font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
+      font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
       font-size: 16px;
       border: 0;
       width: 240px;
@@ -1788,7 +1798,7 @@ footer {
 @keyframes fadeBtnIn {
   0% {
     opacity: 0;
-    transform: scale(.7);
+    transform: scale(0.7);
   }
 
   100% {
@@ -1802,7 +1812,7 @@ footer {
   padding: 30px;
   color: $white;
   text-align: center;
-  margin-bottom: 20vh;
+  margin-bottom: 10vh;
 }
 
 .lost {
@@ -1819,7 +1829,7 @@ footer {
   }
 
   .linkToMenu {
-    font-family: 'SF-UI-Text-Regular', 'Helvetica', sans-serif;
+    font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
     font-size: 14px;
     font-weight: 600;
     font-style: normal;
@@ -1988,7 +1998,7 @@ footer {
 .modalCont {
   height: 100vh;
   width: 100vw;
-  background-color: rgba(#000,.7);
+  background-color: rgba(#000, 0.7);
   z-index: 11;
   position: fixed;
   top: 0;
@@ -2115,7 +2125,7 @@ footer {
       background-color: $white;
       border: 1px solid #e5e5e5;
       border-radius: 5px;
-      box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
       position: fixed;
       left: 0;
       right: 0;
@@ -2165,7 +2175,7 @@ footer {
     max-height: none;
     position: fixed;
     top: 0;
-    background-color: rgba(#000,.6);
+    background-color: rgba(#000, 0.6);
 
     .previewItem {
       display: grid;
@@ -2280,7 +2290,8 @@ footer {
     flex: 0 0 45%;
     border-radius: 4px 4px 0 0;
 
-    .listItem {}
+    .listItem {
+    }
   }
 }
 // landing page css
@@ -2421,7 +2432,7 @@ footer {
   }
 
   ::-webkit-input-placeholder {
-    color: rgba(#fc4250,.7);
+    color: rgba(#fc4250, 0.7);
   }
 
   .emailCollect:focus::-webkit-input-placeholder {
@@ -2445,7 +2456,7 @@ footer {
     grid-area: 2 / 1 / 2 / 11;
     // height: 270px;
     height: auto;
-    border-bottom: 2px rgba(214,214,214,.49) solid;
+    border-bottom: 2px rgba(214, 214, 214, 0.49) solid;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -2795,7 +2806,7 @@ footer {
       font-weight: 500;
       font-size: 30px;
       color: #000629;
-      border-bottom: 1px solid rgba(214,214,214,.49);
+      border-bottom: 1px solid rgba(214, 214, 214, 0.49);
       padding-bottom: 50px;
       padding-top: 75px;
       display: block;
@@ -2804,7 +2815,7 @@ footer {
 
     .questionCont {
       padding: 50px 15vw;
-      border-bottom: 1px solid rgba(214,214,214,.49);
+      border-bottom: 1px solid rgba(214, 214, 214, 0.49);
     }
 
     .question {
@@ -2850,7 +2861,7 @@ footer {
     &:before {
       background: #fc4250;
       border-radius: 1px;
-      content: '';
+      content: "";
       height: 3px;
       left: 4vw;
       position: absolute;
@@ -2915,7 +2926,7 @@ footer {
       input,
       textarea {
         color: $mryumRed;
-        border: 1px solid rgba(214,214,214,.73);
+        border: 1px solid rgba(214, 214, 214, 0.73);
         font-family: "Avenir-Roman", "Avenir", "Helvetica", sans-serif;
         font-size: 16px;
         width: 583px;
@@ -2956,7 +2967,8 @@ footer {
     flex-direction: row;
   }
 
-  header, h1 {
+  header,
+  h1 {
     background-color: $secondary;
     color: $white;
 
@@ -2987,7 +2999,10 @@ footer {
     justify-content: center;
     align-items: center;
 
-    a, a:hover, a:visited, a:focus {
+    a,
+    a:hover,
+    a:visited,
+    a:focus {
       text-decoration: none;
       color: $white;
     }
@@ -3229,7 +3244,7 @@ footer {
         &:before {
           background: #fc4250;
           border-radius: 1px;
-          content: '';
+          content: "";
           height: 3px;
           left: 4vw;
           position: absolute;
@@ -3245,7 +3260,7 @@ footer {
         input,
         textarea {
           color: $mryumRed;
-          border: 1px solid rgba(214,214,214,.73);
+          border: 1px solid rgba(214, 214, 214, 0.73);
           font-family: "Avenir-Roman", "Avenir", "Helvetica", sans-serif;
           font-size: 16px;
           width: 80vw;

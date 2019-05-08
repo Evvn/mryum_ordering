@@ -16,6 +16,8 @@
     14: state => {},
     15: state => {},
     16: state => {},
+    17: state => {},
+    18: state => {},
 };
 
 export default migrations;

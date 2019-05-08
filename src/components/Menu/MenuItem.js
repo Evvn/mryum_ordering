@@ -11,8 +11,8 @@ class MenuItem extends React.Component {
     const { lang } = this.props
     let name = item.name
     let desc = item.description;
-    let translatedName = 'name-' + lang
-    let translatedDesc = 'description-' + lang
+    let translatedName = 'name' + lang
+    let translatedDesc = 'description' + lang
     let trimmedName;
 
     if (lang !== 'en') {
@@ -50,7 +50,7 @@ class MenuItem extends React.Component {
         <h3 className="title">{ trimmedName }</h3>
         <div className="bodyText">{ clampedDesc }</div>
         <div className="info">
-          <span className="price">{item.price}</span>
+          <span className="price">${item.price}</span>
           <span className="tags">{ !!item.tags ? item.tags.join(' ') : null }</span>
         </div>
       </div>

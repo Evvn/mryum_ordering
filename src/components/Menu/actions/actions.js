@@ -1,4 +1,4 @@
-import * as actionTypes from './actionTypes/actionTypes.js';
+import * as actionTypes from "./actionTypes/actionTypes.js";
 
 // export function setLandingRoute(route) {
 //   return {
@@ -11,54 +11,54 @@ export function getMenuData(venue, item) {
   return {
     type: actionTypes.GET_MENU_DATA_REQUEST,
     venue,
-    item,
-  }
+    item
+  };
 }
 
 export function updateFilter(filter) {
   return {
     type: actionTypes.UPDATE_FILTER,
-    filter,
-  }
+    filter
+  };
 }
 
 export function setSectionPosition(section, position) {
   return {
     type: actionTypes.SET_SECTION_POSITION_REQUEST,
     section,
-    position,
-  }
+    position
+  };
 }
 
 export function updateLang(lang) {
   return {
     type: actionTypes.UPDATE_LANG,
-    lang,
-  }
+    lang
+  };
 }
 
 export function setItemId(id) {
   return {
     type: actionTypes.SET_ITEM_ID,
-    id,
-  }
+    id
+  };
 }
 
-export function clearSectionPositions(){
-  return{
-    type: actionTypes.CLEAR_SECTION_POSITIONS,
-  }
+export function clearSectionPositions() {
+  return {
+    type: actionTypes.CLEAR_SECTION_POSITIONS
+  };
 }
 
 export function toggleShowWater() {
   return {
-    type: actionTypes.TOGGLE_SHOW_WATER,
-  }
+    type: actionTypes.TOGGLE_SHOW_WATER
+  };
 }
 
 export function setCategory(category) {
   return {
     type: actionTypes.SET_CATEGORY,
-    category,
-  }
+    category
+  };
 }
