@@ -14,9 +14,6 @@ const callBff = (suffix, type, body, returnJson = true) => {
   }
 
   try {
-    console.log("s " + suffix);
-    console.log("p " + JSON.stringify(payload));
-
     return fetch(
       `${process.env.REACT_APP_BFF_BASE_URL}/yumbff/${suffix}`,
       payload

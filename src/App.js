@@ -14,15 +14,18 @@ import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 import "./App.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactGA from "react-ga";
 // import { loggerPlugin } from "router5";
+ReactGA.initialize("UA-129043240-2");
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends React.Component {
-  // componentWillMount() {
-  //   const { getVenueNames, venueNames } = this.props
-  //   if (!venueNames) {
-  //     getVenueNames();
-  //   }
-  // }
+  componentWillMount() {
+    const { getVenueNames, venueNames } = this.props;
+    if (!venueNames) {
+      getVenueNames();
+    }
+  }
 
   componentWillUnmount() {
     localStorage.clear("persist:persistedStore");
@@ -38,6 +41,8 @@ class App extends React.Component {
     const date = new Date();
     const hour = date.getHours();
     const dayIndex = date.getDay();
+
+    /// to do - move kitchen opening times to database, no more hard coding
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const day = days[dayIndex];
 
@@ -59,9 +64,9 @@ class App extends React.Component {
     }
 
     // FOR DEV
-    // if (process.env.REACT_APP_REDUX_DEV_TOOLS === "true") {
-    isOpen = true;
-    // }
+    if (process.env.REACT_APP_REDUX_DEV_TOOLS === "true") {
+      isOpen = true;
+    }
     // const path = router.location.pathname.split('/')[1];
     // const showMenu = venueNames ? venueNames.includes(path) ? true : false : false;
     return (

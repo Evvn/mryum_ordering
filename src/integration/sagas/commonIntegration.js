@@ -14,7 +14,6 @@ export function* getVenueNames(action) {
     });
   } catch (error) {
     console.log(error);
-    console.log("error thrown here **************");
 
     window.location = "/servererror";
     yield put({
@@ -35,7 +34,6 @@ export function* getVenues(action) {
     });
   } catch (error) {
     console.log(error);
-    console.log("error thrown here XXXXXXXXXXXXXXXX");
 
     window.location = "/servererror";
     yield put({

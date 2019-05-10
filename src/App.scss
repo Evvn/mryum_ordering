@@ -91,7 +91,6 @@ body {
 }
 
 .menu {
-  min-height: 100vh;
   position: relative;
   background-color: $white;
 }
@@ -1098,7 +1097,7 @@ h1 {
 }
 
 .sectionTaller {
-  padding-top: 125px;
+  padding-top: 0px;
 }
 // hack lol
 .filterSection:first-of-type {

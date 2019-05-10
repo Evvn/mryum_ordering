@@ -1,0 +1,53 @@
+@import "../../../palette.scss";
+
+.searchCont {
+  padding: 124px 10px 15px 10px;
+  background-color: $white;
+  margin: 0 auto;
+  font-family: "SF-UI-Text-Regular", "Helvetica", sans-serif;
+  transition: 0.2s ease-in-out all;
+}
+
+.searchInUse {
+  padding-top: 84px;
+}
+
+.searchInput,
+.searchInput:focus {
+  outline: none;
+  border: 1px solid #dbdbdb;
+  border-radius: 25px;
+  height: 50px;
+  width: 100%;
+  padding: 0 20px;
+  font-size: 17px;
+  letter-spacing: 0.2px;
+  background-color: $white;
+}
+
+.searchInput {
+  background-image: url("/icons/search_icon.svg");
+  background-repeat: no-repeat;
+  background-position: 95% center;
+}
+
+.searchInput:focus {
+  background-image: none;
+}
+
+.searchInput::placeholder {
+  color: #b2b2b2;
+}
+
+.searchInput::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  background-color: $white;
+  background-image: url("/icons/search_x.svg");
+  background-repeat: no-repeat;
+  background-position: 95% center;
+  position: relative;
+  right: -15px;
+  height: 38px;
+  width: 38px;
+  border-radius: 25px;
+}

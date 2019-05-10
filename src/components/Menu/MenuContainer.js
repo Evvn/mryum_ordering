@@ -7,15 +7,17 @@ import LanguageSelect from "./LanguageSelect.js";
 import Menu from "./Menu";
 // import { persistStore } from 'redux-persist'
 import Footer from "./Footer";
-// import MenuSearch from '../Common/MenuSearch';
+import MenuSearch from "../Common/MenuSearch";
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
 import * as actions from "./actions/actions.js";
 import * as cartActions from "../Cart/actions/actions.js";
+import * as commonActions from "../Common/actions/actions.js";
 import classNames from "classnames";
 // import ReactGA from 'react-ga'
 import { venues } from "../Common/enums/commonEnums.js";
-
 import CategorySelect from "../CategorySelect/CategorySelect.js";
+
+import "./styles/menuContainer.scss";
 
 class MenuContainer extends React.Component {
   constructor(props) {
@@ -47,7 +49,7 @@ class MenuContainer extends React.Component {
       clearSectionPositions,
       venueUrl
     } = this.props;
-    console.log("wm");
+
     if (
       window.location.pathname === "/" ||
       window.location.pathname === "/wv"
@@ -56,10 +58,10 @@ class MenuContainer extends React.Component {
     } else {
       if (!bffRes || venue !== venueUrl) {
         document.title = "Mr Yum";
-        getMenuData("wv");
+        getMenuData(venueUrl);
         clearSectionPositions();
       } else {
-        //const venueName = Object.values(bffRes)[0].fields.Venue;
+        // replace with actual venue name from bff res
         document.title = "Winter Village Menu";
       }
       if (this.params.item !== itemId) {
@@ -79,13 +81,8 @@ class MenuContainer extends React.Component {
       clearSectionPositions
     } = this.props;
 
-    //  if (Object.keys(clientInfo).length === 0) {
-    //    window.location = '/wv/landing'
-    //  }
-    console.log("wu");
-
     if (!bffRes || venue !== venueUrl) {
-      getMenuData("wv");
+      getMenuData(venueUrl);
       clearSectionPositions();
     }
 
@@ -122,7 +119,8 @@ class MenuContainer extends React.Component {
       lang,
       itemId,
       category,
-      currentOrder
+      currentOrder,
+      searchLength
       // setCategory,
       // venueUrl,
     } = this.props;
@@ -130,6 +128,7 @@ class MenuContainer extends React.Component {
     const itemView = itemId ? true : false;
     const filtersInUse = Object.values(filter).includes(true);
     const cartInUse = Object.keys(currentOrder).length > 0 ? true : false;
+    const searchInUse = searchLength > 0 ? true : false;
 
     // replace venues.wv when we have a real bff res
     // {venues[venueUrl]}
@@ -157,13 +156,12 @@ class MenuContainer extends React.Component {
           {!itemView && (
             <Filter filter={filter} updateFilter={updateFilter} lang={lang} />
           )}
-          {category && !itemView && !filtersInUse ? (
+          {category && !itemView && !filtersInUse && !searchInUse ? (
             <HorizontalScrollNav sectionPositions={sectionPositions} />
           ) : (
             ""
           )}
           {!itemView && <LanguageSelect lang={lang} updateLang={updateLang} />}
-          {/* { !itemView && <MenuSearch data={bffRes} hide={false} onInput={(result) => console.log(result)}/>} */}
           <img
             onClick={e => {
               this.openCart();
@@ -189,14 +187,29 @@ class MenuContainer extends React.Component {
       itemId,
       category,
       setCategory,
-      addToCart
+      addToCart,
+      searchTerm,
+      setSearchRes,
+      searchLength,
+      searchRes
     } = this.props;
+    const itemView = itemId ? true : false;
+    const searchInUse = searchLength > 0 ? true : false;
 
     return isLoading || !bffRes ? (
       <LoadingScreen />
     ) : (
       <div className="Menu">
         {this.getHeader()}
+        {!itemView && (
+          <MenuSearch
+            data={bffRes}
+            hide={false}
+            onInput={result => result}
+            setSearchRes={setSearchRes}
+            searchInUse={searchInUse}
+          />
+        )}
         {category ? (
           <div className="menu">
             <Menu
@@ -208,7 +221,23 @@ class MenuContainer extends React.Component {
               routeToItemDetail={this.routeToItemDetail}
               setSectionPosition={setSectionPosition}
               addToCart={addToCart}
+              searchInUse={searchInUse}
+              searchTerm={searchTerm}
+              searchRes={searchRes}
             />
+            {searchInUse && searchRes.length === 0 ? (
+              <div className="noSearchRes">
+                <img
+                  src="/icons/no_results.svg"
+                  alt=""
+                  className="searchFace"
+                />
+                <p>Sorry, looks like there are no results.</p>
+                <p>Try something else!</p>
+              </div>
+            ) : (
+              ""
+            )}
             <Footer />
           </div>
         ) : (
@@ -223,7 +252,10 @@ class MenuContainer extends React.Component {
 }
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ ...actions, ...cartActions }, dispatch);
+  bindActionCreators(
+    { ...actions, ...cartActions, ...commonActions },
+    dispatch
+  );
 
 const mapStateToProps = state => ({
   bffRes: state.persistentMenu.bffRes,
@@ -235,7 +267,10 @@ const mapStateToProps = state => ({
   lang: state.persistentMenu.lang,
   setCategory: state.persistentMenu.setCategory,
   currentOrder: state.persistentCart.currentOrder,
-  clientInfo: state.persistentCommon.clientInfo
+  clientInfo: state.persistentCommon.clientInfo,
+  searchTerm: state.common.searchTerm,
+  searchRes: state.common.searchRes,
+  searchLength: state.common.searchLength
 });
 
 export default connect(
