@@ -13,7 +13,9 @@ class MenuSearch extends React.Component {
   }
 
   componentWillUnmount() {
-    document.querySelector(".searchInput").removeEventListener("search");
+    document
+      .querySelector(".searchInput")
+      .removeEventListener("search", () => {});
   }
 
   search = async input => {

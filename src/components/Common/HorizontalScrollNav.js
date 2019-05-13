@@ -1,8 +1,6 @@
 import React from "react";
-// import ReactDOM from 'react-dom';
 import _ from "lodash";
 import NavBadge from "./NavBadge";
-// import DragScroll from 'react-dragscroll';
 
 class HorizontalScrollNav extends React.Component {
   constructor(props) {
@@ -79,23 +77,19 @@ class HorizontalScrollNav extends React.Component {
   }
 
   sectionUpdateHandle(offset) {
-    // console.log('/////////////////////');
     if (this.refs.container) {
       this.refs.container.scrollLeft = offset;
     }
-    // this.setState({offset});
   }
 
   mouseUpHandle(e) {
     if (this.state.dragging) {
-      // const dragging = false;
       this.setState(this.state);
     }
   }
 
   mouseDownHandle(e) {
     if (!this.state.dragging) {
-      // this.state.dragging = true;
       this.setState(this.state);
       this.lastClientX = e.clientX;
       this.lastClientY = e.clientY;
@@ -113,7 +107,6 @@ class HorizontalScrollNav extends React.Component {
   }
 
   render() {
-    // eslint-disable-next-line
     const { sectionPositions } = this.props;
     const { currentPosition } = this.state;
     const sectionNames = Object.keys(sectionPositions);

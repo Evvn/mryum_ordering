@@ -79,7 +79,13 @@ class Menu extends Component {
   };
 
   getMenu() {
-    const { setSectionPosition, lang, routeToItemDetail } = this.props;
+    const {
+      setSectionPosition,
+      lang,
+      routeToItemDetail,
+      searchInUse,
+      searchTerm
+    } = this.props;
     const menuSections = this.getSections();
     const tagsInUse = this.getTags();
 
@@ -111,6 +117,8 @@ class Menu extends Component {
             tagsInUse={tagsInUse}
             routeToItemDetail={routeToItemDetail}
             lang={lang}
+            searchInUse={searchInUse}
+            searchTerm={searchTerm}
           />
         );
       });
