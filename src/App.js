@@ -10,7 +10,7 @@ import CartContainer from "./components/Cart/CartContainer.js";
 import NotFound from "./components/NotFound/NotFound.js";
 import ServerError from "./components/NotFound/ServerError.js";
 import Closed from "./components/NotFound/Closed.js";
-import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
+// import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 import "./App.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,12 +20,12 @@ ReactGA.initialize("UA-129043240-2");
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends React.Component {
-  componentWillMount() {
-    const { getVenueNames, venueNames } = this.props;
-    if (!venueNames) {
-      getVenueNames();
-    }
-  }
+  // componentWillMount() {
+  //   const { getVenueNames, venueNames } = this.props;
+  //   if (!venueNames) {
+  //     getVenueNames();
+  //   }
+  // }
 
   componentWillUnmount() {
     localStorage.clear("persist:persistedStore");
@@ -37,7 +37,7 @@ class App extends React.Component {
 
   render() {
     // eslint-disable-next-line
-    const { router, venueNames, isLoading } = this.props;
+    // const { router, venueNames, isLoading } = this.props;
     const date = new Date();
     const hour = date.getHours();
     const dayIndex = date.getDay();
@@ -76,7 +76,7 @@ class App extends React.Component {
             position={toast.POSITION.TOP_CENTER}
             autoClose={1500}
           />
-          {isLoading ? <LoadingScreen /> : ""}
+          {/* {isLoading ? <LoadingScreen /> : ""} */}
           {isOpen ? (
             <Switch>
               {/* <Route

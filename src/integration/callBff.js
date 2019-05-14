@@ -24,8 +24,6 @@ const callBff = (suffix, type, body, returnJson = true) => {
         }
         return response;
       }
-      console.log(response.json());
-      console.log("0000000response^ before callBff throws Error 0000000");
       throw Error(
         `Api request failed with status code: ${response.status}, @callBff`
       );

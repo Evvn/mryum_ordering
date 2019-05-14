@@ -14,7 +14,6 @@ import * as cartActions from "../Cart/actions/actions.js";
 import * as commonActions from "../Common/actions/actions.js";
 import classNames from "classnames";
 // import ReactGA from 'react-ga'
-import { venues } from "../Common/enums/commonEnums.js";
 import CategorySelect from "../CategorySelect/CategorySelect.js";
 
 import "./styles/menuContainer.scss";
@@ -62,7 +61,7 @@ class MenuContainer extends React.Component {
         clearSectionPositions();
       } else {
         // replace with actual venue name from bff res
-        document.title = "Winter Village Menu";
+        document.title = `${bffRes.venue.NAME} Menu`;
       }
       if (this.params.item !== itemId) {
         setItemId(this.params.item);
@@ -112,6 +111,7 @@ class MenuContainer extends React.Component {
 
   getHeader() {
     const {
+      bffRes,
       sectionPositions,
       filter,
       updateFilter,
@@ -151,7 +151,7 @@ class MenuContainer extends React.Component {
           ) : null}
           {/* { category && !!venueUrl && !itemView? <img onClick={() => {setCategory(false)}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/> : null } */}
           {category && !itemView ? (
-            <h1 className="venue">{venues.wv}</h1>
+            <h1 className="venue">{bffRes.venue.NAME}</h1>
           ) : null}
           {!itemView && (
             <Filter filter={filter} updateFilter={updateFilter} lang={lang} />
