@@ -179,12 +179,12 @@ export function* makePayment(action) {
             console.error(err);
             // text evan
             try {
-              const smsRes4 = yield callBff(`ordering/confirmationsms`, "POST", {
+              const smsRes4 = callBff(`ordering/confirmationsms`, "POST", {
                 name: `${orderObj.clientInfo.customerName} (${
                   orderObj.clientInfo.phone
                 })`,
                 number: "+61413206203",
-                order: error
+                order: err
               }).then(response => response);
               console.log(smsRes4);
             } catch (error) {
