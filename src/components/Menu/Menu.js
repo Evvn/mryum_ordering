@@ -33,9 +33,13 @@ class Menu extends Component {
     // let searchedMenuArr = [];
     let searchedMenu = {};
     if (searchInUse) {
+      // eslint-disable-next-line
       searchRes.map((item, index) => {
-        return (searchedMenu[item.id] = menuItems[searchRes[index].id]);
+        if (menuItems[searchRes[index].id]) {
+          return (searchedMenu[item.id] = menuItems[searchRes[index].id]);
+        }
       });
+
       Object.keys(searchedMenu).forEach(item => {
         const placedSections = Object.keys(menuSections);
         const menuItem = menuItems[item];

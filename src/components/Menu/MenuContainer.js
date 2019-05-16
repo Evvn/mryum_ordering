@@ -61,7 +61,7 @@ class MenuContainer extends React.Component {
         clearSectionPositions();
       } else {
         // replace with actual venue name from bff res
-        document.title = `${bffRes.venue.NAME} Menu`;
+        document.title = `Winter Village Menu`;
       }
       if (this.params.item !== itemId) {
         setItemId(this.params.item);
@@ -111,7 +111,7 @@ class MenuContainer extends React.Component {
 
   getHeader() {
     const {
-      bffRes,
+      // bffRes,
       sectionPositions,
       filter,
       updateFilter,
@@ -151,7 +151,7 @@ class MenuContainer extends React.Component {
           ) : null}
           {/* { category && !!venueUrl && !itemView? <img onClick={() => {setCategory(false)}} src="/icons/arrow-left-solid-white.svg" className="headerBackArrow" alt="back arrow"/> : null } */}
           {category && !itemView ? (
-            <h1 className="venue">{bffRes.venue.NAME}</h1>
+            <h1 className="venue">Winter Village</h1>
           ) : null}
           {!itemView && (
             <Filter filter={filter} updateFilter={updateFilter} lang={lang} />
