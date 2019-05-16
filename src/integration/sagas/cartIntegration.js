@@ -102,13 +102,31 @@ export function* makePayment(action) {
       res
     });
 
+    const currentOrder = orderObj.order;
+    let items = Object.values(currentOrder).map(item => {
+      return item[0].quantity + " " + item[0].name;
+    });
+    items[items.length - 1] = "and " + items[items.length - 1];
+    let orderString = items.join(", ").replace(", and", " and");
+
+    try {
+      const res = yield callBff(`ordering/confirmationsms`, "POST", {
+        name: orderObj.clientInfo.customerName,
+        number: orderObj.clientInfo.phone,
+        order: orderString
+      }).then(response => response);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+
     // send order to airtable
     const base = new Airtable({
       apiKey: process.env.REACT_APP_AIRTABLE_API_KEY
     }).base("app4XnP7NuSCWMWD7");
     const uniqueCode = Math.floor(1000 + Math.random() * 9000);
 
-    // mikes flash new json machnine
+    // mikes flash new json machine
     // Object.keys(orderObj.order).forEach(item => {
     //   base('NewOrders').create({
     //     "stripe_transaction_id": res.id,
