@@ -22,12 +22,10 @@ class CustomerScreen extends React.Component {
 
   componentDidMount() {
     const { clientInfo } = this.props;
-
-    console.log(clientInfo);
-    if (clientInfo.customerName !== "") {
+    if (clientInfo.customerName) {
       this.setState({ nameInput: clientInfo.customerName });
     }
-    if (clientInfo.phone !== "") {
+    if (clientInfo.phone) {
       this.setState({ standingInput: clientInfo.phone });
     }
   }
@@ -100,7 +98,6 @@ class CustomerScreen extends React.Component {
           className="payNowBtn"
           onClick={e => {
             const phoneNumber = phone(standingInput);
-
             if (
               phoneNumber.length !== 0 &&
               phoneNumber !== null &&

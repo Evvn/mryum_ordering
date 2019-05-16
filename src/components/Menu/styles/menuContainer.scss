@@ -1,0 +1,17 @@
+@import "../../../palette.scss";
+
+// NOTE
+// Lots of styling for this still lives in the big App.scss file and needs to be moved, this is where I'll be adding new styles relevant to ordering and WV/HS
+
+.noSearchRes {
+  font-family: "SF-UI-Text-Semibold", "Helvetica Semibold", sans-serif;
+  font-size: 22px;
+  text-align: center;
+  margin: 0 auto;
+  padding: 50px 15px 100px;
+  color: $secondary;
+}
+
+.searchFace {
+  width: 150px;
+}

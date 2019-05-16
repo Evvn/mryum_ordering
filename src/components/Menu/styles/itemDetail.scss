@@ -1,5 +1,4 @@
-@import '../../../palette.scss';
-
+@import "../../../palette.scss";
 
 // NOTE
 // Lots of styling for this still lives in the big App.scss file and needs to be moved, this is where I'll be adding new styles relevant to ordering and WV/HS
@@ -12,7 +11,8 @@
   padding-bottom: 150px;
 }
 
-.quantityBtn, .quantityBtn:focus {
+.quantityBtn,
+.quantityBtn:focus {
   width: 66px;
   height: 66px;
   border-radius: 66px;
@@ -33,7 +33,8 @@
   font-size: 19px;
 }
 
-.addToOrderBtn, .addToOrderBtn:focus {
+.addToOrderBtn,
+.addToOrderBtn:focus {
   height: 62px;
   outline: none;
   border: none;

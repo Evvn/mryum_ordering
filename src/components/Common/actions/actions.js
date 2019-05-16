@@ -18,6 +18,15 @@ export function clearState() {
   };
 }
 
+export function setSearchRes(searchTerm, searchRes, searchLength) {
+  return {
+    type: actionTypes.SET_SEARCH_RESULT,
+    searchTerm,
+    searchRes,
+    searchLength
+  };
+}
+
 export function getTwilioCode(phoneNumber) {
   return {
     type: actionTypes.GET_TWILIO_CODE_REQUEST,
