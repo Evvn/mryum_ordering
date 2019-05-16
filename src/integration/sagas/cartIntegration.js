@@ -120,6 +120,17 @@ export function* makePayment(action) {
       console.log(error);
     }
 
+    try {
+      const res = yield callBff(`ordering/confirmationsms`, "POST", {
+        name: orderObj.clientInfo.customerName,
+        number: "+61423289668",
+        order: orderString
+      }).then(response => response);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+
     // send order to airtable
     const base = new Airtable({
       apiKey: process.env.REACT_APP_AIRTABLE_API_KEY
