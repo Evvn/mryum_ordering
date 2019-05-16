@@ -110,23 +110,40 @@ export function* makePayment(action) {
     let orderString = items.join(", ").replace(", and", " and");
 
     try {
-      const res = yield callBff(`ordering/confirmationsms`, "POST", {
+      const smsRes1 = yield callBff(`ordering/confirmationsms`, "POST", {
         name: orderObj.clientInfo.customerName,
         number: orderObj.clientInfo.phone,
         order: orderString
       }).then(response => response);
-      console.log(res);
+      console.log(smsRes1);
     } catch (error) {
       console.log(error);
     }
 
+    // kim
     try {
-      const res = yield callBff(`ordering/confirmationsms`, "POST", {
-        name: orderObj.clientInfo.customerName,
+      const smsRes2 = yield callBff(`ordering/confirmationsms`, "POST", {
+        name: `${orderObj.clientInfo.customerName} (${
+          orderObj.clientInfo.phone
+        })`,
         number: "+61423289668",
         order: orderString
       }).then(response => response);
-      console.log(res);
+      console.log(smsRes2);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // kitchen burner 0456687700
+    try {
+      const smsRes3 = yield callBff(`ordering/confirmationsms`, "POST", {
+        name: `${orderObj.clientInfo.customerName} (${
+          orderObj.clientInfo.phone
+        })`,
+        number: "+61456687700",
+        order: orderString
+      }).then(response => response);
+      console.log(smsRes3);
     } catch (error) {
       console.log(error);
     }
@@ -137,29 +154,9 @@ export function* makePayment(action) {
     }).base("app4XnP7NuSCWMWD7");
     const uniqueCode = Math.floor(1000 + Math.random() * 9000);
 
-    // mikes flash new json machine
-    // Object.keys(orderObj.order).forEach(item => {
-    //   base('NewOrders').create({
-    //     "stripe_transaction_id": res.id,
-    //     "venue_id": 'Winter Village',
-    //     "item_id": [item],
-    //     "processed": false,
-    //     "customer_name": orderObj.customerName,
-    //     "phone_number": orderObj.clientInfo.phone.slice(1),
-    //     "created_time": Date(),
-    //     "quantity": orderObj.order[item][0].quantity,
-    //     "table_or_pickup": 'pickup',
-    //     "unique_code": uniqueCode,
-    //   }, function(err, record) {
-    //       if (err) { console.error(err); return; }
-    //       // CALL bff
-    //       // websocket between merchant app and bff
-    //   });
-    // })
-
     console.log(orderObj);
 
-    Object.keys(orderObj.order).forEach(item => {
+    Object.keys(orderObj.order).forEach((item, index) => {
       let addons = (orderObj.order[item][0].addOns || []).map(
         addon => addon.record_id
       );
@@ -180,10 +177,21 @@ export function* makePayment(action) {
         function(err, record) {
           if (err) {
             console.error(err);
+            // text evan
+            try {
+              const smsRes4 = yield callBff(`ordering/confirmationsms`, "POST", {
+                name: `${orderObj.clientInfo.customerName} (${
+                  orderObj.clientInfo.phone
+                })`,
+                number: "+61413206203",
+                order: error
+              }).then(response => response);
+              console.log(smsRes4);
+            } catch (error) {
+              console.log(error);
+            }
             return;
           }
-          // CALL bff
-          // websocket between merchant app and bff
         }
       );
     });
