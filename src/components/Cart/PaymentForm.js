@@ -119,9 +119,16 @@ class PaymentForm extends React.Component {
       processingPayment,
       paymentError,
       clearStripeRes,
-      clearStripeErr
+      clearStripeErr,
+      currentOrder
     } = this.props;
     const { disableButton } = this.state;
+
+    let items = [];
+    Object.values(currentOrder).forEach(item => {
+      items.push(item[0].name);
+    });
+    console.log(items.join(", ").replace(/,([^,]*)$/, "and $1"));
 
     return (
       <div className="paymentScreenCont">
