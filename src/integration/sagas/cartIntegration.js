@@ -105,12 +105,14 @@ export function* makePayment(action) {
     const currentOrder = orderObj.order;
 
     let items = Object.values(currentOrder).map(item => {
-      let addonsArr = (item[0].addOns || []).map(addon => addon.NAME);
+      let addonsArr = (item[0].addOns || []).map(addon => addon["Add-On Name"]);
       let addonStr = addonsArr.join(" & ");
       return item[0].quantity + " " + item[0].name + " + " + addonStr;
     });
 
-    items[items.length - 1] = "and " + items[items.length - 1];
+    if (items.length > 1) {
+      items[items.length - 1] = "and " + items[items.length - 1];
+    }
     let orderString = items.join(", ").replace(", and", " and");
 
     try {
