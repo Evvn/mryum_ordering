@@ -4,7 +4,8 @@ import _ from "lodash";
 import { takeLatest, put, select } from "redux-saga/effects";
 import * as orderUtils from "../../utils/orderUtils.js";
 import callBff from "../callBff.js";
-import Airtable from "airtable";
+// import Airtable from "airtable";
+import axios from "axios";
 
 export function* addToOrder(action) {
   try {
@@ -96,7 +97,7 @@ export function* makePayment(action) {
       email: action.email === "" ? undefined : action.email
     }).then(response => response);
 
-    // yield console.log(res);
+    yield console.log(res);
     yield put({
       type: actionTypes.MAKE_STRIPE_CHARGE_SUCCESS,
       res
@@ -104,10 +105,16 @@ export function* makePayment(action) {
 
     const currentOrder = orderObj.order;
 
+    const uniqueCode = Math.floor(1000 + Math.random() * 9000);
+
     let items = Object.values(currentOrder).map(item => {
       let addonsArr = (item[0].addOns || []).map(addon => addon["Add-On Name"]);
       let addonStr = addonsArr.join(" & ");
-      return item[0].quantity + " " + item[0].name + " + " + addonStr;
+      if (addonsArr.length > 0) {
+        return item[0].quantity + " " + item[0].name + " + " + addonStr;
+      } else {
+        return item[0].quantity + " " + item[0].name;
+      }
     });
 
     if (items.length > 1) {
@@ -131,7 +138,7 @@ export function* makePayment(action) {
       const smsRes2 = yield callBff(`ordering/confirmationsms`, "POST", {
         name: `${orderObj.clientInfo.customerName} (${
           orderObj.clientInfo.phone
-        })`,
+        }) (code: ${uniqueCode})`,
         number: "+61423289668",
         order: orderString
       }).then(response => response);
@@ -145,7 +152,7 @@ export function* makePayment(action) {
       const smsRes3 = yield callBff(`ordering/confirmationsms`, "POST", {
         name: `${orderObj.clientInfo.customerName} (${
           orderObj.clientInfo.phone
-        })`,
+        }) (code: ${uniqueCode})`,
         number: "+61456687700",
         order: orderString
       }).then(response => response);
@@ -154,20 +161,20 @@ export function* makePayment(action) {
       console.log(error);
     }
 
-    // send order to airtable
-    const base = new Airtable({
-      apiKey: process.env.REACT_APP_AIRTABLE_API_KEY
-    }).base("app4XnP7NuSCWMWD7");
-    const uniqueCode = Math.floor(1000 + Math.random() * 9000);
-
     console.log(orderObj);
+
+    const airtableHeaders = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + process.env.REACT_APP_AIRTABLE_API_KEY
+    };
 
     Object.keys(orderObj.order).forEach((item, index) => {
       let addons = (orderObj.order[item][0].addOns || []).map(
         addon => addon.record_id
       );
-      base("Orders").create(
-        {
+
+      let payload = JSON.stringify({
+        fields: {
           stripe_transaction_id: res.id,
           venue_id: "Winter Village",
           item_id: [orderObj.order[item][0].id],
@@ -179,40 +186,43 @@ export function* makePayment(action) {
           quantity: orderObj.order[item][0].quantity,
           table_or_pickup: "pickup",
           unique_code: uniqueCode
-        },
-        function(err, record) {
-          if (err) {
-            console.error(err);
-            // text evan
-            try {
-              const smsRes4 = callBff(`ordering/confirmationsms`, "POST", {
-                name: `${orderObj.clientInfo.customerName} (${
-                  orderObj.clientInfo.phone
-                })`,
-                number: "+61413206203",
-                order: err
-              }).then(response => response);
-              console.log(smsRes4);
-            } catch (error) {
-              console.log(error);
-            }
-            return;
-          }
         }
+      });
+
+      axios.post(
+        "https://api.airtable.com/v0/app4XnP7NuSCWMWD7/Orders",
+        payload,
+        { headers: airtableHeaders }
       );
+
+      // send order to airtable
+      // const base = new Airtable({
+      //   apiKey: process.env.REACT_APP_AIRTABLE_API_KEY
+      // }).base("app4XnP7NuSCWMWD7");
+      // base("Orders").create(
+      //   {
+      //     stripe_transaction_id: res.id,
+      //     venue_id: "Winter Village",
+      //     item_id: [orderObj.order[item][0].id],
+      //     addons: addons,
+      //     processed: false,
+      //     customer_name: orderObj.clientInfo.customerName,
+      //     phone_number: orderObj.clientInfo.phone.slice(3),
+      //     created_time: Date(),
+      //     quantity: orderObj.order[item][0].quantity,
+      //     table_or_pickup: "pickup",
+      //     unique_code: uniqueCode
+      //   },
+      //   function(err, record) {
+      //     if (err) {
+      //       console.error(err);
+      //       return;
+      //     }
+      //     // on airtable win
+      //     console.log(record);
+      //   }
+      // );
     });
-
-    // then call bff stuff for airtable, ask about specifics later
-    /*
-        const getCurrentOrder = state => state.persistentCart.currentOrder;
-        let currentOrder = yield select(getCurrentOrder);
-
-        yield put({
-          type: actionTypes.RECORD_ORDER, // have another saga for action type then empty cart
-          id: response.data,
-          cartItems: currentOrder.items,
-        })
-      */
   } catch (error) {
     yield put({
       type: actionTypes.MAKE_STRIPE_CHARGE_FAILURE,
