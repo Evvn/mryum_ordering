@@ -63,7 +63,7 @@ class App extends React.Component {
       }
     }
 
-    // isOpen = true;
+    isOpen = true;
 
     // FOR DEV
     if (process.env.REACT_APP_REDUX_DEV_TOOLS === "true") {

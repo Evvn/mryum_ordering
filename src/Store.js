@@ -17,7 +17,7 @@ export default (initialState = {}) => {
   const persistConfig = {
     key: "root",
     storage,
-    version: 19,
+    version: 20,
     stateReconciler: autoMergeLevel2,
     migrate: createMigrate(migrations, { debug: false }),
     blacklist: ["router", "menu", "common"]
