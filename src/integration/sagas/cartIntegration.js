@@ -1,11 +1,8 @@
 import * as actionTypes from "../../components/Cart/actions/actionTypes/actionTypes.js";
-// eslint-disable-next-line
 import _ from "lodash";
 import { takeLatest, put, select } from "redux-saga/effects";
 import * as orderUtils from "../../utils/orderUtils.js";
 import callBff from "../callBff.js";
-// import Airtable from "airtable";
-// import axios from "axios";
 
 export function* addToOrder(action) {
   try {
@@ -79,28 +76,26 @@ export function* removeFromOrder(action) {
   }
 }
 
-/*****************************************************
- *  Needs to be moved to backend since stripe secret
- *  is needed
- */
+export function* createCustomer(action) {
+  try {
+    const res = yield callBff(`ordering/createcustomer`, "POST", {
+      client: action.clientInfo,
+      source: action.token.id
+    }).then(response => response);
 
-// const sendToAirtable = async payload => {
-//   const airtableHeaders = {
-//     "Content-Type": "application/json",
-//     Authorization: "Bearer " + process.env.REACT_APP_AIRTABLE_API_KEY
-//   };
-
-//   await axios
-//     .post("https://api.airtable.com/v0/app4XnP7NuSCWMWD7/Orders", payload, {
-//       headers: airtableHeaders
-//     })
-//     .then(response => {
-//       console.log(response);
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
-// };
+    yield console.log(res);
+    yield put({
+      type: actionTypes.CREATE_STRIPE_CUSTOMER_SUCCESS,
+      res
+    });
+  } catch (error) {
+    console.log(error);
+    yield put({
+      type: actionTypes.CREATE_STRIPE_CUSTOMER_FAILURE,
+      error
+    });
+  }
+}
 
 export function* makePayment(action) {
   try {
@@ -115,7 +110,8 @@ export function* makePayment(action) {
       customerName: action.clientInfo.customerName,
       email: action.email === "" ? undefined : action.email,
       order: orderObj,
-      code: uniqueCode
+      code: uniqueCode,
+      stripeCustomer: action.stripeCustomer ? action.stripeCustomer : false
     }).then(response => response);
 
     yield console.log(res);
@@ -179,85 +175,6 @@ export function* makePayment(action) {
     } catch (error) {
       console.log(error);
     }
-
-    // // Kerry cell 0411163388
-    // try {
-    //   const smsRes4 = yield callBff(`ordering/confirmationsms`, "POST", {
-    //     name: `${orderObj.clientInfo.customerName} (${
-    //       orderObj.clientInfo.phone
-    //     }) (code: ${uniqueCode})`,
-    //     number: "+61411163388",
-    //     order: orderString
-    //   }).then(response => response);
-    //   console.log(smsRes4);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
-    // console.log(orderObj);
-
-    // const airtableHeaders = {
-    //   "Content-Type": "application/json",
-    //   Authorization: "Bearer " + process.env.REACT_APP_AIRTABLE_API_KEY
-    // };
-
-    // Object.keys(orderObj.order).forEach((item, index) => {
-    //   let addons = (orderObj.order[item][0].addOns || []).map(
-    //     addon => addon.record_id
-    //   );
-
-    //   let payload = JSON.stringify({
-    //     fields: {
-    //       stripe_transaction_id: res.id,
-    //       venue_id: "Winter Village",
-    //       item_id: [orderObj.order[item][0].id],
-    //       addons: addons,
-    //       processed: false,
-    //       customer_name: orderObj.clientInfo.customerName,
-    //       phone_number: orderObj.clientInfo.phone.slice(3),
-    //       created_time: Date(),
-    //       quantity: orderObj.order[item][0].quantity,
-    //       table_or_pickup: "pickup",
-    //       unique_code: uniqueCode
-    //     }
-    //   });
-
-    // sendToAirtable(payload);
-
-    // axios.post(
-    //   "https://api.airtable.com/v0/app4XnP7NuSCWMWD7/Orders",
-    //   payload,
-    //   { headers: airtableHeaders }
-    // );
-
-    // send order to airtable
-    //   const base = new Airtable({
-    //     apiKey: process.env.REACT_APP_AIRTABLE_API_KEY
-    //   }).base("app4XnP7NuSCWMWD7");
-    //   base("Orders").create(
-    //     {
-    //       stripe_transaction_id: res.id,
-    //       venue_id: "Winter Village",
-    //       item_id: [orderObj.order[item][0].id],
-    //       addons: addons,
-    //       processed: false,
-    //       customer_name: orderObj.clientInfo.customerName,
-    //       phone_number: orderObj.clientInfo.phone.slice(3),
-    //       created_time: Date(),
-    //       quantity: orderObj.order[item][0].quantity,
-    //       table_or_pickup: "pickup",
-    //       unique_code: uniqueCode
-    //     },
-    //     function(err, record) {
-    //       if (err) {
-    //         console.error(err);
-    //         return;
-    //       }
-    //       // on airtable win
-    //       console.log(record);
-    //     }
-    //   );
-    // });
   } catch (error) {
     yield put({
       type: actionTypes.MAKE_STRIPE_CHARGE_FAILURE,
@@ -266,12 +183,12 @@ export function* makePayment(action) {
     console.log(error);
   }
 }
-/**************************************************** */
 
 export function* actionWatcher() {
   yield [
     takeLatest(actionTypes.ADD_TO_ORDER_REQUEST, addToOrder),
     takeLatest(actionTypes.REMOVE_FROM_ORDER_REQUEST, removeFromOrder),
-    takeLatest(actionTypes.MAKE_STRIPE_CHARGE_REQUEST, makePayment)
+    takeLatest(actionTypes.MAKE_STRIPE_CHARGE_REQUEST, makePayment),
+    takeLatest(actionTypes.CREATE_STRIPE_CUSTOMER_REQUEST, createCustomer)
   ];
 }

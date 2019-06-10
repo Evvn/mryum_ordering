@@ -129,7 +129,9 @@ class CartContainer extends React.Component {
       paymentError,
       clearStripeRes,
       clearStripeErr,
-      clientInfo
+      clientInfo,
+      stripeCustomer,
+      clearCustomer
     } = this.props;
     const { showCustomerScreen, showPaymentScreen } = this.state;
     const itemGroups = Object.keys(currentOrder);
@@ -150,6 +152,8 @@ class CartContainer extends React.Component {
         <div>
           <PaymentScreen
             orderTotal={total}
+            stripeCustomer={stripeCustomer}
+            clearCustomer={clearCustomer}
             closePaymentScreen={this.closePaymentScreen}
             paymentRes={paymentRes}
             processingPayment={processingPayment}
@@ -219,7 +223,8 @@ const mapStateToProps = state => ({
   paymentError: state.persistentCart.paymentError,
   orderTotal: state.persistentCart.orderTotal,
   clientType: state.persistentCommon.clientType,
-  clientInfo: state.persistentCommon.clientInfo
+  clientInfo: state.persistentCommon.clientInfo,
+  stripeCustomer: state.persistentCart.stripeCustomer
 });
 
 export default connect(

@@ -19,7 +19,8 @@ const migrations = {
   17: state => {},
   18: state => {},
   19: state => {},
-  20: state => {}
+  20: state => {},
+  21: state => {}
 };
 
 export default migrations;
