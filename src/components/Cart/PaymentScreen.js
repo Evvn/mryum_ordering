@@ -10,6 +10,9 @@ class PaymentScreen extends React.Component {
     const {
       orderTotal,
       closePaymentScreen,
+      createCustomer,
+      clearCustomer,
+      stripeCustomer,
       makePayment,
       paymentRes,
       processingPayment,
@@ -26,6 +29,9 @@ class PaymentScreen extends React.Component {
           <PaymentForm
             orderTotal={orderTotal}
             closePaymentScreen={closePaymentScreen}
+            createCustomer={createCustomer}
+            clearCustomer={clearCustomer}
+            stripeCustomer={stripeCustomer}
             makePayment={makePayment}
             paymentRes={paymentRes}
             processingPayment={processingPayment}

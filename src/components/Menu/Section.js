@@ -111,25 +111,6 @@ class Section extends React.Component {
       section.push(<MenuInfo key={uuid()} infoList={infoList} />);
     }
 
-    // old alternating code - delete when fixed
-    // section = section.map(item => {
-    //   if (item && item !== '' && item.type.name === 'MenuItem') {
-    //     // console.log(updatedIndex);
-    //     updatedIndex++
-    //     return (
-    //       <MenuItem
-    //         key={item.key}
-    //         item={item.props.item}
-    //         itemIndex={updatedIndex}
-    //         lang={lang}
-    //         onClick={(e) => {routeToItemDetail(e, item.key, lang)}}
-    //       />
-    //     )
-    //   } else {
-    //     return item
-    //   }
-    // })
-
     return section;
   }
 

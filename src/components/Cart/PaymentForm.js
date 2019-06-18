@@ -28,7 +28,13 @@ class PaymentForm extends React.Component {
     });
 
     paymentRequest.on("token", ({ complete, token, ...data }) => {
-      const { orderTotal, currentOrder, clientInfo, makePayment } = this.props;
+      const {
+        orderTotal,
+        currentOrder,
+        clientInfo,
+        makePayment,
+        stripeCustomer
+      } = this.props;
       const { email } = this.state;
       makePayment(
         token,
@@ -36,7 +42,8 @@ class PaymentForm extends React.Component {
         "Mr Yum",
         currentOrder,
         clientInfo,
-        email === "" ? undefined : email
+        email === "" ? undefined : email,
+        stripeCustomer
       );
       this.setState({ processingPayment: true });
       console.log("Received Stripe token: ", token);
@@ -54,18 +61,10 @@ class PaymentForm extends React.Component {
       disableButton: false,
       canMakePayment: false,
       paymentRequest,
-      email: ""
+      email: "",
+      saveCustomer: false
     };
   }
-
-  //trial to fix autocomplete suggestion for card input on *first* click instead of second
-  // componentDidUpdate() {
-  //   console.log(
-  //     document
-  //       .querySelectorAll("iframe")[0]
-  //       .contentWindow.document.querySelector("span")
-  //   );
-  // }
 
   handleSubmit = e => {
     const {
@@ -73,27 +72,61 @@ class PaymentForm extends React.Component {
       currentOrder,
       clientInfo,
       stripe,
-      makePayment
+      createCustomer,
+      makePayment,
+      stripeCustomer
     } = this.props;
-    const { email } = this.state;
+    const { email, saveCustomer } = this.state;
     e.preventDefault();
     this.setState({ disableButton: true });
-
-    if (stripe) {
-      stripe
-        .createToken({ type: "card", name: clientInfo.customerName })
-        .then(result => {
-          makePayment(
-            result.token,
-            orderTotal * 100,
-            "Mr Yum",
-            currentOrder,
-            clientInfo,
-            email === "" ? undefined : email
-          );
-        });
+    if (stripeCustomer) {
+      makePayment(
+        false,
+        orderTotal * 100,
+        "Mr Yum",
+        currentOrder,
+        clientInfo,
+        stripeCustomer
+      );
     } else {
-      console.log("Stripe.js hasn't loaded yet");
+      if (stripe) {
+        stripe
+          .createToken({ type: "card", name: clientInfo.customerName })
+          .then(result => {
+            if (saveCustomer) {
+              createCustomer(
+                result.token,
+                clientInfo,
+                email === "" ? undefined : email
+              );
+              stripe
+                .createToken({ type: "card", name: clientInfo.customerName })
+                .then(res => {
+                  makePayment(
+                    res.token,
+                    orderTotal * 100,
+                    "Mr Yum",
+                    currentOrder,
+                    clientInfo,
+                    email === "" ? undefined : email,
+                    false
+                  );
+                });
+            } else {
+              makePayment(
+                result.token,
+                orderTotal * 100,
+                "Mr Yum",
+                currentOrder,
+                clientInfo,
+                email === "" ? undefined : email,
+                stripeCustomer
+              );
+            }
+          });
+      } else {
+        console.log("Stripe.js hasn't loaded yet");
+      }
     }
   };
 
@@ -119,7 +152,9 @@ class PaymentForm extends React.Component {
       processingPayment,
       paymentError,
       clearStripeRes,
-      clearStripeErr
+      clearStripeErr,
+      stripeCustomer,
+      clearCustomer
     } = this.props;
     const { disableButton } = this.state;
 
@@ -133,6 +168,7 @@ class PaymentForm extends React.Component {
             paymentError={paymentError}
             clearStripeRes={clearStripeRes}
             clearStripeErr={clearStripeErr}
+            clearCustomer={clearCustomer}
           />
         ) : (
           <div>
@@ -151,57 +187,97 @@ class PaymentForm extends React.Component {
             <form className="checkoutForm" onSubmit={this.handleSubmit}>
               <h2 className="checkoutHeading">Checkout</h2>
 
-              <div>
-                <div className="paymentHeading">Payment</div>
-                <input
-                  value={this.state.email}
-                  onChange={e => {
-                    this.setState({
-                      email: e.target.value
-                    });
-                  }}
-                  type="email"
-                  className="customerEmail"
-                  placeholder="Email for receipt (optional)"
-                />
-                <label>
-                  {// apple/google pay button hides if you cant use it
-                  this.state.canMakePayment &&
-                  !this.state.hidePaymentRequest ? (
-                    <div>
-                      <button
-                        className="payWithCard"
-                        onClick={e => {
-                          e.preventDefault();
-                          this.setState({
-                            hidePaymentRequest: true
-                          });
-                        }}
-                      >
-                        Pay with card
-                      </button>
-                      <div className="paymentRequestCont">
-                        <PaymentRequestButtonElement
-                          paymentRequest={this.state.paymentRequest}
-                          style={{
-                            paymentRequestButton: {
-                              theme: "dark",
-                              height: "64px"
-                            }
+              {stripeCustomer ? (
+                <div>
+                  <div className="paymentHeading">Payment</div>
+                  <div className="savedCustomerInfo">
+                    <p>
+                      Your card details have been previously saved. Click on the
+                      “Pay Now” button below to proceed.
+                    </p>
+                    <button
+                      onClick={e => {
+                        e.preventDefault();
+                        clearCustomer();
+                      }}
+                    >
+                      Change card details
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <div className="paymentHeading">Payment</div>
+                  <input
+                    value={this.state.email}
+                    onChange={e => {
+                      this.setState({
+                        email: e.target.value
+                      });
+                    }}
+                    type="email"
+                    className="customerEmail"
+                    placeholder="Email for receipt (optional)"
+                  />
+                  <label>
+                    {// apple/google pay button hides if you cant use it
+                    this.state.canMakePayment &&
+                    !this.state.hidePaymentRequest ? (
+                      <div>
+                        <button
+                          className="payWithCard"
+                          onClick={e => {
+                            e.preventDefault();
+                            this.setState({
+                              hidePaymentRequest: true
+                            });
                           }}
-                        />
+                        >
+                          Pay with card
+                        </button>
+                        <div className="paymentRequestCont">
+                          <PaymentRequestButtonElement
+                            paymentRequest={this.state.paymentRequest}
+                            style={{
+                              paymentRequestButton: {
+                                theme: "dark",
+                                height: "64px"
+                              }
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    // <div className="cardInput">
-                    <CardElement
-                      {...this.createOptions("18px")}
-                      className={"cardInput"}
-                    />
-                    // </div>
-                  )}
-                </label>
-              </div>
+                    ) : (
+                      // <div className="cardInput">
+                      <div>
+                        <CardElement
+                          {...this.createOptions("18px")}
+                          className={"cardInput"}
+                        />
+                        <div
+                          className="saveCustomerCont"
+                          onClick={e => {
+                            document
+                              .querySelector(".checkBox")
+                              .classList.toggle("checkedBox");
+                            this.setState({
+                              saveCustomer: !this.state.saveCustomer
+                            });
+                          }}
+                        >
+                          <div className="checkBoxCont">
+                            <div className="checkBox" />
+                          </div>
+                          <span className="saveDetails">
+                            Save payment details for my future orders
+                          </span>
+                        </div>
+                      </div>
+                      // </div>
+                    )}
+                  </label>
+                </div>
+              )}
 
               <div className="orderTotal">
                 <span>Order Total</span>

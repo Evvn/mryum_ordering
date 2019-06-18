@@ -1,31 +1,4 @@
-import * as actionTypes from '../actions/actionTypes/actionTypes.js';
-/*Current Order Template
-  {
-    items: [
-      {
-        id: String from airtable,
-        name: string,
-        add-ons: [
-          {
-            id: string from airtable,
-            name: string,
-            price: string || false
-          }
-        ],
-        modifiers:[
-          {
-            id: string from airtable,
-            name: string,
-          }
-        ],
-        price: float,
-        quantity: int,
-        subtotal: float,uu
-      }
-    ],
-    orderTotal: float,
-  }
-*/
+import * as actionTypes from "../actions/actionTypes/actionTypes.js";
 
 const initialState = {
   currentOrder: {},
@@ -33,58 +6,74 @@ const initialState = {
   orderTotal: 0,
   processingPayment: false,
   paymentError: false,
-}
+  stripeCustomer: false
+};
 
 function persistentCartReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.ADD_TO_ORDER_SUCCESS:
       return {
         ...state,
-        currentOrder: action.currentOrder,
-      }
+        currentOrder: action.currentOrder
+      };
     case actionTypes.REMOVE_FROM_ORDER_SUCCESS:
       return {
         ...state,
-        currentOrder: action.currentOrder,
-      }
+        currentOrder: action.currentOrder
+      };
     case actionTypes.MAKE_STRIPE_CHARGE_REQUEST:
       return {
         ...state,
-        processingPayment: true,
-      }
+        processingPayment: true
+      };
     case actionTypes.MAKE_STRIPE_CHARGE_SUCCESS:
       return {
         ...state,
         paymentRes: action.res,
-        processingPayment: false,
-      }
+        processingPayment: false
+      };
     case actionTypes.MAKE_STRIPE_CHARGE_FAILURE:
       return {
         ...state,
         paymentRes: false,
         processingPayment: false,
-        paymentError: action.error,
-      }
+        paymentError: action.error
+      };
+    case actionTypes.CREATE_STRIPE_CUSTOMER_SUCCESS:
+      return {
+        ...state,
+        stripeCustomer: action.res
+      };
+    case actionTypes.CREATE_STRIPE_CUSTOMER_FAILURE:
+      return {
+        ...state,
+        stripeCustomer: action.error
+      };
+    case actionTypes.CLEAR_STRIPE_CUSTOMER:
+      return {
+        ...state,
+        stripeCustomer: false
+      };
     case actionTypes.CLEAR_STRIPE_RES:
       return {
         ...state,
         paymentRes: false,
         paymentError: false,
-        currentOrder: {}, // reset current order to empty
-      }
+        currentOrder: {} // reset current order to empty
+      };
     case actionTypes.CLEAR_STRIPE_ERR:
       return {
         ...state,
         paymentRes: false,
-        paymentError: false,
-      }
+        paymentError: false
+      };
     case actionTypes.UPDATE_ORDER_TOTAL:
       return {
         ...state,
-        orderTotal: action.orderTotal,
-      }
+        orderTotal: action.orderTotal
+      };
     default:
-      return state
+      return state;
   }
 }
 

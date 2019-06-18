@@ -67,6 +67,7 @@ class App extends React.Component {
     if (process.env.REACT_APP_REDUX_DEV_TOOLS === "true") {
       isOpen = true;
     }
+
     // const path = router.location.pathname.split('/')[1];
     // const showMenu = venueNames ? venueNames.includes(path) ? true : false : false;
     return (
