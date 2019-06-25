@@ -10,15 +10,18 @@ import CartContainer from "./components/Cart/CartContainer.js";
 import NotFound from "./components/NotFound/NotFound.js";
 import ServerError from "./components/NotFound/ServerError.js";
 import Closed from "./components/NotFound/Closed.js";
-import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
+// import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 import "./App.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactGA from "react-ga";
 // import { loggerPlugin } from "router5";
+ReactGA.initialize("UA-129043240-2");
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends React.Component {
   // componentWillMount() {
-  //   const { getVenueNames, venueNames } = this.props
+  //   const { getVenueNames, venueNames } = this.props;
   //   if (!venueNames) {
   //     getVenueNames();
   //   }
@@ -34,10 +37,12 @@ class App extends React.Component {
 
   render() {
     // eslint-disable-next-line
-    const { router, venueNames, isLoading } = this.props;
+    // const { router, venueNames, isLoading } = this.props;
     const date = new Date();
     const hour = date.getHours();
     const dayIndex = date.getDay();
+
+    /// to do - move kitchen opening times to database, no more hard coding
     const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     const day = days[dayIndex];
 
@@ -59,9 +64,10 @@ class App extends React.Component {
     }
 
     // FOR DEV
-    // if (process.env.REACT_APP_REDUX_DEV_TOOLS === "true") {
-    isOpen = true;
-    // }
+    if (process.env.REACT_APP_REDUX_DEV_TOOLS === "true") {
+      isOpen = true;
+    }
+
     // const path = router.location.pathname.split('/')[1];
     // const showMenu = venueNames ? venueNames.includes(path) ? true : false : false;
     return (
@@ -71,7 +77,7 @@ class App extends React.Component {
             position={toast.POSITION.TOP_CENTER}
             autoClose={1500}
           />
-          {isLoading ? <LoadingScreen /> : ""}
+          {/* {isLoading ? <LoadingScreen /> : ""} */}
           {isOpen ? (
             <Switch>
               {/* <Route

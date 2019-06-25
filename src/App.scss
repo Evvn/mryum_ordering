@@ -91,7 +91,6 @@ body {
 }
 
 .menu {
-  min-height: 100vh;
   position: relative;
   background-color: $white;
 }
@@ -1098,7 +1097,7 @@ h1 {
 }
 
 .sectionTaller {
-  padding-top: 125px;
+  padding-top: 0px;
 }
 // hack lol
 .filterSection:first-of-type {
@@ -1413,7 +1412,6 @@ h1 {
 .previewModal {
   background-color: $white;
   height: 100vh;
-  overflow: auto;
   max-width: $maxWidth;
   position: fixed;
   top: 62px;
@@ -1422,6 +1420,8 @@ h1 {
   justify-content: flex-end;
   align-items: center;
   flex-direction: column;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 
   .itemFeedback {
     position: absolute;
@@ -1461,7 +1461,6 @@ h1 {
   }
 
   .previewWrapper {
-    overflow: auto;
     // height: 100%;
     max-width: $maxWidth;
 
@@ -2076,8 +2075,25 @@ footer {
     }
   }
 
+  .selectLanguage {
+    right: 140px;
+  }
+
+  .filterText {
+    right: 78px !important;
+  }
+
+  .cartIcon {
+    right: 45px !important;
+  }
+
+  .cartBadge {
+    right: 40px !important;
+  }
+
   .selectSection {
     max-width: 100vw;
+    margin-top: 1px;
     padding-left: 5px;
     padding-right: 28px;
   }
@@ -2087,10 +2103,6 @@ footer {
     font-size: 34px;
     padding-left: 40px;
     padding-right: 40px;
-  }
-
-  .sectionTaller {
-    padding-top: 145px;
   }
 
   .menu > div > div > div {

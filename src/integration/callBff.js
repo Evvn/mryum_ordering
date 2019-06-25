@@ -14,9 +14,6 @@ const callBff = (suffix, type, body, returnJson = true) => {
   }
 
   try {
-    console.log("s " + suffix);
-    console.log("p " + JSON.stringify(payload));
-
     return fetch(
       `${process.env.REACT_APP_BFF_BASE_URL}/yumbff/${suffix}`,
       payload
@@ -27,8 +24,6 @@ const callBff = (suffix, type, body, returnJson = true) => {
         }
         return response;
       }
-      console.log(response.json());
-      console.log("0000000response^ before callBff throws Error 0000000");
       throw Error(
         `Api request failed with status code: ${response.status}, @callBff`
       );

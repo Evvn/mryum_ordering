@@ -24,7 +24,7 @@
     -->
 
     <!-- hamburger menu css -->
-    <link href="%PUBLIC_URL%/hamburgers.css" rel="stylesheet">
+    <link href="%PUBLIC_URL%/hamburgers.css" rel="stylesheet" />
 
     <title>Mr Yum</title>
   </head>
@@ -42,5 +42,16 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script async>
+      (function(s, u, m, o, j, v) {
+        j = u.createElement(m);
+        v = u.getElementsByTagName(m)[0];
+        j.async = 1;
+        j.src = o;
+        j.dataset.sumoSiteId =
+          "6970d51fd6747684d48546d4190b1d395379ac28a88e7ce51e1acd987e5cb772";
+        v.parentNode.insertBefore(j, v);
+      })(window, document, "script", "//load.sumo.com/");
+    </script>
   </body>
 </html>

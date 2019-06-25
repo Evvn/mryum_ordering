@@ -2,7 +2,10 @@ import * as actionTypes from "../actions/actionTypes/actionTypes.js";
 import * as menuActionTypes from "../../Menu/actions/actionTypes/actionTypes.js";
 
 const initialState = {
-  isLoading: false
+  isLoading: false,
+  searchTerm: "",
+  searchRes: [],
+  searchLength: 0
 };
 
 function commonReducer(state = initialState, action) {
@@ -47,6 +50,13 @@ function commonReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false
+      };
+    case actionTypes.SET_SEARCH_RESULT:
+      return {
+        ...state,
+        searchTerm: action.searchTerm,
+        searchRes: action.searchRes,
+        searchLength: action.searchLength
       };
     default:
       return state;
